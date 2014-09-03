@@ -12,10 +12,41 @@ public class GameManager : MonoBehaviour {
 	public bool randomSpawnTime = false;
 	public float randomRange = 1f;
 
-	void Start () {
-		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
+	bool gameStarted = false;
 
-		StartCoroutine ("SpawnEnemy");
+	float timer = 0f;
+
+	BallManager ballManager;
+
+	void Start() {
+		GameObject.DontDestroyOnLoad(gameObject);
+		ballManager = GetComponent<BallManager>();
+	}
+
+	void OnLevelWasLoaded(int level) {
+		if(level == 1) {
+			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
+			StartCoroutine ("SpawnEnemy");
+		}
+	}
+
+	void Update() {
+		if(gameStarted) {
+			if(timer > 0f) {
+				timer -= Time.deltaTime;
+				if(timer < 0f)
+					Application.LoadLevel("Main");
+			}
+		}
+	}
+
+	public void BallHit(Vector2 pos, string color) {
+		if(!gameStarted) {
+			gameStarted = true;
+			timer = 10f;
+		} else if(timer <= 0) {
+			ballManager.Shoot(pos, color);
+		}
 	}
 
 	IEnumerator SpawnEnemy() {
@@ -28,5 +59,10 @@ public class GameManager : MonoBehaviour {
 			else
 				yield return new WaitForSeconds(spawnRate);
 		}
+	}
+
+	void OnGUI() {
+		if(timer > 0f)
+			GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + (int)timer);
 	}
 }

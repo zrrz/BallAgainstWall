@@ -17,13 +17,17 @@ public class BallManager : MonoBehaviour {
 			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
 				if(hit.collider.tag == "Enemy" && !shotEnemies.Contains(hit.collider.gameObject)) {
 					shotEnemies.Add(hit.collider.gameObject);
-					StartCoroutine("Shoot", hit.collider.transform);
+					StartCoroutine("Shoot1", hit.collider.transform);
 				}
 			}
 		}
 	}
 
-	IEnumerator Shoot(Transform target) {
+	public void Shoot(Vector2 pos, string color) {
+
+	}
+
+	IEnumerator Shoot1(Transform target) {
 		GameObject ball = (GameObject)Instantiate (ballPrefabs [Random.Range (0, ballPrefabs.Length)], Camera.main.transform.position, Quaternion.identity);
 		float shootHeight = 1f;
 		float speed = 0.5f;

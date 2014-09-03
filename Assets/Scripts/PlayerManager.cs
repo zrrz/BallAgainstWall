@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour {
 		public bool active = false;
 		public int score = 0;
 		public string color = "";
-
 	}
 
 	public List<PlayerData> playerData;

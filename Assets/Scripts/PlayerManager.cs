@@ -27,4 +27,12 @@ public class PlayerManager : MonoBehaviour {
 	public void AddPlayer(string color) {
 		playerData.Add (new PlayerData (color));
 	}
+
+	public bool Added(string color) {
+		for(int i = 0; i < playerData.Count; i++) {
+			if(playerData[i].color == color)
+				return true;
+		}
+		return false;
+	}
 }

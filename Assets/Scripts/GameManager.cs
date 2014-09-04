@@ -14,13 +14,16 @@ public class GameManager : MonoBehaviour {
 
 	bool gameStarted = false;
 
+	public float joinTimer = 5f;
 	float timer = 0f;
 
 	BallManager ballManager;
+	PlayerManager playerManager;
 
 	void Start() {
 		GameObject.DontDestroyOnLoad(gameObject);
-		ballManager = GetComponent<BallManager>();
+		ballManager = GetComponent<BallManager> ();
+		playerManager = GetComponent<PlayerManager> ();
 	}
 
 	void OnLevelWasLoaded(int level) {
@@ -41,9 +44,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void BallHit(Vector2 pos, string color) {
+		if(!playerManager.Added(color)) {
+			playerManager.AddPlayer(color);
+		}
 		if(!gameStarted) {
 			gameStarted = true;
-			timer = 10f;
+			timer = joinTimer;
 		} else if(timer <= 0) {
 			ballManager.Shoot(pos, color);
 		}
@@ -62,7 +68,13 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		if(timer > 0f)
-			GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + (int)timer);
+		if(timer > 0f) {
+			string joinedPlayers = "";
+			for(int i = 0; i < playerManager.playerData.Count; i++) {
+				joinedPlayers += "\n" + playerManager.playerData[i].color + " has joined!";
+			}
+			GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + (int)timer + joinedPlayers);
+
+		}
 	}
 }

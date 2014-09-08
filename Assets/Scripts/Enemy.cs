@@ -5,11 +5,12 @@ public class Enemy : MonoBehaviour {
 
 	[System.NonSerialized]
 	public int curColumn;
+	[System.NonSerialized]
+	public int omittedColumns = 1;
 
 	int curRow;
 
 	public float jumpRate = 2f;
-
 	public float hopHeight = 2.25f;
 
 	SpawnFloor floor;
@@ -22,7 +23,7 @@ public class Enemy : MonoBehaviour {
 
 	void Start () {
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
-		curRow = floor.rows - 1;
+		curRow = 0;
 
 		StartCoroutine ("Move");
 	}
@@ -37,10 +38,10 @@ public class Enemy : MonoBehaviour {
 
 	IEnumerator Move() {
 		float timer = 0f;
-		while(curRow >= 0) {
+		while(curRow <= floor.rows - 1) {
 			float t_time = Time.time;
 
-			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1f));
+			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1.6f));
 
 			timer += Time.time - t_time;
 
@@ -49,7 +50,7 @@ public class Enemy : MonoBehaviour {
 				int rand = Random.Range(0, 3);
 				switch(rand) {
 				case 0:
-					curRow--; 			// Forward
+					curRow++; 			// Forward
 					break;
 				case 1:
 					if(curColumn > 0)
@@ -66,10 +67,12 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 		print ("Ouch!");
+		GameObject.FindObjectOfType<PlayerManager>().ReducePoints(1);
 		Destroy (gameObject);
 	}
 
 	IEnumerator Hop(HopData data) {
+		float t = Time.time;
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
 		
@@ -80,5 +83,6 @@ public class Enemy : MonoBehaviour {
 			timer += Time.deltaTime / data.time;
 			yield return null;
 		}
+		print (Time.time - t);
 	}
 }

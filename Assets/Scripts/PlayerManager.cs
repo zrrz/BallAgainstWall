@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	void Update () {
-	
+
 	}
 
 	public void AddPlayer(string color) {
@@ -34,5 +34,21 @@ public class PlayerManager : MonoBehaviour {
 				return true;
 		}
 		return false;
+	}
+
+	public void ReducePoints(int dmg) {
+		foreach(PlayerData player in playerData) {
+			if(player.score < 0)
+				player.score -= dmg;
+		}
+	}
+
+	public void AddPoints(string p_color, int pts) {
+		foreach(PlayerData player in playerData){
+			if(player.color == p_color) {
+				player.score += pts;
+				return;
+			}
+		}
 	}
 }

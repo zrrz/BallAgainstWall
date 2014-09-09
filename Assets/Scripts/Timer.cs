@@ -19,13 +19,15 @@ public class Timer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		string minutes = ((int)(manager.timer / 60)).ToString();
-		string seconds = ((int)(manager.timer % 60f)).ToString();
+		if(manager) {
+			string minutes = ((int)(manager.timer / 60)).ToString();
+			string seconds = ((int)(manager.timer % 60f)).ToString();
+		
+			if(seconds.Length == 1) {
+				seconds = "0"+seconds;
+			}
 
-		if(seconds.Length == 1) {
-			seconds = "0"+seconds;
+			textMesh.text = minutes + ":" + seconds;
 		}
-
-		textMesh.text = minutes + ":" + seconds;
 	}
 }

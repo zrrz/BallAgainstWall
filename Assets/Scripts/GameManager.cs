@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour {
 	BallManager ballManager;
 	PlayerManager playerManager;
 
+	public TextMesh scoreText;
+
 	#region Singleton Initialization
 	public static GameManager instance {
 		get { 
@@ -71,6 +73,11 @@ public class GameManager : MonoBehaviour {
 		if(level == 1) {
 			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 			StartCoroutine ("SpawnEnemy");
+			GameObject.Find("GameCamera").camera.enabled = true;
+			GameObject.Find("ScoreCamera").camera.enabled = false;
+			GameObject.Find("Timer").SetActive(true);
+
+			scoreText = GameObject.Find("ScoreText").GetComponent<TextMesh>();
 		}
 	}
 
@@ -101,7 +108,16 @@ public class GameManager : MonoBehaviour {
 				StopAllCoroutines();
 				timer = scoreboardTimer;
 				mode = GameMode.Scoreboard;
-				Application.LoadLevel("Scoreboard");
+				//Application.LoadLevel("Scoreboard");
+				GameObject.Find("GameCamera").camera.enabled = false;
+				GameObject.Find("ScoreCamera").camera.enabled = true;
+				GameObject.Find("Timer").SetActive(false);
+
+				scoreText.text = "";
+				for(int i = 0; i < playerManager.playerData.Count; i++)
+					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n"; 
+//					scoreText.text += playerManager.playerData[i].color + ":" + "\t\t\t" + playerManager.playerData[i].score + "\n"; 
+
 				return;
 			}
 
@@ -122,6 +138,15 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	// Why the shit doesnt this work?
+	string Tab(string str, int numSpaces) {
+		int size = str.Length;
+		if(numSpaces > str.Length)
+			for(int i = 0; i < numSpaces - size; i++)
+				str += " ";
+		return str;
+	}
+
 	public void BallHit(Vector2 pos, string color) {
 		if(!playerManager.Added(color)) {
 			playerManager.AddPlayer(color);
@@ -129,9 +154,9 @@ public class GameManager : MonoBehaviour {
 		if(!gameStarted) {
 			gameStarted = true;
 			timer = joinTimer;
-		} else if(timer <= 0) {
-			ballManager.Shoot(pos, color);
 		}
+			
+		ballManager.Shoot(pos, color);
 	}
 
 	IEnumerator SpawnEnemy() {
@@ -163,9 +188,9 @@ public class GameManager : MonoBehaviour {
 		case GameMode.Main:
 			break;
 		case GameMode.Scoreboard:
-			Rect windowRect = new Rect((float)Screen.width*guiLeft, (float)Screen.height-((float)Screen.height*guiTop), 
-			                           (float)Screen.width*(1f-(guiLeft*2f)), (float)Screen.height*(1f-guiTop));
-			windowRect = GUILayout.Window(0, windowRect, ScoreboardWindow, "Scoreboard"/*, guiStyle*/);
+//			Rect windowRect = new Rect((float)Screen.width*guiLeft, (float)Screen.height-((float)Screen.height*guiTop), 
+//			                           (float)Screen.width*(1f-(guiLeft*2f)), (float)Screen.height*(1f-guiTop));
+//			windowRect = GUILayout.Window(0, windowRect, ScoreboardWindow, "Scoreboard"/*, guiStyle*/);
 			break;
 		}
 	}

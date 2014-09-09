@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour {
 
 	SpawnFloor floor;
 
+	Animator animator;
+
 	class HopData {
 		public HopData(Vector3 p_dest, float p_time) {dest = p_dest; time = p_time;}
 		public Vector3 dest;
@@ -24,6 +26,8 @@ public class Enemy : MonoBehaviour {
 	void Start () {
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 		curRow = 0;
+
+		animator = transform.GetChild(0).GetComponent<Animator> ();
 
 		StartCoroutine ("Move");
 	}
@@ -41,7 +45,11 @@ public class Enemy : MonoBehaviour {
 		while(curRow <= floor.rows - 1) {
 			float t_time = Time.time;
 
+<<<<<<< HEAD
 			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1f + Time.deltaTime));
+=======
+			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1.78f));
+>>>>>>> fb85f2c2656499e92f7c2b5eff52394f4eb617df
 
 			timer += Time.time - t_time;
 
@@ -72,7 +80,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	IEnumerator Hop(HopData data) {
-		float t = Time.time;
+		animator.SetBool ("Jump", true);
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
 		
@@ -82,7 +90,7 @@ public class Enemy : MonoBehaviour {
 			
 			timer += Time.deltaTime / data.time;
 			yield return null;
+			animator.SetBool ("Jump", false);
 		}
-		print (Time.time - t);
 	}
 }

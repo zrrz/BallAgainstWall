@@ -29,7 +29,8 @@ public class Ball : MonoBehaviour {
 			}
 
 			rigidbody.velocity = Vector3.zero;
-			rigidbody.AddForce (Random.onUnitSphere * 800f);
+			//rigidbody.AddForce (Random.onUnitSphere * 800f);
+			rigidbody.AddForce((transform.position - col.contacts[0].point).normalized * 200f);
 			rigidbody.useGravity = true;
 			Destroy (gameObject, 10f);
 		}

@@ -102,7 +102,7 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationCompression: 1
+    animationCompression: 0
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -112,12 +112,12 @@ ModelImporter:
     - serializedVersion: 16
       name: Take 001
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 59
+      firstFrame: 11
+      lastFrame: 71
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
-      cycleOffset: .159999996
+      cycleOffset: 0
       loop: 0
       loopTime: 1
       loopBlend: 1

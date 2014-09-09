@@ -101,12 +101,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 0
-<<<<<<< HEAD
     animationCompression: 1
-=======
-    motionNodeName: 
-    animationCompression: 0
->>>>>>> fb85f2c2656499e92f7c2b5eff52394f4eb617df
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
@@ -116,21 +111,12 @@ ModelImporter:
     - serializedVersion: 16
       name: Take 001
       takeName: Take 001
-<<<<<<< HEAD
       firstFrame: 0
       lastFrame: 55
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: .200000003
-=======
-      firstFrame: 11
-      lastFrame: 71
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
->>>>>>> fb85f2c2656499e92f7c2b5eff52394f4eb617df
       loop: 0
       loopTime: 1
       loopBlend: 0

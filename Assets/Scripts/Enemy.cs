@@ -37,7 +37,12 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Hit() {
-		Destroy(gameObject);
+		StopCoroutine ("Move");
+		StopCoroutine ("Hop");
+		transform.GetChild (0).gameObject.SetActive (false);
+		transform.GetChild (1).gameObject.SetActive (true);
+		transform.GetComponentInChildren<Rigidbody> ().AddForce (Vector3.forward * 1000f);
+		Destroy(gameObject, 1f);
 	}
 
 	IEnumerator Move() {
@@ -45,7 +50,7 @@ public class Enemy : MonoBehaviour {
 		while(curRow <= floor.rows - 1) {
 			float t_time = Time.time;
 
-			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1f + Time.deltaTime));
+			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 2f));
 			//yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1.78f));
 
 			timer += Time.time - t_time;
@@ -77,6 +82,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	IEnumerator Hop(HopData data) {
+		animator.SetBool ("Land", false);
 		animator.SetBool ("Jump", true);
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
@@ -88,6 +94,9 @@ public class Enemy : MonoBehaviour {
 			timer += Time.deltaTime / data.time;
 			yield return null;
 			animator.SetBool ("Jump", false);
+			if(timer > .90f)
+				animator.SetBool ("Land", true);
 		}
+		//animator.SetBool ("Land", true);
 	}
 }

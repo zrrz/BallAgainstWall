@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour {
 
 	public TextMesh scoreText;
 
+	GUIText redGameScore, yellowGameScore, greenGameScore; //In-game score gui
+
 	#region Singleton Initialization
 	public static GameManager instance {
 		get { 
@@ -73,6 +75,9 @@ public class GameManager : MonoBehaviour {
 		if(level == 1) {
 			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 			enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
+			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
+			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
+			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
 
 			StartCoroutine ("SpawnEnemy");
 			GameObject.Find("GameCamera").camera.enabled = true;
@@ -111,6 +116,9 @@ public class GameManager : MonoBehaviour {
 				timer = scoreboardTimer;
 				mode = GameMode.Scoreboard;
 				//Application.LoadLevel("Scoreboard");
+				redGameScore.enabled = false;
+				yellowGameScore.enabled = false;
+				greenGameScore.enabled = false;
 				GameObject.Find("GameCamera").camera.enabled = false;
 				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("Timer").SetActive(false);
@@ -120,6 +128,25 @@ public class GameManager : MonoBehaviour {
 					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n";
 
 				return;
+			}
+
+			for(int i = 0; i < playerManager.playerData.Count; i++) {
+				string tempScoreStr = playerManager.playerData[i].score.ToString();
+				
+				if(tempScoreStr.Length < 2)
+					tempScoreStr = " " + tempScoreStr;
+				
+				switch( playerManager.playerData[i].color ) {
+				case "Red":
+					redGameScore.text = "Red:" + tempScoreStr;
+					break;
+				case "Yellow":
+					yellowGameScore.text = "Yellow:" + tempScoreStr;
+					break;
+				case "Green":
+					greenGameScore.text = "Green:" + tempScoreStr;
+					break;
+				}
 			}
 
 			timer -= Time.deltaTime;

@@ -7,8 +7,11 @@ public class Ball : MonoBehaviour {
 	public bool hasCollided = false;
 	public GameObject hitParticle;
 
+	AudioSource audioSource;
+
 	void Start() {
 		playerManager = GameObject.FindObjectOfType<PlayerManager>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	void OnCollisionEnter(Collision col) {
@@ -28,6 +31,7 @@ public class Ball : MonoBehaviour {
 					playerManager.AddPoints("Green", 1);
 				}
 
+				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method
 			}
 
@@ -36,5 +40,9 @@ public class Ball : MonoBehaviour {
 			rigidbody.useGravity = true;
 			Destroy (gameObject, 10f);
 		}
+	}
+
+	public void PlayAudio() {
+		audioSource.Play();
 	}
 }

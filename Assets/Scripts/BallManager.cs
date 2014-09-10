@@ -85,22 +85,24 @@ public class BallManager : MonoBehaviour {
 			timer += Time.deltaTime / speed;
 			yield return null;
 		}
-		if(shootData.dest != null && hitParticle != null)
+		if(shootData.dest != null && hitParticle != null) {
 			Destroy(Instantiate(hitParticle, ball.transform.position, Quaternion.identity), 3f); //TODO: Eric, change this
 
-		ball.collider.enabled = true;	//turn collider on so that it can collide with floor
-		shootData.dest.SendMessage ("Hit");
-		ball.GetComponent<Ball>().hasCollided = true;
+			ball.GetComponent<Ball>().PlayAudio();
+			shootData.dest.SendMessage ("Hit");
 
-		if(ball.name.Contains("Red")) {
-			playerManager.AddPoints("Red", 1);
-		} 
-		else if(ball.name.Contains("Yellow")) {
-			playerManager.AddPoints("Yellow", 1);
-		} 
-		else if(ball.name.Contains("Green")) {
-			playerManager.AddPoints("Green", 1);
+			if(ball.name.Contains("Red")) {
+				playerManager.AddPoints("Red", 1);
+			} 
+			else if(ball.name.Contains("Yellow")) {
+				playerManager.AddPoints("Yellow", 1);
+			} 
+			else if(ball.name.Contains("Green")) {
+				playerManager.AddPoints("Green", 1);
+			}
 		}
+		ball.collider.enabled = true;	//turn collider on so that it can collide with floor
+		ball.GetComponent<Ball>().hasCollided = true;
 
 		ball.rigidbody.AddForce (Random.onUnitSphere * 800f);
 		ball.rigidbody.useGravity = true;

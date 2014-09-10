@@ -217,6 +217,9 @@ public class GameManager : MonoBehaviour {
 	public void AdjustGameSetting(string setting, float value) {
 		switch(setting) 
 		{
+		case "Game Time":
+			gameTimer = value;
+			break;
 		default:
 			break;
 		}
@@ -225,6 +228,8 @@ public class GameManager : MonoBehaviour {
 	public void AdjustGameSetting(string setting, bool value) {
 		switch(setting)
 		{
+		case "Quit Game":
+			break;
 		default:
 			break;
 		}

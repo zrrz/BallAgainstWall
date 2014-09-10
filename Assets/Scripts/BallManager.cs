@@ -7,6 +7,7 @@ public class BallManager : MonoBehaviour {
 	List<GameObject> shotEnemies;
 	public GameObject[] ballPrefabs;
 	public float shootStrength = 80f;
+	public GameObject hitParticle;
 
 	PlayerManager playerManager;
 
@@ -67,7 +68,8 @@ public class BallManager : MonoBehaviour {
 		GameObject ball = (GameObject)Instantiate (ballPrefabDict[shootData.color], Camera.main.transform.position, Quaternion.identity);
 		ball.collider.enabled = false;	//turn collider off so that it doesn't get interrupted while flying towards target
 		float shootHeight = 0.2f;
-		float speed = 0.9f;
+		float speed = 0.65f;
+		//float speed = 0.9f;
 
 		Vector3 startPos = ball.transform.position - Vector3.up;
 		float timer = 0.0f;
@@ -78,11 +80,14 @@ public class BallManager : MonoBehaviour {
 				StopCoroutine("Shoot1");
 				yield return null;
 			}
-			ball.transform.position = Vector3.Lerp(startPos, shootData.dest.position, timer) + Vector3.up * height; 
+			ball.transform.position = Vector3.Lerp(startPos, shootData.dest.position + Vector3.up*1.5f, timer) + Vector3.up * height; 
 			
 			timer += Time.deltaTime / speed;
 			yield return null;
 		}
+		if(shootData.dest != null && hitParticle != null)
+			Destroy(Instantiate(hitParticle, ball.transform.position, Quaternion.identity), 3f); //TODO: Eric, change this
+
 		ball.collider.enabled = true;	//turn collider on so that it can collide with floor
 		shootData.dest.SendMessage ("Hit");
 		ball.GetComponent<Ball>().hasCollided = true;

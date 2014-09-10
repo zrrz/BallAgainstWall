@@ -5,6 +5,7 @@ public class Ball : MonoBehaviour {
 
 	PlayerManager playerManager;
 	public bool hasCollided = false;
+	public GameObject hitParticle;
 
 	void Start() {
 		playerManager = GameObject.FindObjectOfType<PlayerManager>();
@@ -26,10 +27,11 @@ public class Ball : MonoBehaviour {
 				else if(name.Contains("Green")) {
 					playerManager.AddPoints("Green", 1);
 				}
+
+				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method
 			}
 
 			rigidbody.velocity = Vector3.zero;
-			//rigidbody.AddForce (Random.onUnitSphere * 800f);
 			rigidbody.AddForce((transform.position - col.contacts[0].point).normalized * 200f);
 			rigidbody.useGravity = true;
 			Destroy (gameObject, 10f);

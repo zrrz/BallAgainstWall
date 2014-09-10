@@ -173,8 +173,8 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		//guiStyle.font = guiFont;
-//		guiStyle.normal.textColor = Color.white;
+		guiStyle.font = guiFont;
+		guiStyle.normal.textColor = Color.yellow;
 
 		switch(mode) {
 		case GameMode.Intro:
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour {
 				for(int i = 0; i < playerManager.playerData.Count; i++) {
 					joinedPlayers += "\n" + playerManager.playerData[i].color + " has joined!";
 				}
-				GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + (int)timer + joinedPlayers/*, guiStyle*/);
+				GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + Mathf.CeilToInt(timer) + joinedPlayers, guiStyle);
 			}
 			break;
 		case GameMode.Main:

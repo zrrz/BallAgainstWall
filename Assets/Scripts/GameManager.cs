@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
 	enum GameMode {Intro, Main, Scoreboard}
 
 	public GameObject enemy;
-
+	public Transform enemySpawnPoint;
 	public float spawnRate = 3f;
 
 	SpawnFloor floor;
@@ -72,6 +72,8 @@ public class GameManager : MonoBehaviour {
 	void OnLevelWasLoaded(int level) {
 		if(level == 1) {
 			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
+			enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
+
 			StartCoroutine ("SpawnEnemy");
 			GameObject.Find("GameCamera").camera.enabled = true;
 			GameObject.Find("ScoreCamera").camera.enabled = false;
@@ -115,8 +117,7 @@ public class GameManager : MonoBehaviour {
 
 				scoreText.text = "";
 				for(int i = 0; i < playerManager.playerData.Count; i++)
-					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n"; 
-//					scoreText.text += playerManager.playerData[i].color + ":" + "\t\t\t" + playerManager.playerData[i].score + "\n"; 
+					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n";
 
 				return;
 			}
@@ -162,7 +163,7 @@ public class GameManager : MonoBehaviour {
 	IEnumerator SpawnEnemy() {
 		while(true) {
 			int column = Random.Range (0, floor.columns);
-			GameObject t_obj = (GameObject)Instantiate (enemy, floor.tiles[column, 0].transform.position, Quaternion.identity);
+			GameObject t_obj = (GameObject)Instantiate (enemy, /*floor.tiles[column, 0].transform.position*/ enemySpawnPoint.position, Quaternion.identity);
 			t_obj.GetComponent<Enemy>().curColumn = column;
 			if(randomSpawnTime)
 				yield return new WaitForSeconds(spawnRate + Random.Range(0f, randomRange));

@@ -45,11 +45,8 @@ public class Enemy : MonoBehaviour {
 		while(curRow <= floor.rows - 1) {
 			float t_time = Time.time;
 
-<<<<<<< HEAD
 			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1f + Time.deltaTime));
-=======
-			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1.78f));
->>>>>>> fb85f2c2656499e92f7c2b5eff52394f4eb617df
+			//yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1.78f));
 
 			timer += Time.time - t_time;
 

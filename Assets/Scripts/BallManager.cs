@@ -110,7 +110,7 @@ public class BallManager : MonoBehaviour {
 	void Shoot2(ShootData2 shootData) {
 		GameObject ball = (GameObject)Instantiate (ballPrefabDict[shootData.color], Camera.main.transform.position, Quaternion.identity);
 
-		ball.transform.position = ball.transform.position - Vector3.up * 2f;
+		ball.transform.position = ball.transform.position - Vector3.up ;
 		Vector3 shootDir = shootData.dest - ball.transform.position;
 
 		ball.rigidbody.AddForce(shootDir * shootStrength);// = Vector3.Lerp(startPos, target, timer) + Vector3.up * height; 

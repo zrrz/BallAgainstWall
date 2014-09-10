@@ -83,7 +83,8 @@ public class Enemy : MonoBehaviour {
 
 	IEnumerator Hop(HopData data) {
 		animator.SetBool ("Land", false);
-		animator.SetBool ("Jump", true);
+		animator.SetBool("Jump", true);
+		floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
 		
@@ -97,6 +98,6 @@ public class Enemy : MonoBehaviour {
 			if(timer > .90f)
 				animator.SetBool ("Land", true);
 		}
-		//animator.SetBool ("Land", true);
+		animator.SetBool ("Land", true);
 	}
 }

@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour {
 	void Hit() {
 		StopCoroutine ("Move");
 		StopCoroutine ("Hop");
+		//collider.enabled = false;
 		transform.GetChild (0).gameObject.SetActive (false);
 		transform.GetChild (1).gameObject.SetActive (true);
 		transform.GetComponentInChildren<Rigidbody> ().AddForce (Vector3.forward * 1000f);

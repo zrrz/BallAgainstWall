@@ -3,14 +3,14 @@ using System.Collections;
 
 public class Ball : MonoBehaviour {
 
-	PlayerManager playerManager;
+//	PlayerManager playerManager;
 	public bool hasCollided = false;
 	public GameObject hitParticle;
 
 	AudioSource audioSource;
 
 	void Start() {
-		playerManager = GameObject.FindObjectOfType<PlayerManager>();
+//		playerManager = GameObject.FindObjectOfType<PlayerManager>();
 		audioSource = GetComponent<AudioSource>();
 	}
 
@@ -19,17 +19,17 @@ public class Ball : MonoBehaviour {
 			hasCollided = true;
 
 			if(col.transform.tag == "Enemy") {
-				col.transform.SendMessage("Hit");
+				col.transform.SendMessage("Hit", gameObject.name, SendMessageOptions.DontRequireReceiver);
 
-				if(name.Contains("Red")) {
-					playerManager.AddPoints("Red", 1);
-				} 
-				else if(name.Contains("Yellow")) {
-					playerManager.AddPoints("Yellow", 1);
-				} 
-				else if(name.Contains("Green")) {
-					playerManager.AddPoints("Green", 1);
-				}
+//				if(name.Contains("Red")) {
+//					playerManager.AddPoints("Red", 1);
+//				} 
+//				else if(name.Contains("Yellow")) {
+//					playerManager.AddPoints("Yellow", 1);
+//				} 
+//				else if(name.Contains("Green")) {
+//					playerManager.AddPoints("Green", 1);
+//				}
 
 				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method

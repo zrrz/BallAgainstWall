@@ -16,8 +16,11 @@ public class PlayerManager : MonoBehaviour {
 
 	public List<PlayerData> playerData;
 
+	static PlayerManager s_instance;
+
 	void Start () {
 		playerData = new List<PlayerData> ();
+		s_instance = this;
 	}
 
 	void Update () {
@@ -36,15 +39,15 @@ public class PlayerManager : MonoBehaviour {
 		return false;
 	}
 
-	public void ReducePoints(int dmg) {
-		foreach(PlayerData player in playerData) {
+	public static void ReducePoints(int dmg) {
+		foreach(PlayerData player in s_instance.playerData) {
 			if(player.score < 0)
 				player.score -= dmg;
 		}
 	}
 
-	public void AddPoints(string p_color, int pts) {
-		foreach(PlayerData player in playerData){
+	public static void AddPoints(string p_color, int pts) {
+		foreach(PlayerData player in s_instance.playerData){
 			if(player.color == p_color) {
 				player.score += pts;
 				return;

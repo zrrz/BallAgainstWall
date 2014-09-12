@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
 
@@ -17,6 +18,16 @@ public class Enemy : MonoBehaviour {
 
 	Animator animator;
 
+	public List<Texture> textures;
+	public List<Renderer> renderers;
+
+	public float moveForwardChancePct = 50f;
+
+	bool hit = false;
+
+	[System.NonSerialized]
+	public string hitBy = "";
+
 	class HopData {
 		public HopData(Vector3 p_dest, float p_time) {dest = p_dest; time = p_time;}
 		public Vector3 dest;
@@ -24,6 +35,14 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Start () {
+		int rand = Random.Range(0, textures.Count - 1);
+		foreach(Renderer rend in renderers) {
+			rend.material.mainTexture = textures[rand];
+		}
+
+		moveForwardChancePct = Mathf.Clamp(moveForwardChancePct, 0f, 100f);
+
+
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 		curRow = 0;
 
@@ -36,14 +55,42 @@ public class Enemy : MonoBehaviour {
 
 	}
 
-	void Hit() {
-		StopCoroutine ("Move");
-		StopCoroutine ("Hop");
-		//collider.enabled = false;
-		transform.GetChild (0).gameObject.SetActive (false);
-		transform.GetChild (1).gameObject.SetActive (true);
-		transform.GetComponentInChildren<Rigidbody> ().AddForce (Vector3.forward * 1000f);
-		Destroy(gameObject, 1f);
+	void OnCollisionEnter(Collision col) {
+		if(GameManager.instance.enemiesKnockback) {
+			if(col.gameObject.tag == "Enemy") {
+				hitBy = col.transform.GetComponentInParent<Enemy>().hitBy;
+				Hit (hitBy);
+			//	col.gameObject.SendMessageUpwards("Hit", hitBy, SendMessageOptions.DontRequireReceiver);
+			}
+		}
+	}
+
+	void Hit(string p_hitBy) {
+		if(!hit) {
+//			collider.enabled = false;
+			hitBy = p_hitBy;
+
+			if(p_hitBy.Contains("Red")) {
+				PlayerManager.AddPoints("Red", 1);
+			} 
+			else if(p_hitBy.Contains("Yellow")) {
+				PlayerManager.AddPoints("Yellow", 1);
+			} 
+			else if(p_hitBy.Contains("Green")) {
+				PlayerManager.AddPoints("Green", 1);
+			} else {
+				print ("wtf");
+			}
+
+			hit = true;
+			StopCoroutine ("Move");
+			StopCoroutine ("Hop");
+			//collider.enabled = false;
+			transform.GetChild (0).gameObject.SetActive (false);
+			transform.GetChild (1).gameObject.SetActive (true);
+			transform.GetComponentInChildren<Rigidbody> ().AddForce (Vector3.forward * 1000f);
+			Destroy(gameObject, 1f);
+		}
 	}
 
 	IEnumerator Move() {
@@ -58,27 +105,20 @@ public class Enemy : MonoBehaviour {
 
 			if(timer > jumpRate) {
 				timer = 0f;
-				int rand = Random.Range(0, 3);
-				switch(rand) {
-				case 0:
+				float rand = Random.Range(0f, 100f);
+				if(rand < moveForwardChancePct) {
 					curRow++; 			// Forward
-					break;
-				case 1:
+				} else if(rand < moveForwardChancePct + ((100f - moveForwardChancePct)/2f)) {
 					if(curColumn > 0)
 						curColumn--; 	// Left
-					break;
-				case 2:
+				} else {
 					if(curColumn < floor.columns - 1)
 						curColumn++; 	// Right
-					break;
-				default:
-					print ("wtf");
-					break;
 				}
 			}
 		}
 		print ("Ouch!");
-		GameObject.FindObjectOfType<PlayerManager>().ReducePoints(1);
+		PlayerManager.ReducePoints(1);
 		Destroy (gameObject);
 	}
 

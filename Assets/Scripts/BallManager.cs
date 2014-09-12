@@ -9,13 +9,13 @@ public class BallManager : MonoBehaviour {
 	public float shootStrength = 80f;
 	public GameObject hitParticle;
 
-	PlayerManager playerManager;
+//	PlayerManager playerManager;
 
 	Dictionary<string, GameObject> ballPrefabDict;
 
 	void Start () {
 		shotEnemies = new List<GameObject> ();
-		playerManager = GameObject.FindObjectOfType<PlayerManager>();
+//		playerManager = GameObject.FindObjectOfType<PlayerManager>();
 
 		char[] delimChar = new char[1] {'_'};
 
@@ -89,17 +89,17 @@ public class BallManager : MonoBehaviour {
 			Destroy(Instantiate(hitParticle, ball.transform.position, Quaternion.identity), 3f); //TODO: Eric, change this
 
 			ball.GetComponent<Ball>().PlayAudio();
-			shootData.dest.SendMessage ("Hit");
+			shootData.dest.SendMessage ("Hit", ball.name);
 
-			if(ball.name.Contains("Red")) {
-				playerManager.AddPoints("Red", 1);
-			} 
-			else if(ball.name.Contains("Yellow")) {
-				playerManager.AddPoints("Yellow", 1);
-			} 
-			else if(ball.name.Contains("Green")) {
-				playerManager.AddPoints("Green", 1);
-			}
+//			if(ball.name.Contains("Red")) {
+//				playerManager.AddPoints("Red", 1);
+//			} 
+//			else if(ball.name.Contains("Yellow")) {
+//				playerManager.AddPoints("Yellow", 1);
+//			} 
+//			else if(ball.name.Contains("Green")) {
+//				playerManager.AddPoints("Green", 1);
+//			}
 		}
 		ball.collider.enabled = true;	//turn collider on so that it can collide with floor
 		ball.GetComponent<Ball>().hasCollided = true;

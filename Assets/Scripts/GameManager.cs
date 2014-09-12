@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour {
 	public float guiLeft = 0.2f;
 	public float guiTop = 0.8f;
 
+	public bool enemiesKnockback = false;
 
 	BallManager ballManager;
 	PlayerManager playerManager;
@@ -69,10 +70,14 @@ public class GameManager : MonoBehaviour {
 		playerManager = GetComponent<PlayerManager> ();
 
 		guiStyle = new GUIStyle();
+
+
 	}
 
 	void OnLevelWasLoaded(int level) {
 		if(level == 1) {
+			HighScoreManager.AddScore(10);
+
 			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 			enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
 			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();

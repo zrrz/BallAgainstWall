@@ -2,72 +2,32 @@
 <HighScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DailyScores>
     <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T14:59:26.3513259-07:00</time>
+      <score>6</score>
+      <time>2014-09-15T10:07:11.3467151-07:00</time>
     </ScoreXML>
     <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:01:34.9696824-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:23:46.7288547-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:41:43.1364217-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:44:27.0987998-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:44:49.516082-07:00</time>
+      <score>2</score>
+      <time>2014-09-15T10:07:11.3657162-07:00</time>
     </ScoreXML>
   </DailyScores>
   <weeklyScores>
     <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T14:59:26.3513259-07:00</time>
+      <score>6</score>
+      <time>2014-09-15T10:07:11.3467151-07:00</time>
     </ScoreXML>
     <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:01:34.9696824-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:23:46.7288547-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:41:43.1364217-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:44:27.0987998-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:44:49.516082-07:00</time>
+      <score>2</score>
+      <time>2014-09-15T10:07:11.3657162-07:00</time>
     </ScoreXML>
   </weeklyScores>
   <monthlyScores>
     <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T14:59:26.3513259-07:00</time>
+      <score>6</score>
+      <time>2014-09-15T10:07:11.3467151-07:00</time>
     </ScoreXML>
     <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:01:34.9696824-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:23:46.7288547-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:44:49.516082-07:00</time>
+      <score>2</score>
+      <time>2014-09-15T10:07:11.3657162-07:00</time>
     </ScoreXML>
   </monthlyScores>
 </HighScore>

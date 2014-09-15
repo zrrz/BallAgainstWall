@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour {
 	bool hit = false;
 
 	[System.NonSerialized]
-	public string hitBy = "";
+	public GameObject hitBy;
 
 	class HopData {
 		public HopData(Vector3 p_dest, float p_time) {dest = p_dest; time = p_time;}
@@ -35,13 +35,14 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Start () {
+		SetKinematic(true);
+
 		int rand = Random.Range(0, textures.Count - 1);
 		foreach(Renderer rend in renderers) {
 			rend.material.mainTexture = textures[rand];
 		}
 
 		moveForwardChancePct = Mathf.Clamp(moveForwardChancePct, 0f, 100f);
-
 
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 		curRow = 0;
@@ -50,33 +51,41 @@ public class Enemy : MonoBehaviour {
 
 		StartCoroutine ("Move");
 	}
+	
+	void SetKinematic(bool newValue) {
+		Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+
+		foreach (Component c in components) {
+			(c as Rigidbody).isKinematic = newValue;
+		}
+	}
 
 	void Update () {
 
 	}
 
-	void OnCollisionEnter(Collision col) {
-		if(GameManager.instance.enemiesKnockback) {
-			if(col.gameObject.tag == "Enemy") {
-				hitBy = col.transform.GetComponentInParent<Enemy>().hitBy;
-				Hit (hitBy);
-			//	col.gameObject.SendMessageUpwards("Hit", hitBy, SendMessageOptions.DontRequireReceiver);
-			}
-		}
-	}
+//	void OnCollisionEnter(Collision col) {
+//		if(GameManager.instance.enemiesKnockback) {
+//			if(col.gameObject.tag == "Enemy") {
+//				hitBy = col.transform.GetComponentInParent<Enemy>().hitBy;
+//				Hit (hitBy);
+//			//	col.gameObject.SendMessageUpwards("Hit", hitBy, SendMessageOptions.DontRequireReceiver);
+//			}
+//		}
+//	}
 
-	void Hit(string p_hitBy) {
+	void Hit(GameObject p_hitBy) {
 		if(!hit) {
 //			collider.enabled = false;
 			hitBy = p_hitBy;
 
-			if(p_hitBy.Contains("Red")) {
+			if(p_hitBy.name.Contains("Red")) {
 				PlayerManager.AddPoints("Red", 1);
 			} 
-			else if(p_hitBy.Contains("Yellow")) {
+			else if(p_hitBy.name.Contains("Yellow")) {
 				PlayerManager.AddPoints("Yellow", 1);
 			} 
-			else if(p_hitBy.Contains("Green")) {
+			else if(p_hitBy.name.Contains("Green")) {
 				PlayerManager.AddPoints("Green", 1);
 			} else {
 				print ("wtf");
@@ -85,14 +94,29 @@ public class Enemy : MonoBehaviour {
 			hit = true;
 			StopCoroutine ("Move");
 			StopCoroutine ("Hop");
-			//collider.enabled = false;
-			transform.GetChild (0).gameObject.SetActive (false);
-			transform.GetChild (1).gameObject.SetActive (true);
-			transform.GetComponentInChildren<Rigidbody> ().AddForce (Vector3.forward * 1000f);
+			collider.enabled = false;
+
+			SetKinematic(false);
+			animator.enabled = false;
+
+//			transform.GetChild (0).gameObject.SetActive (false);
+//			transform.GetChild (1).gameObject.SetActive (true);
+//			StartCoroutine("KnockBack");
 			Destroy(gameObject, 1f);
 		}
 	}
 
+//	IEnumerator KnockBack() {
+//		yield return null;
+//		Collider[] cols = Physics.OverlapSphere(hitBy.transform.position, 3f);
+//		for(int i = 0; i < cols.Length; i++) {
+//			if(cols[i].rigidbody) {
+//				cols[i].rigidbody.AddExplosionForce(300f, hitBy.transform.position, 2f);
+//				Debug.DrawRay(cols[i].transform.position, Vector3.up, Color.red, 2f);
+//			}
+//		}
+//	}
+	
 	IEnumerator Move() {
 		float timer = 0f;
 		while(curRow <= floor.rows - 1) {

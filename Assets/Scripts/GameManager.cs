@@ -76,8 +76,6 @@ public class GameManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		if(level == 1) {
-			HighScoreManager.AddScore(10);
-
 			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 			enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
 			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
@@ -129,8 +127,10 @@ public class GameManager : MonoBehaviour {
 				GameObject.Find("Timer").SetActive(false);
 
 				scoreText.text = "";
-				for(int i = 0; i < playerManager.playerData.Count; i++)
+				for(int i = 0; i < playerManager.playerData.Count; i++) {
 					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n";
+					HighScoreManager.AddScore(playerManager.playerData[i].score);
+				}
 
 				return;
 			}

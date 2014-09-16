@@ -76,7 +76,6 @@ public class Enemy : MonoBehaviour {
 
 	void Hit(GameObject p_hitBy) {
 		if(!hit) {
-//			collider.enabled = false;
 			hitBy = p_hitBy;
 
 			if(p_hitBy.name.Contains("Red")) {
@@ -99,24 +98,10 @@ public class Enemy : MonoBehaviour {
 			SetKinematic(false);
 			animator.enabled = false;
 
-//			transform.GetChild (0).gameObject.SetActive (false);
-//			transform.GetChild (1).gameObject.SetActive (true);
-//			StartCoroutine("KnockBack");
 			Destroy(gameObject, 1f);
 		}
 	}
 
-//	IEnumerator KnockBack() {
-//		yield return null;
-//		Collider[] cols = Physics.OverlapSphere(hitBy.transform.position, 3f);
-//		for(int i = 0; i < cols.Length; i++) {
-//			if(cols[i].rigidbody) {
-//				cols[i].rigidbody.AddExplosionForce(300f, hitBy.transform.position, 2f);
-//				Debug.DrawRay(cols[i].transform.position, Vector3.up, Color.red, 2f);
-//			}
-//		}
-//	}
-	
 	IEnumerator Move() {
 		float timer = 0f;
 		while(curRow <= floor.rows - 1) {
@@ -149,7 +134,8 @@ public class Enemy : MonoBehaviour {
 	IEnumerator Hop(HopData data) {
 		animator.SetBool ("Land", false);
 		animator.SetBool("Jump", true);
-		floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
+		//floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
+		ClosestTile(transform.position).GetComponent<Animator>().SetTrigger("Bounce");
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
 		
@@ -164,5 +150,17 @@ public class Enemy : MonoBehaviour {
 				animator.SetBool ("Land", true);
 		}
 		animator.SetBool ("Land", true);
+	}
+
+	Transform ClosestTile(Vector3 pos) {
+		Transform closestTile = floor.tiles[0, 0].transform;
+		for(int i = 0; i < floor.columns; i++) {
+			for(int j = 0; j < floor.rows; j++) {
+				if(Vector3.Distance(floor.tiles[i, j].transform.position, pos) < Vector3.Distance(closestTile.position, pos)) {
+					closestTile = floor.tiles[i, j].transform;
+				}
+			}
+		}
+		return closestTile;
 	}
 }

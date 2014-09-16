@@ -14,6 +14,18 @@
       <time>2014-09-16T13:58:52.3064113-07:00</time>
     </ScoreXML>
     <ScoreXML>
+      <score>3</score>
+      <time>2014-09-16T15:57:00.1878149-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>2</score>
+      <time>2014-09-16T14:16:25.5806551-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>1</score>
+      <time>2014-09-16T14:15:16.95673-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
       <score>0</score>
       <time>2014-09-16T13:38:29.0884472-07:00</time>
     </ScoreXML>
@@ -36,8 +48,8 @@
       <time>2014-09-16T13:58:52.3064113-07:00</time>
     </ScoreXML>
     <ScoreXML>
-      <score>2</score>
-      <time>2014-09-15T10:07:11.3657162-07:00</time>
+      <score>3</score>
+      <time>2014-09-16T15:57:00.1878149-07:00</time>
     </ScoreXML>
   </weeklyScores>
   <monthlyScores>
@@ -52,10 +64,6 @@
     <ScoreXML>
       <score>3</score>
       <time>2014-09-16T13:56:26.9640982-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>3</score>
-      <time>2014-09-16T13:58:52.3064113-07:00</time>
     </ScoreXML>
   </monthlyScores>
 </HighScore>

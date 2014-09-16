@@ -29,7 +29,7 @@ public class HighScoreManager : MonoBehaviour {
 
 	void OnGUI() {
 		if(showScores) {
-			GUI.BeginGroup(new Rect(Screen.width * 0.25f, Screen.height * 0.25f, Screen.width/2f, Screen.height/2f));
+			GUI.BeginGroup(new Rect(Screen.width * 0.25f, Screen.height * 0.15f, Screen.width/2f, Screen.height*0.75f));
 			GUILayout.BeginVertical();//.BeginGroup(new Rect(0f, 0f, 500f, 500f));
 
 			GUILayout.Box("Daily scores:");

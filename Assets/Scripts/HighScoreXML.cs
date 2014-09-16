@@ -65,6 +65,7 @@ public class HighScoreXML : XMLBase {
 			if(scoresList[i].score < score.score) {
 				scoresList.Insert(i, score);
 				added = true;
+				break;
 			}
 		}
 		//TODO WHY MORE THAN SIZE

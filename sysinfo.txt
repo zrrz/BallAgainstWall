@@ -21,343 +21,371 @@ User locale: en-US
 System locale: en-US
 
 Running processes:
-TeamViewer.exe (1492)
-    path: C:\Program Files (x86)\TeamViewer\Version9\TeamViewer.exe
-    company:  TeamViewer GmbH
-    product:  TeamViewer
-    filedesc: TeamViewer 9
-    filever:  9.0.31064.0
-    prodver:  9.0.0.0
-NvTmru.exe (7240)
-    path: C:\Program Files (x86)\NVIDIA Corporation\NVIDIA Update Core\NvTmru.exe
-    company:  NVIDIA Corporation
-    product:  NVIDIA GeForce Experience
-    filedesc: NVIDIA NvTmru Application
-    filever:  7.2.17.0
-    prodver:  7.2.17.0
-AAM Updates Notifier.exe (4220)
-    path: C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\UWA\AAM Updates Notifier.exe
-    company:  Adobe Systems Incorporated
-    product:  AAM Updates Notifier Application
-    filedesc: AAM Updates Notifier Application
-    filever:  6.0.335.0
-    prodver:  6.0.335.0
-TOASTER.EXE (6420)
+TOASTER.EXE (5320)
     path: C:\Program Files (x86)\AlienRespawn\TOASTER.EXE
     company:  SoftThinks - Dell
     product:  AlienRespawn
     filedesc: AlienRespawn
     filever:  1.0.3.61
     prodver:  1.0.3.61
-STSERVICE.EXE (5848)
+STSERVICE.EXE (5404)
     path: C:\Program Files (x86)\AlienRespawn\COMPONENTS\SCHEDULER\STSERVICE.EXE
     company:  
     product:  Service Scheduling
     filedesc: ST Service Scheduling
     filever:  1.0.0.69
     prodver:  1.0.0.69
-DSUpd.exe (5792)
+NvTmru.exe (5520)
+    path: C:\Program Files (x86)\NVIDIA Corporation\NVIDIA Update Core\NvTmru.exe
+    company:  NVIDIA Corporation
+    product:  NVIDIA GeForce Experience
+    filedesc: NVIDIA NvTmru Application
+    filever:  7.2.17.0
+    prodver:  7.2.17.0
+DSUpd.exe (5572)
     path: C:\Program Files (x86)\AlienRespawn\Components\DSUpdate\DSUpd.exe
     company:  SoftThinks - Dell
     product:  AlienRespawn Update Launcher
     filedesc: AlienRespawn Update Launcher
     filever:  2.0.1.22
     prodver:  2.0.1.22
-Steam.exe (3984)
+TeamViewer.exe (5716)
+    path: C:\Program Files (x86)\TeamViewer\Version9\TeamViewer.exe
+    company:  TeamViewer GmbH
+    product:  TeamViewer
+    filedesc: TeamViewer 9
+    filever:  9.0.32494.0
+    prodver:  9.0.0.0
+AAM Updates Notifier.exe (5900)
+    path: C:\Program Files (x86)\Common Files\Adobe\OOBE\PDApp\UWA\AAM Updates Notifier.exe
+    company:  Adobe Systems Incorporated
+    product:  AAM Updates Notifier Application
+    filedesc: AAM Updates Notifier Application
+    filever:  6.0.335.0
+    prodver:  6.0.335.0
+Steam.exe (6072)
     path: C:\Program Files (x86)\Steam\Steam.exe
     company:  Valve Corporation
     product:  Steam Client Bootstrapper
     filedesc: Steam Client Bootstrapper
     filever:  2.37.82.33
     prodver:  1.0.0.1
-SpotifyWebHelper.exe (6804)
+SpotifyWebHelper.exe (1196)
     path: C:\Users\Zack\AppData\Roaming\Spotify\Data\SpotifyWebHelper.exe
     company:  Spotify Ltd
     product:  Spotify
     filedesc: SpotifyWebHelper
     filever:  0.9.11.27
     prodver:  0.9.11.27
-Skype.exe (7472)
+Skype.exe (5908)
     path: C:\Program Files (x86)\Skype\Phone\Skype.exe
     company:  Skype Technologies S.A.
     product:  Skype
     filedesc: Skype 
     filever:  6.18.0.106
     prodver:  6.18.0.0
-scClient.exe (1664)
-    path: C:\Program Files (x86)\SafeConnect\scClient.exe
-    company:  Impulse Point, LLC
-    product:  SafeConnect
-    filedesc: SafeConnect Client
-    filever:  1.0.0.16
-    prodver:  1.0.0.1
-IAStorIcon.exe (5752)
+IAStorIcon.exe (6172)
     path: C:\Program Files (x86)\Intel\Intel(R) Rapid Storage Technology\IAStorIcon.exe
     company:  Intel Corporation
     product:  IAStorIcon
     filedesc: IAStorIcon
     filever:  11.0.0.1032
     prodver:  11.0.0.1032
-iusb3mon.exe (3372)
+scClient.exe (6184)
+    path: C:\Program Files (x86)\SafeConnect\scClient.exe
+    company:  Impulse Point, LLC
+    product:  SafeConnect
+    filedesc: SafeConnect Client
+    filever:  1.0.0.16
+    prodver:  1.0.0.1
+iusb3mon.exe (6208)
     path: C:\Program Files (x86)\Intel\Intel(R) USB 3.0 eXtensible Host Controller Driver\Application\iusb3mon.exe
     company:  Intel Corporation
     product:  Intel(R) USB 3.0 Monitor
     filedesc: Intel(R) USB 3.0 Monitor
     filever:  1.0.0.120
     prodver:  1.0.0.120
-SBRcni.exe (6128)
+SBRcni.exe (6240)
     path: C:\Program Files (x86)\Creative\Sound Blaster Recon3Di\Sound Blaster Recon3Di Control Panel\SBRcni.exe
     company:  Creative Technology Ltd
     product:  Sound Blaster Control Panel
     filedesc: Sound Blaster Control Panel
     filever:  1.2.10.0
     prodver:  1.2.0.0
-AlienwareOn-ScreenDisplay.exe (5932)
+AlienwareOn-ScreenDisplay.exe (6312)
     path: C:\Program Files (x86)\Alienware On-Screen Display\AlienwareOn-ScreenDisplay.exe
     company:  
     product:  Alienware On-Screen Display
     filedesc: Alienware On-Screen Display
     filever:  0.32.1.1
     prodver:  0.32.1.1
-NACAgentUI.exe (6032)
+NACAgentUI.exe (6392)
     path: C:\Program Files (x86)\Cisco\Cisco NAC Agent\NACAgentUI.exe
     company:  Cisco Systems, Inc.
     product:  Cisco NAC Agent
     filedesc: Cisco NAC Agent UI
     filever:  4.9.2.8
     prodver:  4.9.2.8
-EEventManager.exe (4460)
+EEventManager.exe (6476)
     path: C:\Program Files (x86)\Epson Software\Event Manager\EEventManager.exe
     company:  SEIKO EPSON CORPORATION
     product:  EEventManager Application
     filedesc: EEventManager Application
     filever:  2.4.0.0
     prodver:  2.4.0.0
-FUFAXSTM.exe (1180)
-    path: C:\Program Files (x86)\Epson Software\FAX Utility\FUFAXSTM.exe
-    company:  SEIKO EPSON CORPORATION
-    product:  EPSON PC-FAX SOFTWARE
-    filedesc: FAX Status Monitor
-    filever:  2.0.0.10
-    prodver:  1.1.0.5
-iTunesHelper.exe (3940)
-    path: C:\Program Files (x86)\iTunes\iTunesHelper.exe
-    company:  Apple Inc.
-    product:  iTunes
-    filedesc: iTunesHelper
-    filever:  11.1.4.62
-    prodver:  11.1.4.62
-hamachi-2-ui.exe (5236)
-    path: C:\Program Files (x86)\LogMeIn Hamachi\hamachi-2-ui.exe
-    company:  LogMeIn Inc.
-    product:  Hamachi Client
-    filedesc: Hamachi Client Application
-    filever:  2.2.0.236
-    prodver:  2.0.0.0
-Dropbox.exe (8248)
+Dropbox.exe (6540)
     path: C:\Users\Zack\AppData\Roaming\Dropbox\bin\Dropbox.exe
     company:  Dropbox, Inc.
     product:  Dropbox
     filedesc: Dropbox
     filever:  2.10.27.0
     prodver:  1.0.0.1
-soffice.exe (8416)
+soffice.exe (6716)
     path: C:\Program Files (x86)\OpenOffice.org 3\program\soffice.exe
     company:  OpenOffice.org
     product:  
     filedesc: OpenOffice.org 3.4.1
     filever:  3.4.9593.500
     prodver:  3.4.9593.500
-soffice.bin (8460)
+soffice.bin (6736)
     path: C:\Program Files (x86)\OpenOffice.org 3\program\soffice.bin
     company:  OpenOffice.org
     product:  
     filedesc: OpenOffice.org 3.4.1
     filever:  3.4.9593.500
     prodver:  3.4.9593.500
-AlienwareAlienFXController.exe (9248)
+FUFAXSTM.exe (6900)
+    path: C:\Program Files (x86)\Epson Software\FAX Utility\FUFAXSTM.exe
+    company:  SEIKO EPSON CORPORATION
+    product:  EPSON PC-FAX SOFTWARE
+    filedesc: FAX Status Monitor
+    filever:  2.0.0.10
+    prodver:  1.1.0.5
+iTunesHelper.exe (6916)
+    path: C:\Program Files (x86)\iTunes\iTunesHelper.exe
+    company:  Apple Inc.
+    product:  iTunes
+    filedesc: iTunesHelper
+    filever:  11.1.4.62
+    prodver:  11.1.4.62
+hamachi-2-ui.exe (6932)
+    path: C:\Program Files (x86)\LogMeIn Hamachi\hamachi-2-ui.exe
+    company:  LogMeIn Inc.
+    product:  Hamachi Client
+    filedesc: Hamachi Client Application
+    filever:  2.2.0.236
+    prodver:  2.0.0.0
+AlienwareAlienFXController.exe (6800)
     path: C:\Program Files\Alienware\Command Center\AlienwareAlienFXController.exe
     company:  Alienware
     product:  Alienware AlienFX
     filedesc: Alienware AlienFX Controller
     filever:  2.7.28.0
     prodver:  2.7.28.0
-TabTip32.exe (10552)
-    path: C:\Program Files (x86)\Common Files\Microsoft Shared\Ink\TabTip32.exe
-    company:  Microsoft Corporation
-    product:  Microsoft® Windows® Operating System
-    filedesc: Tablet PC Input Panel Helper
-    filever:  6.1.7601.18512
-    prodver:  6.1.7601.18512
-pageant.exe (11356)
-    path: C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\pageant.exe
-    company:  Simon Tatham
-    product:  PuTTY suite
-    filedesc: PuTTY SSH authentication agent
-    filever:  0.62.9551.0
-    prodver:  0.62.9551.0
-AWCCApplicationWatcher32.exe (11684)
+chrome.exe (8348)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+AWCCApplicationWatcher32.exe (8424)
     path: C:\Program Files\Alienware\Command Center\AWCCApplicationWatcher32.exe
     company:  Alienware
     product:  Hook32 Manager
     filedesc: Hook32 Manager
     filever:  2.7.28.0
     prodver:  2.7.28.0
-steamwebhelper.exe (12148)
+chrome.exe (8580)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (8688)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (8724)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+TabTip32.exe (9136)
+    path: C:\Program Files (x86)\Common Files\Microsoft Shared\Ink\TabTip32.exe
+    company:  Microsoft Corporation
+    product:  Microsoft® Windows® Operating System
+    filedesc: Tablet PC Input Panel Helper
+    filever:  6.1.7601.18512
+    prodver:  6.1.7601.18512
+chrome.exe (9172)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (8228)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (7180)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (7252)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (8260)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (7080)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (8900)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (8976)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (8812)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+chrome.exe (7232)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+steamwebhelper.exe (9432)
     path: C:\Program Files (x86)\Steam\bin\steamwebhelper.exe
     company:  Valve Corporation
     product:  Steam Client WebHelper
     filedesc: Steam Client WebHelper
     filever:  2.37.82.33
     prodver:  1.0.0.1
-chrome.exe (11656)
+chrome.exe (9456)
     path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
     company:  Google Inc.
     product:  Google Chrome
     filedesc: Google Chrome
     filever:  37.0.2062.120
     prodver:  37.0.2062.120
-chrome.exe (4352)
+chrome.exe (9720)
     path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
     company:  Google Inc.
     product:  Google Chrome
     filedesc: Google Chrome
     filever:  37.0.2062.120
     prodver:  37.0.2062.120
-chrome.exe (5680)
+chrome.exe (9944)
     path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
     company:  Google Inc.
     product:  Google Chrome
     filedesc: Google Chrome
     filever:  37.0.2062.120
     prodver:  37.0.2062.120
-chrome.exe (11556)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (11480)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (11488)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (11484)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (1916)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (11476)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (11668)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (10580)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (12088)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (11276)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (9820)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-chrome.exe (6448)
-    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
-    company:  Google Inc.
-    product:  Google Chrome
-    filedesc: Google Chrome
-    filever:  37.0.2062.120
-    prodver:  37.0.2062.120
-AlienFusionController.exe (12424)
+AlienFusionController.exe (9908)
     path: C:\Program Files\Alienware\Command Center\AlienFusionController.exe
     company:  Alienware
     product:  AlienFusionController
     filedesc: AlienFusionController
     filever:  2.7.28.0
     prodver:  2.7.28.0
-MonoDevelop.exe (3532)
+MonoDevelop.exe (9828)
     path: C:\Program Files (x86)\Unity\MonoDevelop\bin\MonoDevelop.exe
     company:  
     product:  MonoDevelop
     filedesc: MonoDevelop
     filever:  2.6.0.0
     prodver:  2.6.0.0
-git.exe (13008)
-    path: C:\Users\Zack\AppData\Local\Atlassian\SourceTree\git_local\bin\git.exe
-    company:  The Git Development Community
-    product:  Git
-    filedesc: Git for Windows
-    filever:  1.8.3.0
-    prodver:  1.8.3.0
-git-remote-https.exe (5572)
-    path: C:\Users\Zack\AppData\Local\Atlassian\SourceTree\git_local\libexec\git-core\git-remote-https.exe
-    company:  The Git Development Community
-    product:  Git
-    filedesc: Git for Windows
-    filever:  1.8.3.0
-    prodver:  1.8.3.0
-Askpass.exe (12840)
-    path: C:\Program Files (x86)\Atlassian\SourceTree\Askpass.exe
-    company:  
-    product:  Askpass
-    filedesc: Askpass
-    filever:  1.0.0.0
-    prodver:  1.0.0.0
-chrome.exe (9076)
+chrome.exe (9480)
     path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
     company:  Google Inc.
     product:  Google Chrome
     filedesc: Google Chrome
     filever:  37.0.2062.120
     prodver:  37.0.2062.120
-UnityBugReporter.exe (1844)
+pageant.exe (13028)
+    path: C:\Program Files (x86)\Atlassian\SourceTree\tools\putty\pageant.exe
+    company:  Simon Tatham
+    product:  PuTTY suite
+    filedesc: PuTTY SSH authentication agent
+    filever:  0.62.9551.0
+    prodver:  0.62.9551.0
+chrome.exe (10820)
+    path: C:\Program Files (x86)\Google\Chrome\Application\chrome.exe
+    company:  Google Inc.
+    product:  Google Chrome
+    filedesc: Google Chrome
+    filever:  37.0.2062.120
+    prodver:  37.0.2062.120
+git.exe (10084)
+    path: C:\Users\Zack\AppData\Local\Atlassian\SourceTree\git_local\bin\git.exe
+    company:  The Git Development Community
+    product:  Git
+    filedesc: Git for Windows
+    filever:  1.8.3.0
+    prodver:  1.8.3.0
+git-remote-https.exe (11784)
+    path: C:\Users\Zack\AppData\Local\Atlassian\SourceTree\git_local\libexec\git-core\git-remote-https.exe
+    company:  The Git Development Community
+    product:  Git
+    filedesc: Git for Windows
+    filever:  1.8.3.0
+    prodver:  1.8.3.0
+Unity.exe (5216)
+    path: C:\Program Files (x86)\Unity\Editor\Unity.exe
+    company:  Unity Technologies ApS
+    product:  Unity
+    filedesc: Unity Editor
+    filever:  4.5.2.26843
+    prodver:  4.5.2.26843
+UnityShaderCompiler.exe (11728)
+    path: C:\Program Files (x86)\Unity\Editor\Data\Tools\UnityShaderCompiler.exe
+    company:  
+    product:  
+    filedesc: 
+    filever:  0.0.0.0
+    prodver:  0.0.0.0
+UnityBugReporter.exe (11364)
     path: C:\Program Files (x86)\Unity\Editor\UnityBugReporter.exe
     company:  Unity Technologies ApS
     product:  Unity Bug Reporter

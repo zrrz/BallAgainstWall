@@ -53,6 +53,8 @@ public class BallManager : MonoBehaviour {
 	}
 
 	public void Shoot(Vector2 pos, string color) {
+		if(!Camera.main)
+			return;
 		RaycastHit hit;
 		if(Physics.Raycast(Camera.main.ScreenPointToRay(pos), out hit)) {
 //			if(hit.collider.tag == "Enemy" && !shotEnemies.Contains(hit.collider.gameObject)) {

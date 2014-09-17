@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour {
 
 	BallManager ballManager;
 	PlayerManager playerManager;
+	QueueManager queueManager;
 
 	public TextMesh scoreText;
 
@@ -70,13 +71,12 @@ public class GameManager : MonoBehaviour {
 		playerManager = GetComponent<PlayerManager> ();
 
 		guiStyle = new GUIStyle();
-
-
 	}
 
 	void OnLevelWasLoaded(int level) {
 		if(level == 1) {
 			HighScoreManager.AddScore(10);
+			queueManager = GameObject.Find("QueueManager").GetComponent<QueueManager> ();
 
 			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 			enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour {
 			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
 
 			StartCoroutine ("SpawnEnemy");
+			StartCoroutine("StartEnemyMove");
 			GameObject.Find("GameCamera").camera.enabled = true;
 			GameObject.Find("ScoreCamera").camera.enabled = false;
 			GameObject.Find("Timer").SetActive(true);
@@ -180,6 +181,11 @@ public class GameManager : MonoBehaviour {
 		return str;
 	}
 
+	/// <summary>
+	/// Balls the hit.
+	/// </summary>
+	/// <param name="pos">Position.</param>
+	/// <param name="color">Color.</param>
 	public void BallHit(Vector2 pos, string color) {
 		if(!playerManager.Added(color)) {
 			playerManager.AddPlayer(color);
@@ -194,13 +200,19 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator SpawnEnemy() {
 		while(true) {
-			int column = Random.Range (0, floor.columns);
-			GameObject t_obj = (GameObject)Instantiate (enemy, /*floor.tiles[column, 0].transform.position*/ enemySpawnPoint.position, Quaternion.identity);
-			t_obj.GetComponent<Enemy>().curColumn = column;
-			if(randomSpawnTime)
-				yield return new WaitForSeconds(spawnRate + Random.Range(0f, randomRange));
-			else
-				yield return new WaitForSeconds(spawnRate);
+			queueManager.SpawnNewEnemy(enemy);
+			yield return new WaitForSeconds( 0.25f );
+		}
+	}
+	
+	IEnumerator StartEnemyMove() {
+		while(true) {
+			queueManager.StartNextInQueue();
+			yield return new WaitForSeconds( 0.2f );
+//			if(randomSpawnTime)
+//				yield return new WaitForSeconds(spawnRate + Random.Range(0f, randomRange));
+//			else
+//				yield return new WaitForSeconds(spawnRate);
 		}
 	}
 

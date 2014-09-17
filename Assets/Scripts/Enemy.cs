@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour {
 		public float time;
 	}
 
-	void Start () {
+	void Awake () {
 		int rand = Random.Range(0, textures.Count - 1);
 		foreach(Renderer rend in renderers) {
 			rend.material.mainTexture = textures[rand];
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour {
 
 		animator = transform.GetChild(0).GetComponent<Animator> ();
 
-		StartCoroutine ("Move");
+		//StartCoroutine ("Move");
 	}
 
 	void Update () {
@@ -63,6 +63,10 @@ public class Enemy : MonoBehaviour {
 			//	col.gameObject.SendMessageUpwards("Hit", hitBy, SendMessageOptions.DontRequireReceiver);
 			}
 		}
+	}
+
+	public void StartMove() {
+		StartCoroutine("Move");
 	}
 
 	void Hit(string p_hitBy) {
@@ -140,5 +144,24 @@ public class Enemy : MonoBehaviour {
 				animator.SetBool ("Land", true);
 		}
 		animator.SetBool ("Land", true);
+	}
+
+	public void GoToQueuePos( Waypoint dest ) {
+		StartCoroutine( "MoveToQueuePos", dest );
+	}
+
+	IEnumerator MoveToQueuePos( Waypoint dest ) {
+		float timer = 0f;
+		float lerpTime = 1.0f;
+		Vector3 startPos = transform.position;
+
+		while( timer <= 1.0f ) {
+			transform.position = Vector3.Lerp( startPos, dest.transform.position, timer );
+			timer += Time.deltaTime / lerpTime;
+			yield return null;
+		}
+
+		dest.m_occupant = gameObject;
+		dest.m_reserved = false;
 	}
 }

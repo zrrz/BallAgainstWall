@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour {
 		public float time;
 	}
 
-	void Start () {
+	void Awake () {
 		SetKinematic(true);
 
 		int rand = Random.Range(0, textures.Count - 1);
@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour {
 
 		animator = transform.GetChild(0).GetComponent<Animator> ();
 
-		StartCoroutine ("Move");
+		//StartCoroutine ("Move");
 	}
 	
 	void SetKinematic(bool newValue) {
@@ -162,5 +162,28 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 		return closestTile;
+	}
+
+	public void StartMove() {
+		StartCoroutine( "Move" );
+	}
+
+	public void GoToQueuePos( Waypoint wp ) {
+		StartCoroutine( "MoveToPos", wp );
+	}
+
+	IEnumerator MoveToPos( Waypoint dest ) {
+		Vector3 startPos = transform.position;
+		float moveTime = 0.5f;
+		float timer = 0.0f;
+
+		while( timer <= 1.0f ) {
+			transform.position = Vector3.Lerp( startPos, dest.transform.position, timer );
+			timer += Time.deltaTime / moveTime;
+			yield return null;
+		}
+
+		dest.m_occupant = gameObject;
+		dest.m_reserved = false;
 	}
 }

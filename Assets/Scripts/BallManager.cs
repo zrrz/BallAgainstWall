@@ -122,4 +122,27 @@ public class BallManager : MonoBehaviour {
 		ball.rigidbody.useGravity = true;
 		Destroy (ball, 10f);
 	}
+  public void OSCMessageReceived(OSC.NET.OSCMessage message){
+    if(message.Address == "/shoot"){
+      ArrayList args = message.Values;
+      float x = (float)(args[0])*Screen.width;
+      float y = (float)(args[1])*Screen.height;
+      Vector2 pos = new Vector2(x,y);
+      Shoot(pos, "Red");
+      
+    }
+/*
+    if(message.Address == "/endGame"){
+      AdjustGameSetting("Quit Game", true);
+      timer = 0;
+    }else if(message.Address == "/timeChange"){
+      ArrayList args = message.Values;
+      print(args[0]);
+      string recieved = args[0].ToString();
+      float time;
+      float.TryParse(recieved, out time);
+      AdjustGameSetting("Game Time", time);
+    }
+  */
+  }
 }

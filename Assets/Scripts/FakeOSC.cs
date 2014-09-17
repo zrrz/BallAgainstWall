@@ -17,7 +17,10 @@ public class FakeOSC : MonoBehaviour {
 
 	void Update () {
 		if(Input.GetButtonDown("Fire1")) {
-			BallHit(Input.mousePosition, colors[curColor]);
+			Vector3 pos = Input.mousePosition;
+			pos.x /= Screen.width;
+			pos.y /= Screen.height;
+			BallHit(pos, colors[curColor]);
 		}
 
 		if(Input.GetKeyDown(KeyCode.Q)) {

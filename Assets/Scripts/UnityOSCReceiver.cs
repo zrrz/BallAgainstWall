@@ -28,7 +28,7 @@ public class UnityOSCReceiver : MonoBehaviour
   public void Start ()
   {
     try {
-      Debug.Log ("connected");
+      Debug.Log ("OSC connected");
       connected = true;
       receiver = new OSCReceiver (port);
       thread = new Thread (new ThreadStart (listen));

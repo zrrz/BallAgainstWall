@@ -39,17 +39,7 @@ public class BallManager : MonoBehaviour {
 	}
 
 	void Update () {
-//		if(Input.GetButtonDown("Fire1")) {
-//			RaycastHit hit;
-//			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit)) {
-//				if(hit.collider.tag == "Enemy" && !shotEnemies.Contains(hit.collider.gameObject)) {
-//					shotEnemies.Add(hit.collider.gameObject);
-//					StartCoroutine("Shoot1", hit.collider.transform);
-//				} else {
-//					StartCoroutine("Shoot2", hit.point);
-//				}
-//			}
-//		}
+
 	}
 
 	public void Shoot(Vector2 pos, string color) {
@@ -122,27 +112,4 @@ public class BallManager : MonoBehaviour {
 		ball.rigidbody.useGravity = true;
 		Destroy (ball, 10f);
 	}
-  public void OSCMessageReceived(OSC.NET.OSCMessage message){
-    if(message.Address == "/shoot"){
-      ArrayList args = message.Values;
-      float x = (float)(args[0])*Screen.width;
-      float y = (float)(args[1])*Screen.height;
-      Vector2 pos = new Vector2(x,y);
-      Shoot(pos, "Red");
-      
-    }
-/*
-    if(message.Address == "/endGame"){
-      AdjustGameSetting("Quit Game", true);
-      timer = 0;
-    }else if(message.Address == "/timeChange"){
-      ArrayList args = message.Values;
-      print(args[0]);
-      string recieved = args[0].ToString();
-      float time;
-      float.TryParse(recieved, out time);
-      AdjustGameSetting("Game Time", time);
-    }
-  */
-  }
 }

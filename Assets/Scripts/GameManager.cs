@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour {
 	public Transform enemySpawnPoint;
 	public float spawnRate = 3f;
 
-	SpawnFloor floor;
-
 	public bool randomSpawnTime = false;
 	public float randomRange = 1f;
 
@@ -71,18 +69,15 @@ public class GameManager : MonoBehaviour {
 		playerManager = GetComponent<PlayerManager> ();
 
 		guiStyle = new GUIStyle();
-
-
 	}
 
 	void OnLevelWasLoaded(int level) {
 		if(level == 1) {
-			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 			queueManager = GameObject.Find( "QueueManager" ).GetComponent<QueueManager>();
 			//enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
-//			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
-//			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
-//			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
+			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
+			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
+			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
 
 			StartCoroutine ("SpawnEnemy");
 			StartCoroutine( "StartEnemyMove" );
@@ -122,9 +117,9 @@ public class GameManager : MonoBehaviour {
 				timer = scoreboardTimer;
 				mode = GameMode.Scoreboard;
 				//Application.LoadLevel("Scoreboard");
-//				redGameScore.enabled = false;
-//				yellowGameScore.enabled = false;
-//				greenGameScore.enabled = false;
+				redGameScore.enabled = false;
+				yellowGameScore.enabled = false;
+				greenGameScore.enabled = false;
 				GameObject.Find("GameCamera").camera.enabled = false;
 				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("Timer").SetActive(false);
@@ -138,24 +133,24 @@ public class GameManager : MonoBehaviour {
 				return;
 			}
 
-//			for(int i = 0; i < playerManager.playerData.Count; i++) {
-//				string tempScoreStr = playerManager.playerData[i].score.ToString();
-//				
-//				if(tempScoreStr.Length < 2)
-//					tempScoreStr = " " + tempScoreStr;
-//				
-//				switch( playerManager.playerData[i].color ) {
-//				case "Red":
-//					redGameScore.text = "Red:" + tempScoreStr;
-//					break;
-//				case "Yellow":
-//					yellowGameScore.text = "Yellow:" + tempScoreStr;
-//					break;
-//				case "Green":
-//					greenGameScore.text = "Green:" + tempScoreStr;
-//					break;
-//				}
-//			}
+			for(int i = 0; i < playerManager.playerData.Count; i++) {
+				string tempScoreStr = playerManager.playerData[i].score.ToString();
+				
+				if(tempScoreStr.Length < 2)
+					tempScoreStr = " " + tempScoreStr;
+				
+				switch( playerManager.playerData[i].color ) {
+				case "Red":
+					redGameScore.text = "Red:" + tempScoreStr;
+					break;
+				case "Yellow":
+					yellowGameScore.text = "Yellow:" + tempScoreStr;
+					break;
+				case "Green":
+					greenGameScore.text = "Green:" + tempScoreStr;
+					break;
+				}
+			}
 
 			timer -= Time.deltaTime;
 			break;
@@ -192,20 +187,15 @@ public class GameManager : MonoBehaviour {
 			timer = joinTimer;
 		}
 			
+		pos.x *= Screen.width;
+		pos.y *= Screen.height;
 		ballManager.Shoot(pos, color);
 	}
 
 	IEnumerator SpawnEnemy() {
 		while(true) {
-//			int column = Random.Range (0, floor.columns);
-//			GameObject t_obj = (GameObject)Instantiate (enemy, /*floor.tiles[column, 0].transform.position*/ enemySpawnPoint.position, Quaternion.identity);
-//			t_obj.GetComponent<Enemy>().curColumn = column;
 			queueManager.SpawnNewEnemy( enemy );
 			yield return new WaitForSeconds( 0.25f );
-//			if(randomSpawnTime)
-//				yield return new WaitForSeconds(spawnRate + Random.Range(0f, randomRange));
-//			else
-//				yield return new WaitForSeconds(spawnRate);
 		}
 	}
 
@@ -241,10 +231,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void ScoreboardWindow(int windowID) {
-
 		GUILayout.BeginVertical();
-
-		//GUILayout.Label("");
 
 		foreach(PlayerManager.PlayerData player in playerManager.playerData) {
 			GUILayout.BeginHorizontal();
@@ -256,6 +243,27 @@ public class GameManager : MonoBehaviour {
 		}
 
 		GUILayout.EndVertical();
+	}
+
+	public void OSCMessageReceived(OSC.NET.OSCMessage message){
+		if(message.Address == "/shoot"){
+			ArrayList args = message.Values;
+			float x = (float)(args[0])*Screen.width;
+			float y = (float)(args[1])*Screen.height;
+			Vector2 pos = new Vector2(x,y);
+			BallHit(pos, "Red");  
+		}
+//    	if(message.Address == "/endGame"){
+//      		AdjustGameSetting("Quit Game", true);
+//      		timer = 0;
+//    	} else if(message.Address == "/timeChange"){
+//      		ArrayList args = message.Values;
+//	      	print(args[0]);
+//	     	string recieved = args[0].ToString();
+//	     	float time;
+//	     	float.TryParse(recieved, out time);
+//	      	AdjustGameSetting("Game Time", time);
+//    	}
 	}
 
 

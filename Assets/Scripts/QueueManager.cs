@@ -85,7 +85,7 @@ public class QueueManager : MonoBehaviour {
 
 	void OnDrawGizmos() {
 		Gizmos.color = Color.red;
-		Gizmos.DrawSphere( m_queueEnd.transform.position, 0.3f );
+//		Gizmos.DrawSphere( m_queueEnd.transform.position, 0.3f );
 	}
 
 	/// <summary>

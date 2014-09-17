@@ -7,11 +7,27 @@ public class Ball : MonoBehaviour {
 	public bool hasCollided = false;
 	public GameObject hitParticle;
 
+	float impactEndTime = 0;
+	Rigidbody impactTarget = null;
+	Vector3 impact;
+
 	AudioSource audioSource;
+
+//	class BallHitData {
+//		GameObject gameObject;
+//
+//	}
 
 	void Start() {
 //		playerManager = GameObject.FindObjectOfType<PlayerManager>();
 		audioSource = GetComponent<AudioSource>();
+	}
+
+	void Update() {
+		if (Time.time<impactEndTime)
+		{
+			impactTarget.AddForce(impact,ForceMode.VelocityChange);
+		}
 	}
 
 	void OnCollisionEnter(Collision col) {
@@ -19,17 +35,18 @@ public class Ball : MonoBehaviour {
 			hasCollided = true;
 
 			if(col.transform.tag == "Enemy") {
-				col.transform.SendMessage("Hit", gameObject.name, SendMessageOptions.DontRequireReceiver);
+				col.transform.SendMessageUpwards("Hit", gameObject, SendMessageOptions.DontRequireReceiver);
 
-//				if(name.Contains("Red")) {
-//					playerManager.AddPoints("Red", 1);
-//				} 
-//				else if(name.Contains("Yellow")) {
-//					playerManager.AddPoints("Yellow", 1);
-//				} 
-//				else if(name.Contains("Green")) {
-//					playerManager.AddPoints("Green", 1);
-//				}
+				//set the impact target to whatever the ray hit
+				impactTarget = col.rigidbody;
+				
+				//impact direction also according to the ray
+				impact = rigidbody.velocity * 0.5f;
+				
+				//the impact will be reapplied for the next 250ms
+				//to make the connected objects follow even though the simulated body joints
+				//might stretch
+				impactEndTime=Time.time+0.10f;
 
 				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method

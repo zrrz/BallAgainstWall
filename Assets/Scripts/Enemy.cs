@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour {
 	bool hit = false;
 
 	[System.NonSerialized]
-	public string hitBy = "";
+	public GameObject hitBy;
 
 	class HopData {
 		public HopData(Vector3 p_dest, float p_time) {dest = p_dest; time = p_time;}
@@ -35,13 +35,14 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Awake () {
+		SetKinematic(true);
+
 		int rand = Random.Range(0, textures.Count - 1);
 		foreach(Renderer rend in renderers) {
 			rend.material.mainTexture = textures[rand];
 		}
 
 		moveForwardChancePct = Mathf.Clamp(moveForwardChancePct, 0f, 100f);
-
 
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 		curRow = 0;
@@ -50,37 +51,40 @@ public class Enemy : MonoBehaviour {
 
 		//StartCoroutine ("Move");
 	}
+	
+	void SetKinematic(bool newValue) {
+		Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+
+		foreach (Component c in components) {
+			(c as Rigidbody).isKinematic = newValue;
+		}
+	}
 
 	void Update () {
 
 	}
 
-	void OnCollisionEnter(Collision col) {
-		if(GameManager.instance.enemiesKnockback) {
-			if(col.gameObject.tag == "Enemy") {
-				hitBy = col.transform.GetComponentInParent<Enemy>().hitBy;
-				Hit (hitBy);
-			//	col.gameObject.SendMessageUpwards("Hit", hitBy, SendMessageOptions.DontRequireReceiver);
-			}
-		}
-	}
+//	void OnCollisionEnter(Collision col) {
+//		if(GameManager.instance.enemiesKnockback) {
+//			if(col.gameObject.tag == "Enemy") {
+//				hitBy = col.transform.GetComponentInParent<Enemy>().hitBy;
+//				Hit (hitBy);
+//			//	col.gameObject.SendMessageUpwards("Hit", hitBy, SendMessageOptions.DontRequireReceiver);
+//			}
+//		}
+//	}
 
-	public void StartMove() {
-		StartCoroutine("Move");
-	}
-
-	void Hit(string p_hitBy) {
+	void Hit(GameObject p_hitBy) {
 		if(!hit) {
-//			collider.enabled = false;
 			hitBy = p_hitBy;
 
-			if(p_hitBy.Contains("Red")) {
+			if(p_hitBy.name.Contains("Red")) {
 				PlayerManager.AddPoints("Red", 1);
 			} 
-			else if(p_hitBy.Contains("Yellow")) {
+			else if(p_hitBy.name.Contains("Yellow")) {
 				PlayerManager.AddPoints("Yellow", 1);
 			} 
-			else if(p_hitBy.Contains("Green")) {
+			else if(p_hitBy.name.Contains("Green")) {
 				PlayerManager.AddPoints("Green", 1);
 			} else {
 				print ("wtf");
@@ -89,10 +93,11 @@ public class Enemy : MonoBehaviour {
 			hit = true;
 			StopCoroutine ("Move");
 			StopCoroutine ("Hop");
-			//collider.enabled = false;
-			transform.GetChild (0).gameObject.SetActive (false);
-			transform.GetChild (1).gameObject.SetActive (true);
-			transform.GetComponentInChildren<Rigidbody> ().AddForce (Vector3.forward * 1000f);
+			collider.enabled = false;
+
+			SetKinematic(false);
+			animator.enabled = false;
+
 			Destroy(gameObject, 1f);
 		}
 	}
@@ -129,7 +134,8 @@ public class Enemy : MonoBehaviour {
 	IEnumerator Hop(HopData data) {
 		animator.SetBool ("Land", false);
 		animator.SetBool("Jump", true);
-		floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
+		//floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
+		ClosestTile(transform.position).GetComponent<Animator>().SetTrigger("Bounce");
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
 		
@@ -146,18 +152,34 @@ public class Enemy : MonoBehaviour {
 		animator.SetBool ("Land", true);
 	}
 
-	public void GoToQueuePos( Waypoint dest ) {
-		StartCoroutine( "MoveToQueuePos", dest );
+	Transform ClosestTile(Vector3 pos) {
+		Transform closestTile = floor.tiles[0, 0].transform;
+		for(int i = 0; i < floor.columns; i++) {
+			for(int j = 0; j < floor.rows; j++) {
+				if(Vector3.Distance(floor.tiles[i, j].transform.position, pos) < Vector3.Distance(closestTile.position, pos)) {
+					closestTile = floor.tiles[i, j].transform;
+				}
+			}
+		}
+		return closestTile;
 	}
 
-	IEnumerator MoveToQueuePos( Waypoint dest ) {
-		float timer = 0f;
-		float lerpTime = 1.0f;
+	public void StartMove() {
+		StartCoroutine( "Move" );
+	}
+
+	public void GoToQueuePos( Waypoint wp ) {
+		StartCoroutine( "MoveToPos", wp );
+	}
+
+	IEnumerator MoveToPos( Waypoint dest ) {
 		Vector3 startPos = transform.position;
+		float moveTime = 0.5f;
+		float timer = 0.0f;
 
 		while( timer <= 1.0f ) {
 			transform.position = Vector3.Lerp( startPos, dest.transform.position, timer );
-			timer += Time.deltaTime / lerpTime;
+			timer += Time.deltaTime / moveTime;
 			yield return null;
 		}
 

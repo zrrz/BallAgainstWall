@@ -23,7 +23,6 @@ public class QueueManager : MonoBehaviour {
 			GameObject enemy = (GameObject)Instantiate( enemyObject, m_queueEnd.transform.position, Quaternion.identity );
 			m_queueEnd.m_occupant = enemy;
 
-			// If we are not at the front of the queue, look at next waypoint
 			FaceNextWaypoint( enemy.transform, m_queueEnd );
 
 			// If we aren't at the end of the queue, move the spawnpoint one position back

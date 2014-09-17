@@ -71,21 +71,21 @@ public class GameManager : MonoBehaviour {
 		playerManager = GetComponent<PlayerManager> ();
 
 		guiStyle = new GUIStyle();
+
+
 	}
 
 	void OnLevelWasLoaded(int level) {
 		if(level == 1) {
-			HighScoreManager.AddScore(10);
-			queueManager = GameObject.Find("QueueManager").GetComponent<QueueManager> ();
-
 			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
-			enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
-			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
-			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
-			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
+			queueManager = GameObject.Find( "QueueManager" ).GetComponent<QueueManager>();
+			//enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
+//			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
+//			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
+//			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
 
 			StartCoroutine ("SpawnEnemy");
-			StartCoroutine("StartEnemyMove");
+			StartCoroutine( "StartEnemyMove" );
 			GameObject.Find("GameCamera").camera.enabled = true;
 			GameObject.Find("ScoreCamera").camera.enabled = false;
 			GameObject.Find("Timer").SetActive(true);
@@ -122,38 +122,40 @@ public class GameManager : MonoBehaviour {
 				timer = scoreboardTimer;
 				mode = GameMode.Scoreboard;
 				//Application.LoadLevel("Scoreboard");
-				redGameScore.enabled = false;
-				yellowGameScore.enabled = false;
-				greenGameScore.enabled = false;
+//				redGameScore.enabled = false;
+//				yellowGameScore.enabled = false;
+//				greenGameScore.enabled = false;
 				GameObject.Find("GameCamera").camera.enabled = false;
 				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("Timer").SetActive(false);
 
 				scoreText.text = "";
-				for(int i = 0; i < playerManager.playerData.Count; i++)
+				for(int i = 0; i < playerManager.playerData.Count; i++) {
 					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n";
+					HighScoreManager.AddScore(playerManager.playerData[i].score);
+				}
 
 				return;
 			}
 
-			for(int i = 0; i < playerManager.playerData.Count; i++) {
-				string tempScoreStr = playerManager.playerData[i].score.ToString();
-				
-				if(tempScoreStr.Length < 2)
-					tempScoreStr = " " + tempScoreStr;
-				
-				switch( playerManager.playerData[i].color ) {
-				case "Red":
-					redGameScore.text = "Red:" + tempScoreStr;
-					break;
-				case "Yellow":
-					yellowGameScore.text = "Yellow:" + tempScoreStr;
-					break;
-				case "Green":
-					greenGameScore.text = "Green:" + tempScoreStr;
-					break;
-				}
-			}
+//			for(int i = 0; i < playerManager.playerData.Count; i++) {
+//				string tempScoreStr = playerManager.playerData[i].score.ToString();
+//				
+//				if(tempScoreStr.Length < 2)
+//					tempScoreStr = " " + tempScoreStr;
+//				
+//				switch( playerManager.playerData[i].color ) {
+//				case "Red":
+//					redGameScore.text = "Red:" + tempScoreStr;
+//					break;
+//				case "Yellow":
+//					yellowGameScore.text = "Yellow:" + tempScoreStr;
+//					break;
+//				case "Green":
+//					greenGameScore.text = "Green:" + tempScoreStr;
+//					break;
+//				}
+//			}
 
 			timer -= Time.deltaTime;
 			break;
@@ -181,11 +183,6 @@ public class GameManager : MonoBehaviour {
 		return str;
 	}
 
-	/// <summary>
-	/// Balls the hit.
-	/// </summary>
-	/// <param name="pos">Position.</param>
-	/// <param name="color">Color.</param>
 	public void BallHit(Vector2 pos, string color) {
 		if(!playerManager.Added(color)) {
 			playerManager.AddPlayer(color);
@@ -200,19 +197,22 @@ public class GameManager : MonoBehaviour {
 
 	IEnumerator SpawnEnemy() {
 		while(true) {
-			queueManager.SpawnNewEnemy(enemy);
+//			int column = Random.Range (0, floor.columns);
+//			GameObject t_obj = (GameObject)Instantiate (enemy, /*floor.tiles[column, 0].transform.position*/ enemySpawnPoint.position, Quaternion.identity);
+//			t_obj.GetComponent<Enemy>().curColumn = column;
+			queueManager.SpawnNewEnemy( enemy );
 			yield return new WaitForSeconds( 0.25f );
-		}
-	}
-	
-	IEnumerator StartEnemyMove() {
-		while(true) {
-			queueManager.StartNextInQueue();
-			yield return new WaitForSeconds( 0.2f );
 //			if(randomSpawnTime)
 //				yield return new WaitForSeconds(spawnRate + Random.Range(0f, randomRange));
 //			else
 //				yield return new WaitForSeconds(spawnRate);
+		}
+	}
+
+	IEnumerator StartEnemyMove() {
+		while( true ) {
+			queueManager.StartNextInQueue();
+			yield return new WaitForSeconds( 1f );
 		}
 	}
 

@@ -33,7 +33,8 @@ public class BallManager : MonoBehaviour {
 	}
 
 	class ShootData2 {
-		public ShootData2(Vector3 p_dest, string p_color) {dest = p_dest; color = p_color;}
+		public ShootData2(Vector2 p_start, Vector3 p_dest, string p_color) {start = p_start; dest = p_dest; color = p_color;}
+		public Vector2 start;
 		public Vector3 dest;
 		public string color;
 	}
@@ -51,7 +52,7 @@ public class BallManager : MonoBehaviour {
 //				shotEnemies.Add(hit.collider.gameObject);
 //				StartCoroutine("Shoot1", new ShootData1(hit.collider.transform, color));
 //			} else {
-				StartCoroutine("Shoot2", new ShootData2(hit.point, color));
+				StartCoroutine("Shoot2", new ShootData2(pos, hit.point, color));
 //			}
 		}
 	}
@@ -102,9 +103,9 @@ public class BallManager : MonoBehaviour {
 //	}
 
 	void Shoot2(ShootData2 shootData) {
-		GameObject ball = (GameObject)Instantiate (ballPrefabDict[shootData.color], Camera.main.transform.position, Quaternion.identity);
+		GameObject ball = (GameObject)Instantiate (ballPrefabDict[shootData.color], Camera.main.ScreenToWorldPoint(shootData.start), Quaternion.identity);
 
-		ball.transform.position = ball.transform.position - Vector3.up ;
+		//ball.transform.position = ball.transform.position - Vector3.up ;
 		Vector3 shootDir = shootData.dest - ball.transform.position;
 
 		ball.rigidbody.AddForce(shootDir * shootStrength);// = Vector3.Lerp(startPos, target, timer) + Vector3.up * height; 

@@ -66,17 +66,23 @@ public class Timer : MonoBehaviour {
 	IEnumerator ScaleText() {
 		Vector3 startScale = transform.localScale;
 		Vector3 largeScale =  new Vector3( 0.35f, 0.35f, startScale.z );
+		int lastTime = (int)manager.timer;
 		float lerpTime = 1.0f;
 		float timer = 0.0f;
 
 		while( manager.timer > 0 ) {
 			while( timer <= 1.0f ) {
+				// if the display time changes before we are finished scaling, start enlarge the display again
+				if(lastTime > manager.timer)
+					break;
+
 				transform.localScale = Vector3.Lerp( largeScale, startScale, timer );
 
 				timer += Time.deltaTime / lerpTime;
 				yield return null;
 			}
 
+			lastTime = (int)manager.timer;
 			timer = 0.0f;
 		}
 	}

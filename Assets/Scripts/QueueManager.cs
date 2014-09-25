@@ -21,6 +21,12 @@ public class QueueManager : MonoBehaviour {
 		// If the next spawn point in line is not aleady taken
 		if( m_queueEnd.m_occupant == null && m_queueEnd.m_reserved == false ) {
 			GameObject enemy = (GameObject)Instantiate( enemyObject, m_queueEnd.transform.position, Quaternion.identity );
+
+			// Turn colliders off when they spawn in the line
+			Collider[] colliders = enemy.GetComponentsInChildren<Collider>();
+			foreach( Collider col in colliders )
+				col.enabled = false;
+
 			m_queueEnd.m_occupant = enemy;
 
 			FaceNextWaypoint( enemy.transform, m_queueEnd );
@@ -38,6 +44,13 @@ public class QueueManager : MonoBehaviour {
 		if( m_queueFront.m_occupant != null ) {
 			int column = Random.Range (0, floor.columns);
 			Enemy t_obj = m_queueFront.m_occupant.GetComponent<Enemy>();
+
+			// Turn colliders back on when they start moving
+			Collider[] cols = t_obj.GetComponentsInChildren<Collider>();
+			foreach( Collider col in cols )
+				col.enabled = true;
+
+			t_obj.collider.enabled = false;		// IDK why this is turned off but it is by default and it works -Eric
 			t_obj.curColumn = column;
 			t_obj.StartMove();
 			m_queueFront.m_occupant = null;

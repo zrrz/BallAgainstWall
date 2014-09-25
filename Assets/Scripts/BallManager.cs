@@ -6,7 +6,7 @@ public class BallManager : MonoBehaviour {
 
 //	List<GameObject> shotEnemies;
 	public GameObject[] ballPrefabs;
-	public float shootStrength = 80f;
+	public float shootStrength = 1000f;
 	public GameObject hitParticle;
 
 	float redBallTimer, greenBallTimer, yellowBallTimer;
@@ -156,6 +156,7 @@ public class BallManager : MonoBehaviour {
 
 		//ball.transform.position = ball.transform.position - Vector3.up ;
 		Vector3 shootDir = shootData.dest - ball.transform.position;
+		shootDir.Normalize();
 
 		ball.rigidbody.AddForce(shootDir * shootStrength);// = Vector3.Lerp(startPos, target, timer) + Vector3.up * height; 
 			

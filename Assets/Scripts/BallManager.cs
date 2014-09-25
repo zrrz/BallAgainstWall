@@ -9,6 +9,11 @@ public class BallManager : MonoBehaviour {
 	public float shootStrength = 80f;
 	public GameObject hitParticle;
 
+	float redBallTimer, greenBallTimer, yellowBallTimer;
+	bool redOnCd, greenOnCd, yellowOnCd = false;
+	float ballShootCooldown = 0.5f;
+
+
 //	PlayerManager playerManager;
 
 	Dictionary<string, GameObject> ballPrefabDict;
@@ -40,10 +45,54 @@ public class BallManager : MonoBehaviour {
 	}
 
 	void Update () {
-
+		if( redOnCd ) {
+			if( redBallTimer > ballShootCooldown ) {
+				redOnCd = false;
+				redBallTimer = 0f;
+			}
+			redBallTimer += Time.deltaTime;
+		}
+		if( yellowOnCd ) {
+			if( yellowBallTimer > ballShootCooldown ) {
+				yellowOnCd = false;
+				yellowBallTimer = 0f;
+			}
+			yellowBallTimer += Time.deltaTime;
+		}
+		if( greenOnCd ) {
+			if( greenBallTimer > ballShootCooldown ) {
+				greenOnCd = false;
+				greenBallTimer = 0f;
+			}
+			greenBallTimer += Time.deltaTime;
+		}
 	}
 
 	public void Shoot(Vector2 pos, string color) {
+		switch( color ) 
+		{
+		case "Red":
+			if( redOnCd )
+				return;
+			else
+				redOnCd = true;
+			break;
+
+		case "Yellow":
+			if( yellowOnCd )
+				return;
+			else
+				yellowOnCd = true;
+			break;
+
+		case "Green":
+			if( greenOnCd ) 
+				return;
+			else
+				greenOnCd = true;
+			break;
+		}
+
 		if(!Camera.main)
 			return;
 		RaycastHit hit;

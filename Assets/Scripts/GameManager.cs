@@ -186,8 +186,11 @@ public class GameManager : MonoBehaviour {
 			gameStarted = true;
 			timer = joinTimer;
 		}
+
+		Debug.Log(pos);
 			
 		pos.x *= Screen.width;
+		pos.y = 1 - pos.y;
 		pos.y *= Screen.height;
 		ballManager.Shoot(pos, color);
 	}
@@ -248,8 +251,8 @@ public class GameManager : MonoBehaviour {
 	public void OSCMessageReceived(OSC.NET.OSCMessage message){
 		if(message.Address == "/shoot"){
 			ArrayList args = message.Values;
-			float x = (float)(args[0])*Screen.width;
-			float y = (float)(args[1])*Screen.height;
+			float x = (float)(args[0]);
+			float y = (float)(args[1]);
 			Vector2 pos = new Vector2(x,y);
 			BallHit(pos, "Red");  
 		}

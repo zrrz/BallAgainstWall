@@ -9,8 +9,8 @@ public class BallManager : MonoBehaviour {
 	public float shootStrength = 1000f;
 	public GameObject hitParticle;
 
-	float redBallTimer, greenBallTimer, yellowBallTimer;
-	bool redOnCd, greenOnCd, yellowOnCd = false;
+	float redBallTimer, greenBallTimer, yellowBallTimer, purpleBallTimer;
+	bool redOnCd, greenOnCd, yellowOnCd, purpleOnCd = false;
 	float ballShootCooldown = 0.5f;
 
 
@@ -66,6 +66,13 @@ public class BallManager : MonoBehaviour {
 			}
 			greenBallTimer += Time.deltaTime;
 		}
+		if( purpleOnCd ) {
+			if( purpleBallTimer > ballShootCooldown ) {
+				purpleOnCd = false;
+				purpleBallTimer = 0f;
+			}
+			purpleBallTimer += Time.deltaTime;
+		}
 	}
 
 	public void Shoot(Vector2 pos, string color) {
@@ -91,65 +98,22 @@ public class BallManager : MonoBehaviour {
 			else
 				greenOnCd = true;
 			break;
+		case "Purple":
+			if( purpleOnCd )
+				return;
+			else
+				purpleOnCd = true;
+			break;
 		}
 
 		if(!Camera.main)
 			return;
 		RaycastHit hit;
 		if(Physics.Raycast(Camera.main.ScreenPointToRay(pos), out hit)) {
-//			if(hit.collider.tag == "Enemy" && !shotEnemies.Contains(hit.collider.gameObject)) {
-//				shotEnemies.Add(hit.collider.gameObject);
-//				StartCoroutine("Shoot1", new ShootData1(hit.collider.transform, color));
-//			} else {
-				StartCoroutine("Shoot2", new ShootData2(pos, hit.point, color));
-//			}
+			StartCoroutine("Shoot2", new ShootData2(pos, hit.point, color));
 		}
 	}
-
-//	IEnumerator Shoot1(ShootData1 shootData) {
-//		GameObject ball = (GameObject)Instantiate (ballPrefabDict[shootData.color], Camera.main.transform.position, Quaternion.identity);
-//		ball.collider.enabled = false;	//turn collider off so that it doesn't get interrupted while flying towards target
-//		float shootHeight = 0.2f;
-//		float speed = 0.65f;
-//		//float speed = 0.9f;
-//
-//		Vector3 startPos = ball.transform.position - Vector3.up;
-//		float timer = 0.0f;
-//		
-//		while (timer <= 1.0f) {
-//			float height = Mathf.Sin(Mathf.PI * timer) * shootHeight;
-//			if(ball == null) {
-//				StopCoroutine("Shoot1");
-//				yield return null;
-//			}
-//			ball.transform.position = Vector3.Lerp(startPos, shootData.dest.position + Vector3.up*1.5f, timer) + Vector3.up * height; 
-//			
-//			timer += Time.deltaTime / speed;
-//			yield return null;
-//		}
-//		if(shootData.dest != null && hitParticle != null) {
-//			Destroy(Instantiate(hitParticle, ball.transform.position, Quaternion.identity), 3f); //TODO: Eric, change this
-//
-//			ball.GetComponent<Ball>().PlayAudio();
-//			shootData.dest.SendMessage ("Hit", ball.name);
-//
-////			if(ball.name.Contains("Red")) {
-////				playerManager.AddPoints("Red", 1);
-////			} 
-////			else if(ball.name.Contains("Yellow")) {
-////				playerManager.AddPoints("Yellow", 1);
-////			} 
-////			else if(ball.name.Contains("Green")) {
-////				playerManager.AddPoints("Green", 1);
-////			}
-//		}
-//		ball.collider.enabled = true;	//turn collider on so that it can collide with floor
-//		ball.GetComponent<Ball>().hasCollided = true;
-//
-//		ball.rigidbody.AddForce (Random.onUnitSphere * 800f);
-//		ball.rigidbody.useGravity = true;
-//		Destroy (ball, 10f);
-//	}
+	
 
 	void Shoot2(ShootData2 shootData) {
 		GameObject ball = (GameObject)Instantiate (ballPrefabDict[shootData.color], Camera.main.ScreenToWorldPoint(shootData.start), Quaternion.identity);

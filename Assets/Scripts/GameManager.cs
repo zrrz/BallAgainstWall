@@ -75,7 +75,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level) {
-		if(level == 1) {
+		if(level == 0) {
+			introGUI = GameObject.Find("IntroGUI").GetComponent<IntroGUI>();
+		} else if(level == 1) {
 			queueManager = GameObject.Find( "QueueManager" ).GetComponent<QueueManager>();
 			//enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
 			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
@@ -119,10 +121,11 @@ public class GameManager : MonoBehaviour {
 				StopAllCoroutines();
 				timer = scoreboardTimer;
 				mode = GameMode.Scoreboard;
-				//Application.LoadLevel("Scoreboard");
+
 				redGameScore.enabled = false;
 				yellowGameScore.enabled = false;
 				greenGameScore.enabled = false;
+				purpleGameScore.enabled = false;
 				GameObject.Find("GameCamera").camera.enabled = false;
 				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("Timer").SetActive(false);

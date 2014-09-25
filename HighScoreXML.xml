@@ -5,11 +5,63 @@
       <score>27</score>
       <time>2014-09-24T15:26:27.971055-07:00</time>
     </ScoreXML>
+    <ScoreXML>
+      <score>19</score>
+      <time>2014-09-24T20:08:43.0818414-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>18</score>
+      <time>2014-09-24T20:14:03.3541599-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>15</score>
+      <time>2014-09-24T20:07:13.332708-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>10</score>
+      <time>2014-09-24T20:23:35.0908614-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>6</score>
+      <time>2014-09-24T20:19:26.2736298-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>4</score>
+      <time>2014-09-24T20:15:22.660696-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>4</score>
+      <time>2014-09-24T20:23:35.0798607-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>3</score>
+      <time>2014-09-24T20:15:22.7086987-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>3</score>
+      <time>2014-09-24T20:19:26.2646293-07:00</time>
+    </ScoreXML>
   </DailyScores>
   <weeklyScores>
     <ScoreXML>
       <score>27</score>
       <time>2014-09-24T15:26:27.971055-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>19</score>
+      <time>2014-09-24T20:08:43.0818414-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>18</score>
+      <time>2014-09-24T20:14:03.3541599-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>15</score>
+      <time>2014-09-24T20:07:13.332708-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>10</score>
+      <time>2014-09-24T20:23:35.0908614-07:00</time>
     </ScoreXML>
   </weeklyScores>
   <monthlyScores>
@@ -18,12 +70,16 @@
       <time>2014-09-24T15:26:27.971055-07:00</time>
     </ScoreXML>
     <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T14:59:26.3513259-07:00</time>
+      <score>19</score>
+      <time>2014-09-24T20:08:43.0818414-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>18</score>
+      <time>2014-09-24T20:14:03.3541599-07:00</time>
     </ScoreXML>
     <ScoreXML>
       <score>10</score>
-      <time>2014-09-12T15:01:34.9696824-07:00</time>
+      <time>2014-09-24T20:23:35.0908614-07:00</time>
     </ScoreXML>
   </monthlyScores>
 </HighScore>

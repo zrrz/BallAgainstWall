@@ -26,7 +26,8 @@ public class Ball : MonoBehaviour {
 	void Update() {
 		if (Time.time<impactEndTime)
 		{
-			impactTarget.AddForce(impact,ForceMode.VelocityChange);
+			if(rigidbody)
+				impactTarget.AddForce(impact,ForceMode.VelocityChange);
 		}
 	}
 

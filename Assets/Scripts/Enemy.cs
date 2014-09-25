@@ -86,6 +86,8 @@ public class Enemy : MonoBehaviour {
 			} 
 			else if(p_hitBy.name.Contains("Green")) {
 				PlayerManager.AddPoints("Green", 1);
+			} else if(p_hitBy.name.Contains("Purple")) {
+				PlayerManager.AddPoints("Purple", 1);
 			} else {
 				print ("wtf");
 			}

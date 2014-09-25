@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
 	[System.NonSerialized]
 	public float timer = 0f;
 
-	GUIStyle guiStyle;
+//	GUIStyle guiStyle;
 	public Font guiFont;
 	public float guiLeft = 0.2f;
 	public float guiTop = 0.8f;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour {
 
 	public TextMesh scoreText;
 
-	GUIText redGameScore, yellowGameScore, greenGameScore; //In-game score gui
+	GUIText redGameScore, yellowGameScore, greenGameScore, purpleGameScore; //In-game score gui
 
 	IntroGUI introGUI;
 
@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour {
 		ballManager = GetComponent<BallManager> ();
 		playerManager = GetComponent<PlayerManager> ();
 
-		guiStyle = new GUIStyle();
+//		guiStyle = new GUIStyle();
 	}
 
 	void OnLevelWasLoaded(int level) {
@@ -81,6 +81,7 @@ public class GameManager : MonoBehaviour {
 			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
 			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
 			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
+			purpleGameScore = GameObject.Find("PurpleScore").GetComponent<GUIText>();
 
 			StartCoroutine ("SpawnEnemy");
 			StartCoroutine( "StartEnemyMove" );
@@ -151,6 +152,9 @@ public class GameManager : MonoBehaviour {
 				case "Green":
 					greenGameScore.text = "Green:" + tempScoreStr;
 					break;
+				case "Purple":
+					purpleGameScore.text = "Purple:" + tempScoreStr;
+					break;
 				}
 			}
 
@@ -188,7 +192,7 @@ public class GameManager : MonoBehaviour {
 			timer = joinTimer;
 		}
 
-		Debug.Log(pos);
+//		Debug.Log(pos);
 			
 		pos.x *= Screen.width;
 		pos.y = 1 - pos.y;
@@ -210,7 +214,6 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-<<<<<<< HEAD
 //	void OnGUI() {
 //		guiStyle.font = guiFont;
 //		guiStyle.normal.textColor = Color.yellow;
@@ -234,7 +237,7 @@ public class GameManager : MonoBehaviour {
 //			break;
 //		}
 //	}
-=======
+
 	void ChangeScene( string scene ) {
 		switch( scene )
 		{
@@ -253,45 +256,44 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	void OnGUI() {
-		guiStyle.font = guiFont;
-		guiStyle.normal.textColor = Color.yellow;
+//	void OnGUI() {
+//		guiStyle.font = guiFont;
+//		guiStyle.normal.textColor = Color.yellow;
+//
+//		switch(mode) {
+//		case GameMode.Intro:
+////			if(timer > 0f) {
+////				string joinedPlayers = "";
+////				for(int i = 0; i < playerManager.playerData.Count; i++) {
+////					joinedPlayers += "\n" + playerManager.playerData[i].color + " has joined!";
+////				}
+////				GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + Mathf.CeilToInt(timer) + joinedPlayers, guiStyle);
+////			}
+////			break;
+//		case GameMode.Main:
+//			break;
+//		case GameMode.Scoreboard:
+////			Rect windowRect = new Rect((float)Screen.width*guiLeft, (float)Screen.height-((float)Screen.height*guiTop), 
+////			                           (float)Screen.width*(1f-(guiLeft*2f)), (float)Screen.height*(1f-guiTop));
+////			windowRect = GUILayout.Window(0, windowRect, ScoreboardWindow, "Scoreboard"/*, guiStyle*/);
+//			break;
+//		}
+//	}
 
-		switch(mode) {
-		case GameMode.Intro:
-			if(timer > 0f) {
-				string joinedPlayers = "";
-				for(int i = 0; i < playerManager.playerData.Count; i++) {
-					joinedPlayers += "\n" + playerManager.playerData[i].color + " has joined!";
-				}
-				GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + Mathf.CeilToInt(timer) + joinedPlayers, guiStyle);
-			}
-			break;
-		case GameMode.Main:
-			break;
-		case GameMode.Scoreboard:
-//			Rect windowRect = new Rect((float)Screen.width*guiLeft, (float)Screen.height-((float)Screen.height*guiTop), 
-//			                           (float)Screen.width*(1f-(guiLeft*2f)), (float)Screen.height*(1f-guiTop));
-//			windowRect = GUILayout.Window(0, windowRect, ScoreboardWindow, "Scoreboard"/*, guiStyle*/);
-			break;
-		}
-	}
->>>>>>> c10639a5dfe8716cc27875e3e0ea668bc97f7b35
-
-	void ScoreboardWindow(int windowID) {
-		GUILayout.BeginVertical();
-
-		foreach(PlayerManager.PlayerData player in playerManager.playerData) {
-			GUILayout.BeginHorizontal();
-
-			GUILayout.Label(player.color+" Player", /*guiStyle,*/ GUILayout.Width((float)Screen.width*(guiLeft*2.5f)));
-			GUILayout.Label(player.score.ToString()/*, guiStyle*/);
-
-			GUILayout.EndHorizontal();
-		}
-
-		GUILayout.EndVertical();
-	}
+//	void ScoreboardWindow(int windowID) {
+//		GUILayout.BeginVertical();
+//
+//		foreach(PlayerManager.PlayerData player in playerManager.playerData) {
+//			GUILayout.BeginHorizontal();
+//
+//			GUILayout.Label(player.color+" Player", /*guiStyle,*/ GUILayout.Width((float)Screen.width*(guiLeft*2.5f)));
+//			GUILayout.Label(player.score.ToString()/*, guiStyle*/);
+//
+//			GUILayout.EndHorizontal();
+//		}
+//
+//		GUILayout.EndVertical();
+//	}
 
 	public void OSCMessageReceived(OSC.NET.OSCMessage message){
 		if(message.Address == "/shoot"){

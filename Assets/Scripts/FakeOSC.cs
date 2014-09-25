@@ -20,6 +20,7 @@ public class FakeOSC : MonoBehaviour {
 			Vector3 pos = Input.mousePosition;
 			pos.x /= Screen.width;
 			pos.y /= Screen.height;
+			pos.y = 1 - pos.y;
 			BallHit(pos, colors[curColor]);
 		}
 

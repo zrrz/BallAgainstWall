@@ -97,9 +97,7 @@ public class GameManager : MonoBehaviour {
 				if(timer > 0f) {
 					timer -= Time.deltaTime;
 					if(timer <= 0f) {
-						timer = gameTimer;
-						mode = GameMode.Main;
-						Application.LoadLevel("Main");
+						ChangeScene( "Main" );
 						return;
 					}
 				}
@@ -156,12 +154,7 @@ public class GameManager : MonoBehaviour {
 			break;
 		case GameMode.Scoreboard:
 			if(timer <= 0) {
-				timer = 0f;
-				gameStarted = false;
-				playerManager.playerData.Clear();
-				mode = GameMode.Intro;
-
-				Application.LoadLevel("Intro");
+				ChangeScene( "Intro" );
 				return;
 			}
 			timer -= Time.deltaTime;
@@ -206,6 +199,24 @@ public class GameManager : MonoBehaviour {
 		while( true ) {
 			queueManager.StartNextInQueue();
 			yield return new WaitForSeconds( 1.5f );
+		}
+	}
+
+	void ChangeScene( string scene ) {
+		switch( scene )
+		{
+		case "Intro":
+			timer = 0f;
+			gameStarted = false;
+			playerManager.playerData.Clear();
+			mode = GameMode.Intro;			
+			Application.LoadLevel("Intro");
+			break;
+		case "Main":
+			timer = gameTimer;
+			mode = GameMode.Main;
+			Application.LoadLevel("Main");
+			break;
 		}
 	}
 
@@ -285,6 +296,7 @@ public class GameManager : MonoBehaviour {
 		switch(setting)
 		{
 		case "Quit Game":
+			ChangeScene( "Intro" );
 			break;
 		default:
 			break;

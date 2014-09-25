@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour {
 
 	GUIText redGameScore, yellowGameScore, greenGameScore; //In-game score gui
 
+	IntroGUI introGUI;
+
 	#region Singleton Initialization
 	public static GameManager instance {
 		get { 
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	void Start() {
+		introGUI = GameObject.Find("IntroGUI").GetComponent<IntroGUI>();
 		ballManager = GetComponent<BallManager> ();
 		playerManager = GetComponent<PlayerManager> ();
 
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour {
 		case GameMode.Intro:
 			if(gameStarted) {
 				if(timer > 0f) {
+					introGUI.timerText.text = "Game starts in: " + Mathf.CeilToInt(timer);
 					timer -= Time.deltaTime;
 					if(timer <= 0f) {
 						ChangeScene( "Main" );
@@ -174,6 +178,10 @@ public class GameManager : MonoBehaviour {
 	public void BallHit(Vector2 pos, string color) {
 		if(!playerManager.Added(color)) {
 			playerManager.AddPlayer(color);
+			if(mode == GameMode.Intro) {
+				introGUI.TurnOnColor(color);
+				timer = joinTimer;
+			}
 		}
 		if(!gameStarted) {
 			gameStarted = true;
@@ -202,6 +210,31 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+<<<<<<< HEAD
+//	void OnGUI() {
+//		guiStyle.font = guiFont;
+//		guiStyle.normal.textColor = Color.yellow;
+//
+//		switch(mode) {
+//		case GameMode.Intro:
+//			if(timer > 0f) {
+//				string joinedPlayers = "";
+//				for(int i = 0; i < playerManager.playerData.Count; i++) {
+//					joinedPlayers += "\n" + playerManager.playerData[i].color + " has joined!";
+//				}
+//				GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + Mathf.CeilToInt(timer) + joinedPlayers, guiStyle);
+//			}
+//			break;
+//		case GameMode.Main:
+//			break;
+//		case GameMode.Scoreboard:
+////			Rect windowRect = new Rect((float)Screen.width*guiLeft, (float)Screen.height-((float)Screen.height*guiTop), 
+////			                           (float)Screen.width*(1f-(guiLeft*2f)), (float)Screen.height*(1f-guiTop));
+////			windowRect = GUILayout.Window(0, windowRect, ScoreboardWindow, "Scoreboard"/*, guiStyle*/);
+//			break;
+//		}
+//	}
+=======
 	void ChangeScene( string scene ) {
 		switch( scene )
 		{
@@ -243,6 +276,7 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
+>>>>>>> c10639a5dfe8716cc27875e3e0ea668bc97f7b35
 
 	void ScoreboardWindow(int windowID) {
 		GUILayout.BeginVertical();

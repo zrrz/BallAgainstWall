@@ -12,7 +12,7 @@ public class FakeOSC : MonoBehaviour {
 	void Start () {
 		gameManager = GetComponent<GameManager>();
 	
-		colors = new string[3] {"Red", "Green", "Yellow"};
+		colors = new string[] {"Green", "Purple", "Red", "Yellow"};
 	}
 
 	void Update () {

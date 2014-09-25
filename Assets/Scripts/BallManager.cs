@@ -30,12 +30,12 @@ public class BallManager : MonoBehaviour {
 		}
 	}
 	
-	// Fuck it.
-	class ShootData1 {
-		public ShootData1(Transform p_dest, string p_color) {dest = p_dest; color = p_color;}
-		public Transform dest;
-		public string color;
-	}
+//	// Fuck it.
+//	class ShootData1 {
+//		public ShootData1(Transform p_dest, string p_color) {dest = p_dest; color = p_color;}
+//		public Transform dest;
+//		public string color;
+//	}
 
 	class ShootData2 {
 		public ShootData2(Vector2 p_start, Vector3 p_dest, string p_color) {start = p_start; dest = p_dest; color = p_color;}

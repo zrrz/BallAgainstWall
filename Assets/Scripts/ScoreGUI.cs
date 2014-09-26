@@ -10,7 +10,7 @@ public class ScoreGUI : MonoBehaviour {
 
 	public float growTime = 2f;
 
-	public float maxHeight = 5f;
+	public float maxHeight = 4f;
 
 	public GameObject textPrefab;
 
@@ -35,39 +35,35 @@ public class ScoreGUI : MonoBehaviour {
 
 	public void Activate() {
 		List<PlayerManager.PlayerData> playerData = GameObject.Find("GameManager").GetComponent<PlayerManager>().playerData;
-//		SortByScore(playerData);
+		SortByScore(playerData);
 
-		PlayerManager.PlayerData highest = playerData[0];
-
-		if(playerData.Count > 1) {
-			for(int i = 1; i < playerData.Count; i++) {
-				if(playerData[i].score > highest.score)
-					highest = playerData[i];
-			}
-		}
-
-		foreach(PlayerManager.PlayerData player in playerData) {
-			if(player.color == "Red") {
+		for(int i = 0; i < playerData.Count; i++) {
+			if(playerData[i].color == "Red") {
 				redBox.SetActive(true);
-				StartCoroutine(GrowScoreBox(new GrowData(redBox, player.score, highest.score, 1)));
-			} else if(player.color == "Purple") {
-				redBox.SetActive(true);
-				StartCoroutine(GrowScoreBox(new GrowData(purpleBox, player.score, highest.score, 1)));
-			} else if(player.color == "Green") {
-				redBox.SetActive(true);
-				StartCoroutine(GrowScoreBox(new GrowData(greenBox, player.score, highest.score, 1)));
-			} else if(player.color == "Yellow") {
-				redBox.SetActive(true);
-				StartCoroutine(GrowScoreBox(new GrowData(yellowBox, player.score, highest.score, 1)));
+				StartCoroutine(GrowScoreBox(new GrowData(redBox, playerData[i].score, playerData[0].score, i + 1)));
+			} else if(playerData[i].color == "Purple") {
+				purpleBox.SetActive(true);
+				StartCoroutine(GrowScoreBox(new GrowData(purpleBox, playerData[i].score, playerData[0].score, i + 1)));
+			} else if(playerData[i].color == "Green") {
+				greenBox.SetActive(true);
+				StartCoroutine(GrowScoreBox(new GrowData(greenBox, playerData[i].score, playerData[0].score, i + 1)));
+			} else if(playerData[i].color == "Yellow") {
+				yellowBox.SetActive(true);
+				StartCoroutine(GrowScoreBox(new GrowData(yellowBox, playerData[i].score, playerData[0].score, i + 1)));
 			}
 		}
 	}
 
 	IEnumerator GrowScoreBox(GrowData data) {
-		Vector3 endSize = new Vector3(data.box.transform.localScale.x, (data.score/data.highScore) * maxHeight, data.box.transform.localScale.z);
-		print (endSize);
+		float startY = data.box.transform.localScale.y;
+		if(data.highScore == 0)
+			data.highScore++;
+		Vector3 endSize = new Vector3(data.box.transform.localScale.x, ((data.score/data.highScore) * maxHeight) + startY, data.box.transform.localScale.z);
 		float timer = 0f;
 		bool growing = true;
+
+		GameObject text = (GameObject)Instantiate(textPrefab, data.box.transform.position + (Vector3.up*0.3f), Quaternion.identity);
+		text.GetComponent<TextMesh>().text = data.score.ToString();
 
 		while(growing) {
 			data.box.transform.localScale = Vector3.Lerp(data.box.transform.localScale, endSize, timer);
@@ -76,17 +72,18 @@ public class ScoreGUI : MonoBehaviour {
 			timer += Time.deltaTime/growTime;
 			yield return null;
 		}
-		if(data.place == 1)
-			Instantiate(dodgeBall, data.box.transform.position, Quaternion.identity);
-		GameObject text = (GameObject)Instantiate(textPrefab, data.box.transform.position, Quaternion.identity);
-		text.GetComponent<TextMesh>().text = data.score.ToString();
+//		if(data.place == 1)
+//			Instantiate(dodgeBall, data.box.transform.position, Quaternion.identity);
+
 	}
 
-//	void SortByScore(List<PlayerManager.PlayerData> players) {
-//		players.Sort(delegate(PlayerManager.PlayerData x, PlayerManager.PlayerData y) {
-//			if(x.score > y.score)
-//				return x;
-//			return y;
-//		});
-//	}
+	void SortByScore(List<PlayerManager.PlayerData> players) {
+		players.Sort(delegate(PlayerManager.PlayerData x, PlayerManager.PlayerData y) {
+			if(x.score > y.score)
+				return -1;
+			else if(x.score < y.score)
+				return 1;
+			return 0;
+		});
+	}
 }

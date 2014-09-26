@@ -133,25 +133,38 @@ public class Enemy : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
+	void LateUpdate() {
+		Vector3 t_pos = transform.GetChild(0).localPosition;
+		t_pos.x = 0f;
+		transform.GetChild(0).localPosition = t_pos;
+	}
+
 	IEnumerator Hop(HopData data) {
-		animator.SetBool ("Land", false);
+//		animator.SetBool ("Land", false);
 		animator.SetBool("Jump", true);
+		animator.SetInteger("RandomJump", Random.Range(1, 10));
 		//floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
 		ClosestTile(transform.position).GetComponent<Animator>().SetTrigger("Bounce");
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
+
+		yield return null;
 		
 		while (timer <= 1.0f) {
+			if(animator.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base.Start") || animator.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base.Jump Hub"))
+				animator.Play(animator.GetCurrentAnimatorStateInfo(0).nameHash, 0, timer);
+
 			float height = Mathf.Sin(Mathf.PI * timer) * hopHeight;
 			transform.position = Vector3.Lerp(startPos, data.dest, timer) + Vector3.up * height; 
 			
 			timer += Time.deltaTime / data.time;
 			yield return null;
-			animator.SetBool ("Jump", false);
-			if(timer > .90f)
-				animator.SetBool ("Land", true);
+//			animator.SetBool ("Jump", false);
+//			if(timer > .90f)
+//				animator.SetBool ("Land", true);
 		}
-		animator.SetBool ("Land", true);
+//		animator.SetBool ("Land", true);
+		animator.SetBool ("Jump", false);
 	}
 
 	Transform ClosestTile(Vector3 pos) {
@@ -175,6 +188,7 @@ public class Enemy : MonoBehaviour {
 	}
 
 	IEnumerator MoveToPos( Waypoint dest ) {
+		animator.SetBool("Walk", true);
 		Vector3 startPos = transform.position;
 		float moveTime = 0.5f;
 		float timer = 0.0f;
@@ -187,5 +201,6 @@ public class Enemy : MonoBehaviour {
 
 		dest.m_occupant = gameObject;
 		dest.m_reserved = false;
+		animator.SetBool("Walk", false);
 	}
 }

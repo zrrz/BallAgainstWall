@@ -51,6 +51,19 @@ public class Ball : MonoBehaviour {
 
 				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method
+
+				if( name.Contains( "Red" ) ) {
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.red );
+				}
+				else if( name.Contains( "Green" ) ) {
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.green );
+				}
+				else if( name.Contains( "Yellow" ) ) {
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.yellow );
+				}
+				else if( name.Contains( "Purple" ) ) {
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.magenta );
+				}
 			}
 
 			rigidbody.velocity = Vector3.zero;

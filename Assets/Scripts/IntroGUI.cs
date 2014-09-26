@@ -38,8 +38,10 @@ public class IntroGUI : MonoBehaviour {
 //			break;
 		
 		}
-		unlitBlocks[colorNum].SetActive(false);
-		litBlocks[colorNum].SetActive(true);
+		if(unlitBlocks[colorNum])
+			unlitBlocks[colorNum].SetActive(false);
+		if(litBlocks[colorNum])
+			litBlocks[colorNum].SetActive(true);
 	}
 
 	void Start () {

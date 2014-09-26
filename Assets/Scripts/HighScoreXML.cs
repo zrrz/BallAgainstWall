@@ -52,8 +52,8 @@ public class HighScoreXML : XMLBase {
 	public bool AddScore(Score score) {
 		bool added = false;
 
-		added = ScoreParseAndTrim(score, dailyScores, 10);
-		added = ScoreParseAndTrim(score, weeklyScores, 5);
+		added = ScoreParseAndTrim(score, dailyScores, 3);
+		added = ScoreParseAndTrim(score, weeklyScores, 3);
 		added = ScoreParseAndTrim(score, monthlyScores, 3);
 		Save();
 		return added;	

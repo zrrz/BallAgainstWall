@@ -2,28 +2,20 @@
 <HighScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <DailyScores>
     <ScoreXML>
-      <score>27</score>
-      <time>2014-09-24T15:26:27.971055-07:00</time>
+      <score>17</score>
+      <time>2014-09-25T16:41:24.1606446-07:00</time>
     </ScoreXML>
   </DailyScores>
   <weeklyScores>
     <ScoreXML>
-      <score>27</score>
-      <time>2014-09-24T15:26:27.971055-07:00</time>
+      <score>17</score>
+      <time>2014-09-25T16:41:24.1606446-07:00</time>
     </ScoreXML>
   </weeklyScores>
   <monthlyScores>
     <ScoreXML>
-      <score>27</score>
-      <time>2014-09-24T15:26:27.971055-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T14:59:26.3513259-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>10</score>
-      <time>2014-09-12T15:01:34.9696824-07:00</time>
+      <score>17</score>
+      <time>2014-09-25T16:41:24.1606446-07:00</time>
     </ScoreXML>
   </monthlyScores>
 </HighScore>

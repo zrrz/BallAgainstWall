@@ -75,7 +75,9 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level) {
-		if(level == 1) {
+		if(level == 0) {
+			introGUI = GameObject.Find("IntroGUI").GetComponent<IntroGUI>();
+		} else if(level == 1) {
 			queueManager = GameObject.Find( "QueueManager" ).GetComponent<QueueManager>();
 			//enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
 			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
@@ -119,10 +121,11 @@ public class GameManager : MonoBehaviour {
 				StopAllCoroutines();
 				timer = scoreboardTimer;
 				mode = GameMode.Scoreboard;
-				//Application.LoadLevel("Scoreboard");
+
 				redGameScore.enabled = false;
 				yellowGameScore.enabled = false;
 				greenGameScore.enabled = false;
+				purpleGameScore.enabled = false;
 				GameObject.Find("GameCamera").camera.enabled = false;
 				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("Timer").SetActive(false);
@@ -255,45 +258,6 @@ public class GameManager : MonoBehaviour {
 			break;
 		}
 	}
-
-//	void OnGUI() {
-//		guiStyle.font = guiFont;
-//		guiStyle.normal.textColor = Color.yellow;
-//
-//		switch(mode) {
-//		case GameMode.Intro:
-////			if(timer > 0f) {
-////				string joinedPlayers = "";
-////				for(int i = 0; i < playerManager.playerData.Count; i++) {
-////					joinedPlayers += "\n" + playerManager.playerData[i].color + " has joined!";
-////				}
-////				GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + Mathf.CeilToInt(timer) + joinedPlayers, guiStyle);
-////			}
-////			break;
-//		case GameMode.Main:
-//			break;
-//		case GameMode.Scoreboard:
-////			Rect windowRect = new Rect((float)Screen.width*guiLeft, (float)Screen.height-((float)Screen.height*guiTop), 
-////			                           (float)Screen.width*(1f-(guiLeft*2f)), (float)Screen.height*(1f-guiTop));
-////			windowRect = GUILayout.Window(0, windowRect, ScoreboardWindow, "Scoreboard"/*, guiStyle*/);
-//			break;
-//		}
-//	}
-
-//	void ScoreboardWindow(int windowID) {
-//		GUILayout.BeginVertical();
-//
-//		foreach(PlayerManager.PlayerData player in playerManager.playerData) {
-//			GUILayout.BeginHorizontal();
-//
-//			GUILayout.Label(player.color+" Player", /*guiStyle,*/ GUILayout.Width((float)Screen.width*(guiLeft*2.5f)));
-//			GUILayout.Label(player.score.ToString()/*, guiStyle*/);
-//
-//			GUILayout.EndHorizontal();
-//		}
-//
-//		GUILayout.EndVertical();
-//	}
 
 	public void OSCMessageReceived(OSC.NET.OSCMessage message){
 		if(message.Address == "/shoot"){

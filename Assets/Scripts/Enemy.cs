@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
 
-	[System.NonSerialized]
+//	[System.NonSerialized]
 	public int curColumn;
-	[System.NonSerialized]
+//	[System.NonSerialized]
 	public int omittedColumns = 1;
 
 	int curRow;

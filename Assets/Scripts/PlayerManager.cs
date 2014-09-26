@@ -6,10 +6,10 @@ public class PlayerManager : MonoBehaviour {
 
 	public class PlayerData {
 		public PlayerData(string p_color) {
-			active = true;
+//			active = true;
 			color = p_color;
 		}
-		public bool active = false;
+//		public bool active = false;
 		public int score = 0;
 		public string color = "";
 	}

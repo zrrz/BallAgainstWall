@@ -24,10 +24,10 @@ public class Ball : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Time.time<impactEndTime)
+		if (Time.time < impactEndTime)
 		{
-			if(rigidbody)
-				impactTarget.AddForce(impact,ForceMode.VelocityChange);
+			if(impactTarget.rigidbody != null)
+				impactTarget.AddForce(impact, ForceMode.VelocityChange);
 		}
 	}
 

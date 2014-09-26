@@ -23,7 +23,8 @@ public class FloatingTextManager : MonoBehaviour {
 
 	public void CreateFloatingText( Vector3 pos, int points, Color color ) {
 		TextMesh t_obj = (TextMesh)GameObject.Instantiate( m_textMesh, pos, Quaternion.identity );
-		t_obj.transform.LookAt( Camera.main.transform );
+		if(Camera.main)
+			t_obj.transform.LookAt( Camera.main.transform );
 		t_obj.transform.Rotate( new Vector3( 0f, 180f, 0f ) );
 		t_obj.text = "+" + points.ToString();
 

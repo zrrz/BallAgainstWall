@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 	PlayerManager playerManager;
 	QueueManager queueManager;
 
-	public TextMesh scoreText;
+//	public TextMesh scoreText;
 
 	GUIText redGameScore, yellowGameScore, greenGameScore, purpleGameScore; //In-game score gui
 
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour {
 			GameObject.Find("ScoreCamera").camera.enabled = false;
 			GameObject.Find("Timer").SetActive(true);
 
-			scoreText = GameObject.Find("ScoreText").GetComponent<TextMesh>();
+//			scoreText = GameObject.Find("ScoreText").GetComponent<TextMesh>();
 		}
 	}
 
@@ -128,11 +128,13 @@ public class GameManager : MonoBehaviour {
 				purpleGameScore.enabled = false;
 				GameObject.Find("GameCamera").camera.enabled = false;
 				GameObject.Find("ScoreCamera").camera.enabled = true;
+				GameObject.Find("ScoreGUI").GetComponent<ScoreGUI>().Activate();
 				GameObject.Find("Timer").SetActive(false);
 
-				scoreText.text = "";
+
+//				scoreText.text = "";
 				for(int i = 0; i < playerManager.playerData.Count; i++) {
-					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n";
+//					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n";
 					HighScoreManager.AddScore(playerManager.playerData[i].score);
 				}
 

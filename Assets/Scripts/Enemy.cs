@@ -149,9 +149,46 @@ public class Enemy : MonoBehaviour {
 		float timer = 0.0f;
 
 		yield return null;
+
+//		if(animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Start") 
+//		   || animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Jump Hub")
+//		   || animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Walk")) {
+			switch(animator.GetInteger("RandomJump")) {
+			case 1:
+				animator.Play(Animator.StringToHash("jump " + 1), 0, 0f);
+				break;
+			case 2:
+				animator.Play(Animator.StringToHash("jump " + 2), 0, 0f);
+				break;
+			case 3:
+				animator.Play(Animator.StringToHash("jump " + 3), 0, 0f);
+				break;
+			case 4:
+				animator.Play(Animator.StringToHash("jump " + 4), 0, 0f);
+				break;
+			case 5:
+				animator.Play(Animator.StringToHash("jump " + 5), 0, 0f);
+				break;
+			case 6:
+				animator.Play(Animator.StringToHash("jump " + 6), 0, 0f);
+				break;
+			case 7:
+				animator.Play(Animator.StringToHash("jump " + 7), 0, 0f);
+				break;
+			case 8:
+				animator.Play(Animator.StringToHash("jump " + 8), 0, 0f);
+				break;
+			case 9:
+				animator.Play(Animator.StringToHash("jump " + 9), 0, 0f);
+				break;
+			default:
+				print ("wtf");
+				break;
+			}
+//		}
 		
 		while (timer <= 1.0f) {
-			if(animator.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base.Start") || animator.GetCurrentAnimatorStateInfo(0).nameHash != Animator.StringToHash("Base.Jump Hub"))
+			if(timer > 0.01f)
 				animator.Play(animator.GetCurrentAnimatorStateInfo(0).nameHash, 0, timer);
 
 			float height = Mathf.Sin(Mathf.PI * timer) * hopHeight;
@@ -164,7 +201,7 @@ public class Enemy : MonoBehaviour {
 //				animator.SetBool ("Land", true);
 		}
 //		animator.SetBool ("Land", true);
-		animator.SetBool ("Jump", false);
+//		animator.SetBool ("Jump", false);
 	}
 
 	Transform ClosestTile(Vector3 pos) {
@@ -189,6 +226,7 @@ public class Enemy : MonoBehaviour {
 
 	IEnumerator MoveToPos( Waypoint dest ) {
 		animator.SetBool("Walk", true);
+		animator.Play("Walk", 0, 0f);
 		Vector3 startPos = transform.position;
 		float moveTime = 0.5f;
 		float timer = 0.0f;
@@ -202,5 +240,6 @@ public class Enemy : MonoBehaviour {
 		dest.m_occupant = gameObject;
 		dest.m_reserved = false;
 		animator.SetBool("Walk", false);
+		animator.CrossFade("Start", 0.2f, 0);
 	}
 }

@@ -91,6 +91,7 @@ public class GameManager : MonoBehaviour {
 			GameObject.Find("ScoreCamera").camera.enabled = false;
 			GameObject.Find("Timer").SetActive(true);
 
+
 //			scoreText = GameObject.Find("ScoreText").GetComponent<TextMesh>();
 		}
 	}
@@ -190,6 +191,9 @@ public class GameManager : MonoBehaviour {
 			if(mode == GameMode.Intro) {
 				introGUI.TurnOnColor(color);
 				timer = joinTimer;
+				introGUI.timerText.animation.Stop();// = false;
+				introGUI.timerText.transform.rotation = Quaternion.identity;
+//				introGUI.timerText.transform.localScale *= 1.1f;
 			}
 		}
 		if(!gameStarted) {

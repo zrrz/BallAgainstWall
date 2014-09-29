@@ -13,35 +13,11 @@ public class IntroGUI : MonoBehaviour {
 
 	public TextMesh timerText;
 
-	public enum PlayerColor {
-		Green, Purple, Red, Yellow
-	}
-
-	public void TurnOnColor(string color) {
-		int colorNum = -1;
-		switch(color) {
-		case "Green":
-			colorNum = (int)PlayerColor.Green;
-			break;
-		case "Purple":
-			colorNum = (int)PlayerColor.Purple;
-			break;
-		case "Red":
-			colorNum = (int)PlayerColor.Red;
-			break;
-		case "Yellow":
-			colorNum = (int)PlayerColor.Yellow;
-			break;
-		default:
-			print("Bad color");
-			return;
-//			break;
-		
-		}
-		if(unlitBlocks[colorNum])
-			unlitBlocks[colorNum].SetActive(false);
-		if(litBlocks[colorNum])
-			litBlocks[colorNum].SetActive(true);
+	public void TurnOnColor(PlayerColor color) {
+		if(unlitBlocks[(int)color])
+			unlitBlocks[(int)color].SetActive(false);
+		if(litBlocks[(int)color])
+			litBlocks[(int)color].SetActive(true);
 	}
 
 	void Start () {
@@ -71,14 +47,9 @@ public class IntroGUI : MonoBehaviour {
 			textMesh.text += scores[i].time.Minute;
 			if(scores[i].time.Minute % 10 == 0) {
 				textMesh.text += "0";
-				print ("here");
 			}
 
 			textMesh.text += "\n";
 		}
-	}
-
-	void Update () {
-
 	}
 }

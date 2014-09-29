@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 public class Enemy : MonoBehaviour {
 
-//	[System.NonSerialized]
+	[System.NonSerialized]
 	public int curColumn;
-//	[System.NonSerialized]
+	[System.NonSerialized]
 	public int omittedColumns = 1;
 
 	int curRow;
@@ -23,7 +23,9 @@ public class Enemy : MonoBehaviour {
 
 	public float moveForwardChancePct = 50f;
 
-	bool hit = false;
+	bool hit;
+
+	float lifeEndTime;
 
 	[System.NonSerialized]
 	public GameObject hitBy;
@@ -35,21 +37,13 @@ public class Enemy : MonoBehaviour {
 	}
 
 	void Awake () {
-		SetKinematic(true);
-
-		int rand = Random.Range(0, textures.Count - 1);
-		foreach(Renderer rend in renderers) {
-			rend.material.mainTexture = textures[rand];
-		}
-
 		moveForwardChancePct = Mathf.Clamp(moveForwardChancePct, 0f, 100f);
 
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
-		curRow = 0;
 
 		animator = transform.GetChild(0).GetComponent<Animator> ();
 
-		//StartCoroutine ("Move");
+		Reset();
 	}
 	
 	void SetKinematic(bool newValue) {
@@ -60,8 +54,34 @@ public class Enemy : MonoBehaviour {
 		}
 	}
 
-	void Update () {
+	public void Reset() {
+		SetKinematic(true);
 
+		int rand = Random.Range(0, textures.Count - 1);
+		foreach(Renderer rend in renderers) {
+			rend.material.mainTexture = textures[rand];
+		}
+
+		curRow = 0;
+
+		hit = false;
+
+		lifeEndTime = -1f;
+
+		animator.enabled = true;
+	}
+
+	void Update() {
+		if(lifeEndTime > 0f) {
+			if(Time.time > lifeEndTime) {
+				gameObject.SetActive(false);
+			}
+		}
+
+		Vector3 t_pos = transform.GetChild(0).localPosition;
+		t_pos.x = t_pos.z = 0f;
+		transform.GetChild(0).localPosition = t_pos;
+		transform.rotation = Quaternion.identity;
 	}
 
 //	void OnCollisionEnter(Collision col) {
@@ -79,15 +99,15 @@ public class Enemy : MonoBehaviour {
 			hitBy = p_hitBy;
 
 			if(p_hitBy.name.Contains("Red")) {
-				PlayerManager.AddPoints("Red", 1);
+				PlayerManager.AddPoints(PlayerColor.Red, 1);
 			} 
 			else if(p_hitBy.name.Contains("Yellow")) {
-				PlayerManager.AddPoints("Yellow", 1);
+				PlayerManager.AddPoints(PlayerColor.Yellow, 1);
 			} 
 			else if(p_hitBy.name.Contains("Green")) {
-				PlayerManager.AddPoints("Green", 1);
+				PlayerManager.AddPoints(PlayerColor.Green, 1);
 			} else if(p_hitBy.name.Contains("Purple")) {
-				PlayerManager.AddPoints("Purple", 1);
+				PlayerManager.AddPoints(PlayerColor.Purple, 1);
 			} else {
 				print ("wtf");
 			}
@@ -100,7 +120,9 @@ public class Enemy : MonoBehaviour {
 			SetKinematic(false);
 			animator.enabled = false;
 
-			Destroy(gameObject, 1f);
+			StopAllCoroutines();
+			lifeEndTime = Time.time + 1f;
+//			Destroy(gameObject, 1f);
 		}
 	}
 
@@ -109,7 +131,7 @@ public class Enemy : MonoBehaviour {
 		while(curRow <= floor.rows - 1) {
 			float t_time = Time.time;
 
-			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 2f));
+			yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, Random.Range(1.5f, 1.7f)));
 			//yield return StartCoroutine ("Hop", new HopData (floor.tiles[curColumn, curRow].transform.position, 1.78f));
 
 			timer += Time.time - t_time;
@@ -130,7 +152,10 @@ public class Enemy : MonoBehaviour {
 		}
 		print ("Ouch!");
 		PlayerManager.ReducePoints(1);
-		Destroy (gameObject);
+
+		gameObject.SetActive(false);
+		StopAllCoroutines();
+//		Destroy (gameObject);
 	}
 
 	void LateUpdate() {
@@ -186,12 +211,14 @@ public class Enemy : MonoBehaviour {
 				break;
 			}
 //		}
-		
+
+		float temp_hopHeight = hopHeight * Random.Range(0.8f, 1.2f);
+
 		while (timer <= 1.0f) {
 			if(timer > 0.01f)
 				animator.Play(animator.GetCurrentAnimatorStateInfo(0).nameHash, 0, timer);
 
-			float height = Mathf.Sin(Mathf.PI * timer) * hopHeight;
+			float height = Mathf.Sin(Mathf.PI * timer) * temp_hopHeight;
 			transform.position = Vector3.Lerp(startPos, data.dest, timer) + Vector3.up * height; 
 			
 			timer += Time.deltaTime / data.time;

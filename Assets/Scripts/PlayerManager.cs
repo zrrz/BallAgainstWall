@@ -2,16 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public enum PlayerColor {
+	Green, Purple, Red, Yellow
+}
+
 public class PlayerManager : MonoBehaviour {
 
 	public class PlayerData {
-		public PlayerData(string p_color) {
-//			active = true;
+		public PlayerData(PlayerColor p_color) {
 			color = p_color;
 		}
-//		public bool active = false;
 		public int score = 0;
-		public string color = "";
+		public PlayerColor color = PlayerColor.Red;
 	}
 
 	public List<PlayerData> playerData;
@@ -27,11 +29,11 @@ public class PlayerManager : MonoBehaviour {
 
 	}
 
-	public void AddPlayer(string color) {
+	public void AddPlayer(PlayerColor color) {
 		playerData.Add (new PlayerData (color));
 	}
 
-	public bool Added(string color) {
+	public bool Added(PlayerColor color) {
 		for(int i = 0; i < playerData.Count; i++) {
 			if(playerData[i].color == color)
 				return true;
@@ -46,7 +48,7 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-	public static void AddPoints(string p_color, int pts) {
+	public static void AddPoints(PlayerColor p_color, int pts) {
 		foreach(PlayerData player in s_instance.playerData){
 			if(player.color == p_color) {
 				player.score += pts;

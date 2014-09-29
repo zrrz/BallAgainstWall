@@ -38,16 +38,16 @@ public class ScoreGUI : MonoBehaviour {
 		SortByScore(playerData);
 
 		for(int i = 0; i < playerData.Count; i++) {
-			if(playerData[i].color == "Red") {
+			if(playerData[i].color == PlayerColor.Red) {
 				redBox.SetActive(true);
 				StartCoroutine(GrowScoreBox(new GrowData(redBox, playerData[i].score, playerData[0].score, i + 1)));
-			} else if(playerData[i].color == "Purple") {
+			} else if(playerData[i].color == PlayerColor.Purple) {
 				purpleBox.SetActive(true);
 				StartCoroutine(GrowScoreBox(new GrowData(purpleBox, playerData[i].score, playerData[0].score, i + 1)));
-			} else if(playerData[i].color == "Green") {
+			} else if(playerData[i].color == PlayerColor.Green) {
 				greenBox.SetActive(true);
 				StartCoroutine(GrowScoreBox(new GrowData(greenBox, playerData[i].score, playerData[0].score, i + 1)));
-			} else if(playerData[i].color == "Yellow") {
+			} else if(playerData[i].color == PlayerColor.Yellow) {
 				yellowBox.SetActive(true);
 				StartCoroutine(GrowScoreBox(new GrowData(yellowBox, playerData[i].score, playerData[0].score, i + 1)));
 			}

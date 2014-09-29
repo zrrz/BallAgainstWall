@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BallManager : MonoBehaviour {
-
-//	List<GameObject> shotEnemies;
+	
 	public GameObject[] ballPrefabs;
 	public float shootStrength = 1000f;
 	public GameObject hitParticle;
@@ -13,35 +12,26 @@ public class BallManager : MonoBehaviour {
 	bool redOnCd, greenOnCd, yellowOnCd, purpleOnCd = false;
 	float ballShootCooldown = 0.5f;
 
-
-//	PlayerManager playerManager;
-
 	Dictionary<string, GameObject> ballPrefabDict;
 
 	void Start () {
-//		shotEnemies = new List<GameObject> ();
-//		playerManager = GameObject.FindObjectOfType<PlayerManager>();
-
 		char[] delimChar = new char[1] {'_'};
 
 		ballPrefabDict = new Dictionary<string, GameObject> ();
 		for(int i = 0; i < ballPrefabs.Length; i++) {
 			ballPrefabDict.Add(ballPrefabs[i].name.Split(delimChar)[0], ballPrefabs[i]);
+			StaticPool.InitObj(ballPrefabs[i]);
 		}
 	}
-	
-//	// Fuck it.
-//	class ShootData1 {
-//		public ShootData1(Transform p_dest, string p_color) {dest = p_dest; color = p_color;}
-//		public Transform dest;
-//		public string color;
-//	}
 
-	class ShootData2 {
-		public ShootData2(Vector2 p_start, Vector3 p_dest, string p_color) {start = p_start; dest = p_dest; color = p_color;}
+	class ShootData {
+		public ShootData(Vector2 p_start, Vector3 p_dest, PlayerColor p_color) {
+			start = p_start; dest = p_dest; color = p_color;
+		}
+		public ShootData() { }
 		public Vector2 start;
 		public Vector3 dest;
-		public string color;
+		public PlayerColor color;
 	}
 
 	void Update () {
@@ -75,30 +65,30 @@ public class BallManager : MonoBehaviour {
 		}
 	}
 
-	public void Shoot(Vector2 pos, string color) {
+	public void Shoot(Vector2 pos, PlayerColor color) {
 		switch( color ) 
 		{
-		case "Red":
+		case PlayerColor.Red:
 			if( redOnCd )
 				return;
 			else
 				redOnCd = true;
 			break;
 
-		case "Yellow":
+		case PlayerColor.Yellow:
 			if( yellowOnCd )
 				return;
 			else
 				yellowOnCd = true;
 			break;
 
-		case "Green":
+		case PlayerColor.Green:
 			if( greenOnCd ) 
 				return;
 			else
 				greenOnCd = true;
 			break;
-		case "Purple":
+		case PlayerColor.Purple:
 			if( purpleOnCd )
 				return;
 			else
@@ -108,23 +98,28 @@ public class BallManager : MonoBehaviour {
 
 		if(!Camera.main)
 			return;
+
 		RaycastHit hit;
 		if(Physics.Raycast(Camera.main.ScreenPointToRay(pos), out hit)) {
-			StartCoroutine("Shoot2", new ShootData2(pos, hit.point, color));
+//			StartCoroutine("Shoot", new ShootData(pos, hit.point, color));
+			Shoot(new ShootData(pos, hit.point, color));
 		}
 	}
 	
 
-	void Shoot2(ShootData2 shootData) {
-		GameObject ball = (GameObject)Instantiate (ballPrefabDict[shootData.color], Camera.main.ScreenToWorldPoint(shootData.start), Quaternion.identity);
+	void Shoot(ShootData shootData) {
+		GameObject ball = StaticPool.GetObj(ballPrefabDict[shootData.color.ToString()]);
+		ball.GetComponent<Ball>().Reset();
 
-		//ball.transform.position = ball.transform.position - Vector3.up ;
+		ball.transform.position = Camera.main.ScreenToWorldPoint(shootData.start);
+		ball.rigidbody.velocity = Vector3.zero;
+
 		Vector3 shootDir = shootData.dest - ball.transform.position;
 		shootDir.Normalize();
 
-		ball.rigidbody.AddForce(shootDir * shootStrength);// = Vector3.Lerp(startPos, target, timer) + Vector3.up * height; 
+		ball.rigidbody.AddForce(shootDir * shootStrength);
 			
 		ball.rigidbody.useGravity = true;
-		Destroy (ball, 10f);
+//		Destroy (ball, 10f);
 	}
 }

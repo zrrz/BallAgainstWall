@@ -208,7 +208,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     optimizeGameObjects: 1
-    motionNodeName: Alexis_Geo_High
+    motionNodeName: 
     animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
@@ -447,23 +447,7 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves:
-      - name: Time
-        curve:
-          serializedVersion: 2
-          curve:
-          - time: 0
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-          - time: 1
-            value: 0
-            inSlope: 0
-            outSlope: 0
-            tangentMode: 0
-          preInfinity: 2
-          postInfinity: 2
+      curves: []
       events: []
       transformMask:
       - path: 
@@ -1916,7 +1900,7 @@ ModelImporter:
       name: jump 8
       takeName: mixamo.com
       firstFrame: 508
-      lastFrame: 532
+      lastFrame: 533
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

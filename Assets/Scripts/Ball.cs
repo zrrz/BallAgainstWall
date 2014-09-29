@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Ball : MonoBehaviour {
 
-//	PlayerManager playerManager;
 	public bool hasCollided = false;
 	public GameObject hitParticle;
 
@@ -12,15 +11,13 @@ public class Ball : MonoBehaviour {
 	Vector3 impact;
 
 	AudioSource audioSource;
-
-//	class BallHitData {
-//		GameObject gameObject;
-//
-//	}
+	
+	float lifeEndTime = 0;
 
 	void Start() {
-//		playerManager = GameObject.FindObjectOfType<PlayerManager>();
 		audioSource = GetComponent<AudioSource>();
+		rigidbody.AddTorque(Random.onUnitSphere * 10);
+		Reset();
 	}
 
 	void Update() {
@@ -29,6 +26,16 @@ public class Ball : MonoBehaviour {
 			if(impactTarget.rigidbody != null)
 				impactTarget.AddForce(impact, ForceMode.VelocityChange);
 		}
+		if(Time.time > lifeEndTime) {
+			transform.position = Vector3.one * 1000f;
+			gameObject.SetActive(false);
+		}
+	}
+
+	public void Reset() {
+		lifeEndTime = Time.time + 10f;
+		hasCollided = false;
+		transform.rotation = Random.rotation;
 	}
 
 	void OnCollisionEnter(Collision col) {
@@ -44,10 +51,10 @@ public class Ball : MonoBehaviour {
 				//impact direction also according to the ray
 				impact = rigidbody.velocity * 0.5f;
 				
-				//the impact will be reapplied for the next 250ms
+				//the impact will be reapplied for the next 100ms
 				//to make the connected objects follow even though the simulated body joints
 				//might stretch
-				impactEndTime=Time.time+0.10f;
+				impactEndTime = Time.time+0.10f;
 
 				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method
@@ -69,7 +76,6 @@ public class Ball : MonoBehaviour {
 			rigidbody.velocity = Vector3.zero;
 			rigidbody.AddForce((transform.position - col.contacts[0].point).normalized * 200f);
 			rigidbody.useGravity = true;
-			Destroy (gameObject, 10f);
 		}
 	}
 

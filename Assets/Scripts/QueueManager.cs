@@ -20,7 +20,10 @@ public class QueueManager : MonoBehaviour {
 	public void SpawnNewEnemy(GameObject enemyObject) {
 		// If the next spawn point in line is not aleady taken
 		if( m_queueEnd.m_occupant == null && m_queueEnd.m_reserved == false ) {
-			GameObject enemy = (GameObject)Instantiate( enemyObject, m_queueEnd.transform.position, Quaternion.identity );
+			GameObject enemy = StaticPool.GetObj(enemyObject);
+			enemy.transform.position = m_queueEnd.transform.position;
+			enemy.GetComponent<Enemy>().Reset();
+			// (GameObject)Instantiate( enemyObject, m_queueEnd.transform.position, Quaternion.identity );
 
 			// Turn colliders off when they spawn in the line
 			Collider[] colliders = enemy.GetComponentsInChildren<Collider>();

@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour {
 
 	IntroGUI introGUI;
 
+	StaticPool staticPool;
+
 	#region Singleton Initialization
 	public static GameManager instance {
 		get { 
@@ -58,6 +60,7 @@ public class GameManager : MonoBehaviour {
 			//If I am the fist instance, make me the first Singleton
 			_instance = this;
 			DontDestroyOnLoad(gameObject);
+			staticPool = new StaticPool(); // Fight me
 		} else {
 			//If a Singleton already exists and you find another reference in scene, destroy it
 			if(_instance != this)
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour {
 	#endregion
 
 	void Start() {
+
 		introGUI = GameObject.Find("IntroGUI").GetComponent<IntroGUI>();
 		ballManager = GetComponent<BallManager> ();
 		playerManager = GetComponent<PlayerManager> ();
@@ -149,16 +153,16 @@ public class GameManager : MonoBehaviour {
 					tempScoreStr = " " + tempScoreStr;
 				
 				switch( playerManager.playerData[i].color ) {
-				case "Red":
+				case PlayerColor.Red:
 					redGameScore.text = "Red:" + tempScoreStr;
 					break;
-				case "Yellow":
+				case PlayerColor.Yellow:
 					yellowGameScore.text = "Yellow:" + tempScoreStr;
 					break;
-				case "Green":
+				case PlayerColor.Green:
 					greenGameScore.text = "Green:" + tempScoreStr;
 					break;
-				case "Purple":
+				case PlayerColor.Purple:
 					purpleGameScore.text = "Purple:" + tempScoreStr;
 					break;
 				}
@@ -185,13 +189,39 @@ public class GameManager : MonoBehaviour {
 		return str;
 	}
 
-	public void BallHit(Vector2 pos, string color) {
+	public void BallHit(ArrayList args) {
+		float x = (float)(args[0]);
+		float y = (float)(args[1]);
+		Vector2 pos = new Vector2(x,y);
+
+		string colorStr = (string)(args[2]);
+
+		PlayerColor color = PlayerColor.Red;
+
+		switch(colorStr) {
+		case "Red":
+			color = PlayerColor.Red;
+			break;
+		case "Green":
+			color = PlayerColor.Green;
+			break;
+		case "Yellow":
+			color = PlayerColor.Yellow;
+			break;
+		case "Purple":
+			color = PlayerColor.Purple;
+			break;
+		default:
+			print("Bad Color");
+			break;
+		}
+
 		if(!playerManager.Added(color)) {
 			playerManager.AddPlayer(color);
 			if(mode == GameMode.Intro) {
 				introGUI.TurnOnColor(color);
 				timer = joinTimer;
-				introGUI.timerText.animation.Stop();// = false;
+				introGUI.timerText.animation.Stop();
 				introGUI.timerText.transform.rotation = Quaternion.identity;
 //				introGUI.timerText.transform.localScale *= 1.1f;
 			}
@@ -267,11 +297,8 @@ public class GameManager : MonoBehaviour {
 
 	public void OSCMessageReceived(OSC.NET.OSCMessage message){
 		if(message.Address == "/shoot"){
-			ArrayList args = message.Values;
-			float x = (float)(args[0]);
-			float y = (float)(args[1]);
-			Vector2 pos = new Vector2(x,y);
-			BallHit(pos, "Red");  
+			message.Values[2] = "Red";
+			BallHit(message.Values);  
 		}
 //    	if(message.Address == "/endGame"){
 //      		AdjustGameSetting("Quit Game", true);

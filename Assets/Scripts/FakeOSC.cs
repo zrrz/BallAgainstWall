@@ -38,7 +38,11 @@ public class FakeOSC : MonoBehaviour {
 	}
 
 	void BallHit(Vector2 pos, string color) {
-		gameManager.BallHit(pos, color);
+		ArrayList list = new ArrayList();
+		list.Add(pos.x);
+		list.Add(pos.y);
+		list.Add(color);
+		gameManager.BallHit(list);
 	}
 
 	void OnGUI() {

@@ -114,6 +114,8 @@ public class BallManager : MonoBehaviour {
 		ball.transform.position = Camera.main.ScreenToWorldPoint(shootData.start);
 		ball.rigidbody.velocity = Vector3.zero;
 
+		PlayerManager.IncreaseShots(shootData.color);
+
 		Vector3 shootDir = shootData.dest - ball.transform.position;
 		shootDir.Normalize();
 

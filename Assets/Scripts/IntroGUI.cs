@@ -45,9 +45,9 @@ public class IntroGUI : MonoBehaviour {
 			if(scores[i].time.Minute < 10)
 				textMesh.text += "0";
 			textMesh.text += scores[i].time.Minute;
-			if(scores[i].time.Minute % 10 == 0) {
-				textMesh.text += "0";
-			}
+//			if(scores[i].time.Minute % 10 == 0) {
+//				textMesh.text += "0";
+//			}
 
 			textMesh.text += "\n";
 		}

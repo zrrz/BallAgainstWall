@@ -14,6 +14,8 @@ public class Ball : MonoBehaviour {
 	
 	float lifeEndTime = 0;
 
+	public PlayerColor color;
+
 	void Start() {
 		audioSource = GetComponent<AudioSource>();
 		rigidbody.AddTorque(Random.onUnitSphere * 10);
@@ -43,6 +45,8 @@ public class Ball : MonoBehaviour {
 			hasCollided = true;
 
 			if(col.transform.tag == "Enemy") {
+				PlayerManager.IncreaseHits(color);
+
 				col.transform.SendMessageUpwards("Hit", gameObject, SendMessageOptions.DontRequireReceiver);
 
 				//set the impact target to whatever the ray hit
@@ -59,16 +63,16 @@ public class Ball : MonoBehaviour {
 				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method
 
-				if( name.Contains( "Red" ) ) {
+				if(color == PlayerColor.Red ) {
 					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.red );
 				}
-				else if( name.Contains( "Green" ) ) {
+				else if(color == PlayerColor.Green) {
 					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.green );
 				}
-				else if( name.Contains( "Yellow" ) ) {
+				else if(color == PlayerColor.Yellow) {
 					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.yellow );
 				}
-				else if( name.Contains( "Purple" ) ) {
+				else if(color == PlayerColor.Purple) {
 					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.magenta );
 				}
 			}

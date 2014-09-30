@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour {
 			color = p_color;
 		}
 		public int score = 0;
+		public int totalShots = 0;
+		public int shotsHit = 0;
 		public PlayerColor color = PlayerColor.Red;
 	}
 
@@ -27,6 +29,24 @@ public class PlayerManager : MonoBehaviour {
 
 	void Update () {
 
+	}
+
+	public static void IncreaseShots(PlayerColor color) {
+		foreach(PlayerData player in s_instance.playerData){
+			if(player.color == color) {
+				player.totalShots ++;
+				return;
+			}
+		}
+	}
+
+	public static void IncreaseHits(PlayerColor color) {
+		foreach(PlayerData player in s_instance.playerData){
+			if(player.color == color) {
+				player.shotsHit++;
+				return;
+			}
+		}
 	}
 
 	public void AddPlayer(PlayerColor color) {
@@ -48,9 +68,9 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-	public static void AddPoints(PlayerColor p_color, int pts) {
+	public static void AddPoints(PlayerColor color, int pts) {
 		foreach(PlayerData player in s_instance.playerData){
-			if(player.color == p_color) {
+			if(player.color == color) {
 				player.score += pts;
 				return;
 			}

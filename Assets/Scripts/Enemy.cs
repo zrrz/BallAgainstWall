@@ -52,6 +52,17 @@ public class Enemy : MonoBehaviour {
 		foreach (Component c in components) {
 			(c as Rigidbody).isKinematic = newValue;
 		}
+
+		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
+	}
+
+	void OnLevelWasLoaded(int level) {
+		if(level == 0) {
+			StopAllCoroutines();
+			gameObject.SetActive(false);
+		}
+		if(level == 1)
+			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 	}
 
 	public void Reset() {
@@ -69,6 +80,12 @@ public class Enemy : MonoBehaviour {
 		lifeEndTime = -1f;
 
 		animator.enabled = true;
+
+//		Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+		
+//		foreach (Component c in components) {
+//			(c as Rigidbody).velocity = Vector3.zero;
+//		}
 	}
 
 	void Update() {
@@ -78,10 +95,10 @@ public class Enemy : MonoBehaviour {
 			}
 		}
 
-		Vector3 t_pos = transform.GetChild(0).localPosition;
-		t_pos.x = t_pos.z = 0f;
-		transform.GetChild(0).localPosition = t_pos;
-		transform.rotation = Quaternion.identity;
+//		Vector3 t_pos = transform.GetChild(0).localPosition;
+//		t_pos.x = t_pos.z = 0f;
+//		transform.GetChild(0).localPosition = t_pos;
+//		transform.rotation = Quaternion.identity;
 	}
 
 //	void OnCollisionEnter(Collision col) {
@@ -155,30 +172,24 @@ public class Enemy : MonoBehaviour {
 
 		gameObject.SetActive(false);
 		StopAllCoroutines();
-//		Destroy (gameObject);
 	}
 
-	void LateUpdate() {
-		Vector3 t_pos = transform.GetChild(0).localPosition;
-		t_pos.x = 0f;
-		transform.GetChild(0).localPosition = t_pos;
-	}
+//	void LateUpdate() {
+//		Vector3 t_pos = transform.GetChild(0).localPosition;
+//		t_pos.x = 0f;
+//		transform.GetChild(0).localPosition = t_pos;
+//	}
 
 	IEnumerator Hop(HopData data) {
-//		animator.SetBool ("Land", false);
+		animator.transform.localPosition = Vector3.zero;
 		animator.SetBool("Jump", true);
 		animator.SetInteger("RandomJump", Random.Range(1, 10));
-		//floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
+
 		ClosestTile(transform.position).GetComponent<Animator>().SetTrigger("Bounce");
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
 
-		yield return null;
-
-//		if(animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Start") 
-//		   || animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Jump Hub")
-//		   || animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Walk")) {
-			switch(animator.GetInteger("RandomJump")) {
+		switch(animator.GetInteger("RandomJump")) {
 			case 1:
 				animator.Play(Animator.StringToHash("jump " + 1), 0, 0f);
 				break;
@@ -209,8 +220,7 @@ public class Enemy : MonoBehaviour {
 			default:
 				print ("wtf");
 				break;
-			}
-//		}
+		}
 
 		float temp_hopHeight = hopHeight * Random.Range(0.8f, 1.2f);
 
@@ -223,12 +233,7 @@ public class Enemy : MonoBehaviour {
 			
 			timer += Time.deltaTime / data.time;
 			yield return null;
-//			animator.SetBool ("Jump", false);
-//			if(timer > .90f)
-//				animator.SetBool ("Land", true);
 		}
-//		animator.SetBool ("Land", true);
-//		animator.SetBool ("Jump", false);
 	}
 
 	Transform ClosestTile(Vector3 pos) {

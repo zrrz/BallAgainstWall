@@ -32,7 +32,7 @@ public class QueueManager : MonoBehaviour {
 
 			m_queueEnd.m_occupant = enemy;
 
-			FaceNextWaypoint( enemy.transform, m_queueEnd );
+			FaceNextWaypoint(enemy.transform, m_queueEnd);
 
 			// If we aren't at the end of the queue, move the spawnpoint one position back
 			if( m_queueEnd.m_previous != null )

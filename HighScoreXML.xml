@@ -1,19 +1,6 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <HighScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <DailyScores>
-    <ScoreXML>
-      <score>35</score>
-      <time>2014-09-29T19:01:20.2126145-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>17</score>
-      <time>2014-09-29T15:32:35.2242262-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>1</score>
-      <time>2014-09-29T15:34:58.0563957-07:00</time>
-    </ScoreXML>
-  </DailyScores>
+  <DailyScores />
   <weeklyScores>
     <ScoreXML>
       <score>35</score>

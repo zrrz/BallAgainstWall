@@ -53,7 +53,7 @@ public class QueueManager : MonoBehaviour {
 			foreach( Collider col in cols )
 				col.enabled = true;
 
-			t_obj.collider.enabled = false;		// IDK why this is turned off but it is by default and it works -Eric
+//			t_obj.collider.enabled = false;		// IDK why this is turned off but it is by default and it works -Eric
 			t_obj.curColumn = column;
 			t_obj.StartMove();
 			m_queueFront.m_occupant = null;

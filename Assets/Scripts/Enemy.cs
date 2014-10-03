@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour {
 
 	Animator animator;
 
-	public List<Texture> textures;
-	public List<Renderer> renderers;
+	public List<Texture> maleTextures;
+	public List<Texture> femaleTextures;
 
 	public float moveForwardChancePct = 50f;
 
@@ -41,13 +41,11 @@ public class Enemy : MonoBehaviour {
 
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 
-		animator = transform.GetChild(0).GetComponent<Animator> ();
-
 		Reset();
 	}
 	
 	void SetKinematic(bool newValue) {
-		Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+		Component[] components = animator.GetComponentsInChildren(typeof(Rigidbody));
 
 		foreach (Component c in components) {
 			(c as Rigidbody).isKinematic = newValue;
@@ -66,12 +64,24 @@ public class Enemy : MonoBehaviour {
 	}
 
 	public void Reset() {
-		SetKinematic(true);
-
-		int rand = Random.Range(0, textures.Count - 1);
-		foreach(Renderer rend in renderers) {
-			rend.material.mainTexture = textures[rand];
+		for(int i = 0; i < transform.childCount; i++) {
+			transform.GetChild(i).gameObject.SetActive(false);
 		}
+
+		int randChar = Random.Range(0, 2);
+		transform.GetChild(randChar).gameObject.SetActive(true);
+		animator = transform.GetChild(randChar).GetComponent<Animator> ();
+		if(randChar == 0) {
+			int rand = Random.Range(0, maleTextures.Count - 1);
+			animator.GetComponentInChildren<Renderer>().material.mainTexture = maleTextures[rand];
+		} else if(randChar == 1) {
+			int rand = Random.Range(0, femaleTextures.Count - 1);
+			animator.GetComponentInChildren<Renderer>().material.mainTexture = femaleTextures[rand];
+		} else {
+			print("No");
+		}
+
+		SetKinematic(true);
 
 		curRow = 0;
 

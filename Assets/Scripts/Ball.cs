@@ -25,8 +25,9 @@ public class Ball : MonoBehaviour {
 	void Update() {
 		if (Time.time < impactEndTime)
 		{
-			if(impactTarget.rigidbody != null)
-				impactTarget.AddForce(impact, ForceMode.VelocityChange);
+//			if(impactTarget != null)
+				if(impactTarget.rigidbody != null)
+					impactTarget.AddForce(impact, ForceMode.VelocityChange);
 		}
 		if(Time.time > lifeEndTime) {
 			transform.position = Vector3.one * 1000f;

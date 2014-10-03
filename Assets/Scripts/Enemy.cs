@@ -104,11 +104,6 @@ public class Enemy : MonoBehaviour {
 				gameObject.SetActive(false);
 			}
 		}
-
-//		Vector3 t_pos = transform.GetChild(0).localPosition;
-//		t_pos.x = t_pos.z = 0f;
-//		transform.GetChild(0).localPosition = t_pos;
-//		transform.rotation = Quaternion.identity;
 	}
 
 //	void OnCollisionEnter(Collision col) {
@@ -149,7 +144,6 @@ public class Enemy : MonoBehaviour {
 
 			StopAllCoroutines();
 			lifeEndTime = Time.time + 1f;
-//			Destroy(gameObject, 1f);
 		}
 	}
 
@@ -183,12 +177,6 @@ public class Enemy : MonoBehaviour {
 		gameObject.SetActive(false);
 		StopAllCoroutines();
 	}
-
-//	void LateUpdate() {
-//		Vector3 t_pos = transform.GetChild(0).localPosition;
-//		t_pos.x = 0f;
-//		transform.GetChild(0).localPosition = t_pos;
-//	}
 
 	IEnumerator Hop(HopData data) {
 		animator.transform.localPosition = Vector3.zero;

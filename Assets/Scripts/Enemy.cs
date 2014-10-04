@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour {
 			transform.GetChild(i).gameObject.SetActive(false);
 		}
 
-		int randChar = Random.Range(0, 2);
+		int randChar = Random.Range(0, 3);
 		transform.GetChild(randChar).gameObject.SetActive(true);
 		animator = transform.GetChild(randChar).GetComponent<Animator> ();
 		if(randChar == 0) {
@@ -77,9 +77,10 @@ public class Enemy : MonoBehaviour {
 		} else if(randChar == 1) {
 			int rand = Random.Range(0, femaleTextures.Count - 1);
 			animator.GetComponentInChildren<Renderer>().material.mainTexture = femaleTextures[rand];
-		} else {
-			print("No");
-		}
+		} 
+//		else {
+//			print("No");
+//		}
 
 		SetKinematic(true);
 
@@ -181,7 +182,10 @@ public class Enemy : MonoBehaviour {
 	IEnumerator Hop(HopData data) {
 		animator.transform.localPosition = Vector3.zero;
 		animator.SetBool("Jump", true);
-		animator.SetInteger("RandomJump", Random.Range(1, 10));
+		if(animator == transform.GetChild(2).GetComponent<Animator>())
+			animator.SetInteger("RandomJump", 1);
+		else
+			animator.SetInteger("RandomJump", Random.Range(1, 10));
 
 		ClosestTile(transform.position).GetComponent<Animator>().SetTrigger("Bounce");
 		Vector3 startPos = transform.position;

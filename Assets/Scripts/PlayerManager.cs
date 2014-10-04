@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum PlayerColor {
-	Green, Purple, Red, Yellow
+	Green, Blue, Red, Yellow
+	//Red, Yellow, Blue, Green
 }
 
 public class PlayerManager : MonoBehaviour {

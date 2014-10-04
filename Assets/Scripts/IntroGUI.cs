@@ -23,11 +23,11 @@ public class IntroGUI : MonoBehaviour {
 	void Start () {
 		highScores = HighScoreManager.s_instance.highScores;
 
-		FormatScores(highScores.dailyScores, dailyScores);
-
-		FormatScores(highScores.weeklyScores, weeklyScores);
-
-		FormatScores(highScores.monthlyScores, monthlyScores);
+//		FormatScores(highScores.dailyScores, dailyScores);
+//
+//		FormatScores(highScores.weeklyScores, weeklyScores);
+//
+//		FormatScores(highScores.monthlyScores, monthlyScores);
 	}
 
 	void FormatScores(List<Score> scores, TextMesh textMesh) {

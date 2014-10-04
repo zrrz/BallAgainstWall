@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class ScoreGUI : MonoBehaviour {
 
-	public GameObject redBox, yellowBox, greenBox, purpleBox;
+	public GameObject redBox, yellowBox, greenBox, blueBox;
 
 	public GameObject dodgeBall;
 
@@ -13,9 +13,10 @@ public class ScoreGUI : MonoBehaviour {
 	public float maxHeight = 4f;
 
 	public GameObject textPrefab;
+	
 
 	void Start () {
-	
+
 	}
 
 	void Update () {
@@ -41,9 +42,9 @@ public class ScoreGUI : MonoBehaviour {
 			if(playerData[i].color == PlayerColor.Red) {
 				redBox.SetActive(true);
 				StartCoroutine(GrowScoreBox(new GrowData(redBox, playerData[i].score, playerData[0].score, i + 1)));
-			} else if(playerData[i].color == PlayerColor.Purple) {
-				purpleBox.SetActive(true);
-				StartCoroutine(GrowScoreBox(new GrowData(purpleBox, playerData[i].score, playerData[0].score, i + 1)));
+			} else if(playerData[i].color == PlayerColor.Blue) {
+				blueBox.SetActive(true);
+				StartCoroutine(GrowScoreBox(new GrowData(blueBox, playerData[i].score, playerData[0].score, i + 1)));
 			} else if(playerData[i].color == PlayerColor.Green) {
 				greenBox.SetActive(true);
 				StartCoroutine(GrowScoreBox(new GrowData(greenBox, playerData[i].score, playerData[0].score, i + 1)));

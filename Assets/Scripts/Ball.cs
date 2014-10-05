@@ -45,6 +45,14 @@ public class Ball : MonoBehaviour {
 			hasCollided = true;
 
 			if(col.transform.tag == "Enemy") {
+//				string str = "";
+//				Transform temp = col.transform;
+//				while(temp != null) {
+//					str = temp.name + "-" + str;
+//					temp = temp.parent;
+//				}
+//				print (str);
+
 				PlayerManager.IncreaseHits(color);
 
 				col.transform.SendMessageUpwards("Hit", gameObject, SendMessageOptions.DontRequireReceiver);

@@ -73,10 +73,10 @@ public class Enemy : MonoBehaviour {
 		animator = transform.GetChild(randChar).GetComponent<Animator> ();
 		if(randChar == 0) {
 			int rand = Random.Range(0, maleTextures.Count - 1);
-			animator.GetComponentInChildren<Renderer>().material.mainTexture = maleTextures[rand];
+			animator.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture = maleTextures[rand];
 		} else if(randChar == 1) {
 			int rand = Random.Range(0, femaleTextures.Count - 1);
-			animator.GetComponentInChildren<Renderer>().material.mainTexture = femaleTextures[rand];
+			animator.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture = femaleTextures[rand];
 		} 
 //		else {
 //			print("No");
@@ -138,7 +138,7 @@ public class Enemy : MonoBehaviour {
 			hit = true;
 			StopCoroutine ("Move");
 			StopCoroutine ("Hop");
-			collider.enabled = false;
+//			collider.enabled = false;
 
 			SetKinematic(false);
 			animator.enabled = false;

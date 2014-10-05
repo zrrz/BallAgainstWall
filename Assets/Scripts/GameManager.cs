@@ -283,21 +283,21 @@ public class GameManager : MonoBehaviour {
 		float y = (float)(args[1]);
 		Vector2 pos = new Vector2(x,y);
 
-		string colorStr = (string)(args[2]);
+		int colorID =  (int)args[2];
 
 		PlayerColor color = PlayerColor.Red;
 
-		switch(colorStr) {
-		case "Red":
+		switch(colorID) {
+		case 0:
 			color = PlayerColor.Red;
 			break;
-		case "Green":
+		case 3:
 			color = PlayerColor.Green;
 			break;
-		case "Yellow":
+		case 1:
 			color = PlayerColor.Yellow;
 			break;
-		case "Purple":
+		case 2:
 			color = PlayerColor.Blue;
 			break;
 		default:

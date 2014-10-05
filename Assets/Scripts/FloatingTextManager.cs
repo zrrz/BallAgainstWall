@@ -3,16 +3,36 @@ using System.Collections;
 
 public class FloatingTextManager : MonoBehaviour {
 
-	public static FloatingTextManager instance;
+	public static FloatingTextManager _instance;
 
 	public TextMesh m_textMesh;
 
 	private float m_fadeTime = 1.0f;
 	private float m_yGain = 0.5f;	// meters per second
 
-	void Awake () {
-		instance = this;
+	
+	#region Singleton Initialization
+	public static FloatingTextManager instance {
+		get { 
+			if(_instance == null)
+				_instance = GameObject.FindObjectOfType<FloatingTextManager>();
+			
+			return _instance;
+		}
 	}
+	
+	void Awake() {
+		if(_instance == null) {
+			//If I am the fist instance, make me the first Singleton
+			_instance = this;
+			DontDestroyOnLoad(gameObject);
+		} else {
+			//If a Singleton already exists and you find another reference in scene, destroy it
+			if(_instance != this)
+				Destroy(gameObject);
+		}
+	}
+	#endregion
 
 	// Use this for initialization
 	void Start () {

@@ -45,14 +45,6 @@ public class Ball : MonoBehaviour {
 			hasCollided = true;
 
 			if(col.transform.tag == "Enemy") {
-//				string str = "";
-//				Transform temp = col.transform;
-//				while(temp != null) {
-//					str = temp.name + "-" + str;
-//					temp = temp.parent;
-//				}
-//				print (str);
-
 				PlayerManager.IncreaseHits(color);
 
 				col.transform.SendMessageUpwards("Hit", gameObject, SendMessageOptions.DontRequireReceiver);
@@ -71,17 +63,22 @@ public class Ball : MonoBehaviour {
 				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method
 
+
+				int pointsToAdd = 1;
+				if(col.transform.GetChild(2).gameObject.activeSelf)
+					pointsToAdd++;
+
 				if(color == PlayerColor.Red ) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.red );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.red );
 				}
 				else if(color == PlayerColor.Green) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.green );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.green );
 				}
 				else if(color == PlayerColor.Yellow) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.yellow );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.yellow );
 				}
 				else if(color == PlayerColor.Blue) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.blue );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.blue );
 				}
 			}
 

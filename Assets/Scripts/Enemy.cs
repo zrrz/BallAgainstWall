@@ -122,16 +122,21 @@ public class Enemy : MonoBehaviour {
 		if(!hit) {
 			hitBy = p_hitBy;
 
+			int pointsToAdd = 1;
+
+			if(animator == transform.GetChild(2).GetComponent<Animator>())
+				pointsToAdd++;
+
 			if(p_hitBy.name.Contains("Red")) {
-				PlayerManager.AddPoints(PlayerColor.Red, 1);
+				PlayerManager.AddPoints(PlayerColor.Red, pointsToAdd);
 			} 
 			else if(p_hitBy.name.Contains("Yellow")) {
-				PlayerManager.AddPoints(PlayerColor.Yellow, 1);
+				PlayerManager.AddPoints(PlayerColor.Yellow, pointsToAdd);
 			} 
 			else if(p_hitBy.name.Contains("Green")) {
-				PlayerManager.AddPoints(PlayerColor.Green, 1);
+				PlayerManager.AddPoints(PlayerColor.Green, pointsToAdd);
 			} else if(p_hitBy.name.Contains("Blue")) {
-				PlayerManager.AddPoints(PlayerColor.Blue, 1);
+				PlayerManager.AddPoints(PlayerColor.Blue, pointsToAdd);
 			} else {
 				print ("wtf");
 			}

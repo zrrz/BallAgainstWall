@@ -8,8 +8,8 @@ public class BallManager : MonoBehaviour {
 	public float shootStrength = 1000f;
 	public GameObject hitParticle;
 
-	float redBallTimer, greenBallTimer, yellowBallTimer, purpleBallTimer;
-	bool redOnCd, greenOnCd, yellowOnCd, purpleOnCd = false;
+	float redBallTimer, greenBallTimer, yellowBallTimer, blueBallTimer;
+	bool redOnCd, greenOnCd, yellowOnCd, blueOnCd = false;
 	float ballShootCooldown = 0.5f;
 
 	Dictionary<string, GameObject> ballPrefabDict;
@@ -56,12 +56,12 @@ public class BallManager : MonoBehaviour {
 			}
 			greenBallTimer += Time.deltaTime;
 		}
-		if( purpleOnCd ) {
-			if( purpleBallTimer > ballShootCooldown ) {
-				purpleOnCd = false;
-				purpleBallTimer = 0f;
+		if( blueOnCd ) {
+			if( blueBallTimer > ballShootCooldown ) {
+				blueOnCd = false;
+				blueBallTimer = 0f;
 			}
-			purpleBallTimer += Time.deltaTime;
+			blueBallTimer += Time.deltaTime;
 		}
 	}
 
@@ -88,11 +88,11 @@ public class BallManager : MonoBehaviour {
 			else
 				greenOnCd = true;
 			break;
-		case PlayerColor.Purple:
-			if( purpleOnCd )
+		case PlayerColor.Blue:
+			if( blueOnCd )
 				return;
 			else
-				purpleOnCd = true;
+				blueOnCd = true;
 			break;
 		}
 

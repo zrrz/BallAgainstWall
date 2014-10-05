@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -36,7 +36,8 @@ public class Enemy : MonoBehaviour {
 		public float time;
 	}
 
-	void Awake () {
+	//void Awake () {
+	void OnEnable() {
 		moveForwardChancePct = Mathf.Clamp(moveForwardChancePct, 0f, 100f);
 
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
@@ -129,8 +130,8 @@ public class Enemy : MonoBehaviour {
 			} 
 			else if(p_hitBy.name.Contains("Green")) {
 				PlayerManager.AddPoints(PlayerColor.Green, 1);
-			} else if(p_hitBy.name.Contains("Purple")) {
-				PlayerManager.AddPoints(PlayerColor.Purple, 1);
+			} else if(p_hitBy.name.Contains("Blue")) {
+				PlayerManager.AddPoints(PlayerColor.Blue, 1);
 			} else {
 				print ("wtf");
 			}

@@ -99,6 +99,21 @@ public class QueueManager : MonoBehaviour {
 		}
 	}
 
+	public void Reset() {
+		StopAllCoroutines();
+
+		Waypoint temp = m_queueFront;
+		while( temp != null ) {
+			if( temp.m_occupant != null ) {
+				temp.m_occupant.GetComponent<Enemy>().StopAllCoroutines();
+				temp.m_occupant.SetActive( false );
+				temp.m_occupant = null;
+			}
+
+			temp = temp.m_next;
+		}
+	}
+
 	void OnDrawGizmos() {
 		Gizmos.color = Color.red;
 //		Gizmos.DrawSphere( m_queueEnd.transform.position, 0.3f );

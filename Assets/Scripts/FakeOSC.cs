@@ -5,14 +5,14 @@ public class FakeOSC : MonoBehaviour {
 	
 	GameManager gameManager;
 
-	string[] colors;
+	int[] colors;
 
 	int curColor = 0;
 
 	void Start () {
 		gameManager = GetComponent<GameManager>();
 	
-		colors = new string[] {"Green", "Purple", "Red", "Yellow"};
+		colors = new int[] {3, 2, 0, 1};
 	}
 
 	void Update () {
@@ -37,7 +37,7 @@ public class FakeOSC : MonoBehaviour {
 		}
 	}
 
-	void BallHit(Vector2 pos, string color) {
+	void BallHit(Vector2 pos, int color) {
 		ArrayList list = new ArrayList();
 		list.Add(pos.x);
 		list.Add(pos.y);

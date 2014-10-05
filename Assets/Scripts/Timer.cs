@@ -46,9 +46,9 @@ public class Timer : MonoBehaviour {
 
 	IEnumerator MoveToFinalPos() {
 		Vector3 startPos = transform.position;
-		Vector3 tartgetPos = new Vector3( 0f, 8.5f, startPos.z );
+		Vector3 tartgetPos = new Vector3( 0f, 6.5f, startPos.z );
 		Vector3 startScale = transform.localScale;
-		Vector3 targetScale = new Vector3( 0.25f, 0.25f, startScale.z );
+		Vector3 targetScale = new Vector3( 0.12f, 0.12f, startScale.z );
 		float lerpTime = 2f;
 		float timer = 0.0f;
 
@@ -65,7 +65,7 @@ public class Timer : MonoBehaviour {
 
 	IEnumerator ScaleText() {
 		Vector3 startScale = transform.localScale;
-		Vector3 largeScale =  new Vector3( 0.35f, 0.35f, startScale.z );
+		Vector3 largeScale =  new Vector3( 0.2f, 0.22f, startScale.z );
 		int lastTime = (int)manager.timer;
 		float lerpTime = 1.0f;
 		float timer = 0.0f;

@@ -80,8 +80,8 @@ public class Ball : MonoBehaviour {
 				else if(color == PlayerColor.Yellow) {
 					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.yellow );
 				}
-				else if(color == PlayerColor.Purple) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.magenta );
+				else if(color == PlayerColor.Blue) {
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.blue );
 				}
 			}
 

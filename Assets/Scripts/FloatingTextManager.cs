@@ -75,7 +75,7 @@ public class FloatingTextManager : MonoBehaviour {
 
 	void OnLevelWasLoaded(int level) {
 		StopAllCoroutines();
-		instance = this;
+		_instance = this;
 	}
 
 	IEnumerator FloatingText( TextMesh tMesh ) {

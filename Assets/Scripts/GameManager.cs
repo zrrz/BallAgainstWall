@@ -280,7 +280,9 @@ public class GameManager : MonoBehaviour {
 
 	public void BallHit(ArrayList args) {
 		float x = (float)(args[0]);
+		x = Mathf.Abs(x - 1);
 		float y = (float)(args[1]);
+		y = Mathf.Abs(y - 1);
 		Vector2 pos = new Vector2(x,y);
 
 		int colorID =  (int)args[2];
@@ -386,7 +388,7 @@ public class GameManager : MonoBehaviour {
 
 	public void OSCMessageReceived(OSC.NET.OSCMessage message){
 		if(message.Address == "/shoot"){
-			message.Values[2] = "Red";
+//			message.Values[2] = "Red";
 			BallHit(message.Values);  
 		}
 //    	if(message.Address == "/endGame"){

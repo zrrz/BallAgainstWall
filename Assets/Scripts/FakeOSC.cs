@@ -20,7 +20,8 @@ public class FakeOSC : MonoBehaviour {
 			Vector3 pos = Input.mousePosition;
 			pos.x /= Screen.width;
 			pos.y /= Screen.height;
-			pos.y = 1 - pos.y;
+//			pos.y = 1 - pos.y;
+			pos.x = 1 - pos.x;
 			BallHit(pos, colors[curColor]);
 		}
 
@@ -44,8 +45,8 @@ public class FakeOSC : MonoBehaviour {
 		list.Add(color);
 		gameManager.BallHit(list);
 	}
-
-	void OnGUI() {
-		GUI.Box (new Rect (0f, 0f, 140f, 40f), "Ball Color: " + colors [curColor] + "\n Q/E to toggle colors");
-	}
+//
+//	void OnGUI() {
+//		GUI.Box (new Rect (0f, 0f, 140f, 40f), "Ball Color: " + colors [curColor] + "\n Q/E to toggle colors");
+//	}
 }

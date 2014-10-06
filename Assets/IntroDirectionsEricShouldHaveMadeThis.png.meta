@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: fa88b99462d6e4843b69b20af8085712
+guid: 01f46c9804b94f04ca9d485e6389d7c8
 TextureImporter:
   fileIDToRecycleName:
-    21300000: InGameScoreBlue2
+    21300000: IntroDirectionsEricShouldHaveMadeThis
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -25,7 +25,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 1024
   textureSettings:
-    filterMode: 2
+    filterMode: -1
     aniso: 1
     mipBias: -1
     wrapMode: 1

@@ -32,17 +32,6 @@ public class PlayerManager : MonoBehaviour {
 
 	}
 
-	void OnGUI() {
-		GUILayout.BeginArea(new Rect(Screen.width - 100f, 0f, 100f, 200f));
-		GUILayout.BeginVertical();
-		foreach(PlayerData player in playerData){
-			GUILayout.Label(player.color.ToString() + " " + player.shotsHit + "/" + player.totalShots);
-
-		}
-		GUILayout.EndVertical();
-		GUILayout.EndArea();
-	}
-
 	public static void IncreaseShots(PlayerColor color) {
 		foreach(PlayerData player in s_instance.playerData){
 			if(player.color == color) {

@@ -1,7 +1,8 @@
 fileFormatVersion: 2
-guid: bcb9af3d37b1f894d93e59e21869e67d
+guid: 82f33ebb93c935441a9f3a89a9f5d7a0
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: scoreboard_GUI_Background
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

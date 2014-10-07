@@ -6,8 +6,7 @@ public class Timer : MonoBehaviour {
 	GameManager manager;
 	TextMesh textMesh;
 	bool finalSecondsSequenceStarted = false;
-
-	// Use this for initialization
+	
 	void OnLevelWasLoaded(int level) {
 		manager = GameManager.instance;
 
@@ -18,9 +17,9 @@ public class Timer : MonoBehaviour {
 
 		textMesh = GetComponent<TextMesh>();
 		transform.LookAt (Camera.main.transform.position + Camera.main.transform.forward * 1000f);
+		textMesh.renderer.sortingOrder = 15;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if(manager) {
 			string minutes = ((int)(manager.timer / 60)).ToString();
@@ -48,13 +47,13 @@ public class Timer : MonoBehaviour {
 		Vector3 startPos = transform.position;
 		Vector3 tartgetPos = new Vector3( 0f, 6.5f, startPos.z );
 		Vector3 startScale = transform.localScale;
-		Vector3 targetScale = new Vector3( 0.12f, 0.12f, startScale.z );
+		Vector3 targetScale = new Vector3( 0.04f, 0.04f, startScale.z );
 		float lerpTime = 2f;
 		float timer = 0.0f;
 
 		while( timer <= 1.0f ) {
-			transform.position = Vector3.Lerp( startPos, tartgetPos, timer );
-			transform.localScale = Vector3.Lerp(  startScale, targetScale, timer );
+			transform.position = Vector3.Lerp(startPos, tartgetPos, timer);
+			transform.localScale = Vector3.Lerp(startScale, targetScale, timer);
 			
 			timer += Time.deltaTime / lerpTime;
 			yield return null;
@@ -65,7 +64,7 @@ public class Timer : MonoBehaviour {
 
 	IEnumerator ScaleText() {
 		Vector3 startScale = transform.localScale;
-		Vector3 largeScale =  new Vector3( 0.2f, 0.22f, startScale.z );
+		Vector3 largeScale =  new Vector3( 0.06f, 0.06f, startScale.z );
 		int lastTime = (int)manager.timer;
 		float lerpTime = 1.0f;
 		float timer = 0.0f;

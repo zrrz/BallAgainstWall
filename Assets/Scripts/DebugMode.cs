@@ -3,15 +3,11 @@ using System.Collections;
 
 public class DebugMode : MonoBehaviour {
 
-	public static bool GRAVITY = false;
+	public static bool GRAVITY = true;
 	public static bool FORWARDMODE = false;
 	public static bool CENTERSPAWN = false;
 	public static float FORCECHANGE = 0f; 
-	
-	void Start () {
-	
-	}
-	
+
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.F1)) {
 			GRAVITY = !GRAVITY;

@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine ("SpawnEnemy");
 			StartCoroutine( "StartEnemyMove" );
 			GameObject.Find("GameCamera").camera.enabled = true;
-			GameObject.Find("ScoreCamera").camera.enabled = false;
+//			GameObject.Find("ScoreCamera").camera.enabled = false;
 			GameObject.Find("Timer").SetActive(true);
 
 			TextMesh[] texts = redScoreBox.GetComponentsInChildren<TextMesh>();			
@@ -176,8 +176,8 @@ public class GameManager : MonoBehaviour {
 				blueScoreBox.SetActive( false );
 				greenScoreBox.SetActive( false );
 
-				GameObject.Find("GameCamera").camera.enabled = false;
-				GameObject.Find("ScoreCamera").camera.enabled = true;
+//				GameObject.Find("GameCamera").camera.enabled = false;
+//				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("ScoreGUI").GetComponent<ScoreGUI>().Activate();
 				GameObject.Find("Timer").SetActive(false);
 

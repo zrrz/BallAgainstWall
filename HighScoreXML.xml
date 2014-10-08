@@ -13,6 +13,10 @@
       <score>40</score>
       <time>2014-10-07T03:21:02.5116504-07:00</time>
     </ScoreXML>
+    <ScoreXML>
+      <score>2</score>
+      <time>2014-10-07T17:44:35.1880124-07:00</time>
+    </ScoreXML>
   </DailyScores>
   <weeklyScores>
     <ScoreXML>
@@ -24,8 +28,12 @@
       <time>2014-10-07T03:23:34.9372054-07:00</time>
     </ScoreXML>
     <ScoreXML>
-      <score>45</score>
-      <time>2014-09-30T15:48:31.8920985-07:00</time>
+      <score>5</score>
+      <time>2014-10-07T16:50:17.6126897-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>2</score>
+      <time>2014-10-07T17:44:35.1880124-07:00</time>
     </ScoreXML>
   </weeklyScores>
   <monthlyScores>
@@ -40,6 +48,10 @@
     <ScoreXML>
       <score>45</score>
       <time>2014-09-30T15:48:31.8920985-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>2</score>
+      <time>2014-10-07T17:44:35.1880124-07:00</time>
     </ScoreXML>
   </monthlyScores>
 </HighScore>

@@ -25,11 +25,72 @@ public class IntroGUI : MonoBehaviour {
 
 	public float splashDuration = 10f, directionDuration = 3f, scoreDuration = 6f;
 
+	public float fadeInSpeed = 1f, fadeOutSpeed = 1f;
+
 	public void TurnOnColor(PlayerColor color) {
 //		if(unlitBlocks[(int)color])
 //			unlitBlocks[(int)color].SetActive(false);
 //		if(litBlocks[(int)color])
 //			litBlocks[(int)color].SetActive(true);
+	}
+
+	IEnumerator FadeIn(GameObject parent) {
+		parent.SetActive(true);
+		Renderer[] renderers = parent.GetComponentsInChildren<Renderer>();
+		
+		List<float> endAlphas = new List<float>();
+		
+		Color t_color = Color.white;
+		
+		for(int i = 0; i < renderers.Length; i++) {
+			t_color = renderers[i].material.color;
+			endAlphas.Add(t_color.a);
+			t_color.a = 0f;
+			renderers[i].material.color = t_color;
+		}
+		
+		float timer = 0f;
+		while(timer < 1f) {
+			for(int i = 0; i < renderers.Length; i++) {
+				t_color.a = Mathf.Lerp(0f, endAlphas[i], timer);
+				renderers[i].material.color = t_color;
+			}
+			timer += Time.deltaTime/fadeInSpeed;
+			yield return null;
+		}
+	}
+
+	IEnumerator FadeOut(GameObject parent) {
+		Renderer[] renderers = parent.GetComponentsInChildren<Renderer>();
+		
+		List<float> endAlphas = new List<float>();
+		
+		Color t_color = Color.white;
+		
+		for(int i = 0; i < renderers.Length; i++) {
+			t_color = renderers[i].material.color;
+			endAlphas.Add(t_color.a);
+			t_color.a = 0f;
+			renderers[i].material.color = t_color;
+		}
+		
+		float timer = 0f;
+		while(timer < 1f) {
+			for(int i = 0; i < renderers.Length; i++) {
+				t_color.a = Mathf.Lerp(endAlphas[i], 0f, timer);
+				renderers[i].material.color = t_color;
+			}
+			timer += Time.deltaTime/fadeOutSpeed;
+			yield return null;
+		}
+
+		for(int i = 0; i < renderers.Length; i++) {
+			t_color = renderers[i].material.color;
+			t_color.a = endAlphas[i];
+			renderers[i].material.color = t_color;
+		}
+
+		parent.SetActive(false);
 	}
 
 	void Start () {
@@ -65,24 +126,24 @@ public class IntroGUI : MonoBehaviour {
 			if(timer > splashDuration) {
 				timer = 0f;
 				state = State.Score;
-				splash.SetActive(false);
-				score.SetActive(true);
+				StartCoroutine("FadeOut", splash);
+				StartCoroutine("FadeIn", score);
 			}
 			break;
 		case State.Score:
 			if(timer > scoreDuration) {
 				timer = 0f;
 				state = State.Directions;
-				score.SetActive(false);
-				directions.SetActive(true);
+				StartCoroutine("FadeOut", score);
+				StartCoroutine("FadeIn", directions);
 			}
 			break;
 		case State.Directions:
 			if(timer > directionDuration) {
 				timer = 0f;
 				state = State.Splash;
-				directions.SetActive(false);
-				splash.SetActive(true);
+				StartCoroutine("FadeOut", directions);
+				StartCoroutine("FadeIn", splash);
 			}
 			break;
 		default:

@@ -54,8 +54,11 @@ public class StaticPool {
 		// None found
 		AddToList(prefab, SIZE_INCREMENT, s_instance.parent.transform.FindChild(prefab.name));
 
+//		Debug.Log(s_instance.objLists[prefab].Count - SIZE_INCREMENT);
+
 		// Zero indexed and minus what we just added
-		return s_instance.objLists[prefab][s_instance.objLists[prefab].Count - SIZE_INCREMENT - 1];
+		s_instance.objLists[prefab][s_instance.objLists[prefab].Count - SIZE_INCREMENT].SetActive(true);
+		return s_instance.objLists[prefab][s_instance.objLists[prefab].Count - SIZE_INCREMENT];
 
 	}
 

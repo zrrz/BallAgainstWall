@@ -32,10 +32,15 @@ public class GameManager : MonoBehaviour {
 	public bool enemiesKnockback = false;
 
 	private GameObject redScoreBox, yellowScoreBox, blueScoreBox, greenScoreBox;
-	private GUIText redScoreTxt, redPlaceTxt, redAccTxt,
-						yellowScoreTxt, yellowPlaceTxt, yellowAccTxt,
-						blueScoreTxt, bluePlaceTxt, blueAccTxt,
-						greenScoreTxt, greenPlaceTxt, greenAccTxt;
+//	private GUIText redScoreTxt, redPlaceTxt, redAccTxt,
+//						yellowScoreTxt, yellowPlaceTxt, yellowAccTxt,
+//						blueScoreTxt, bluePlaceTxt, blueAccTxt,
+//						greenScoreTxt, greenPlaceTxt, greenAccTxt;
+
+	private TextMesh redScoreTxt, redAccTxt,
+						yellowScoreTxt, yellowAccTxt,
+						blueScoreTxt, blueAccTxt,
+						greenScoreTxt, greenAccTxt;
 
 	BallManager ballManager;
 	PlayerManager playerManager;
@@ -43,7 +48,7 @@ public class GameManager : MonoBehaviour {
 
 //	public TextMesh scoreText;
 
-	GUIText redGameScore, yellowGameScore, greenGameScore, purpleGameScore; //In-game score gui
+//	GUIText redGameScore, yellowGameScore, greenGameScore, purpleGameScore; //In-game score gui
 
 	IntroGUI introGUI;
 
@@ -102,42 +107,34 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine ("SpawnEnemy");
 			StartCoroutine( "StartEnemyMove" );
 			GameObject.Find("GameCamera").camera.enabled = true;
-			GameObject.Find("ScoreCamera").camera.enabled = false;
+//			GameObject.Find("ScoreCamera").camera.enabled = false;
 			GameObject.Find("Timer").SetActive(true);
 
-			GUIText[] texts = redScoreBox.GetComponentsInChildren<GUIText>();			
-			foreach( GUIText text in texts ) {
+			TextMesh[] texts = redScoreBox.GetComponentsInChildren<TextMesh>();			
+			foreach( TextMesh text in texts ) {
 				if( text.name.Contains( "Score" ) )
 					redScoreTxt = text;
-				if( text.name.Contains( "Place" ) )
-					redPlaceTxt = text;
 				if( text.name.Contains( "Accuracy" ) )
 					redAccTxt = text;
 			}			
-			texts = yellowScoreBox.GetComponentsInChildren<GUIText>();			
-			foreach( GUIText text in texts ) {
+			texts = yellowScoreBox.GetComponentsInChildren<TextMesh>();			
+			foreach( TextMesh text in texts ) {
 				if( text.name.Contains( "Score" ) )
 					yellowScoreTxt = text;
-				if( text.name.Contains( "Place" ) )
-					yellowPlaceTxt = text;
 				if( text.name.Contains( "Accuracy" ) )
 					yellowAccTxt = text;
 			}			
-			texts = blueScoreBox.GetComponentsInChildren<GUIText>();			
-			foreach( GUIText text in texts ) {
+			texts = blueScoreBox.GetComponentsInChildren<TextMesh>();			
+			foreach( TextMesh text in texts ) {
 				if( text.name.Contains( "Score" ) )
 					blueScoreTxt = text;
-				if( text.name.Contains( "Place" ) )
-					bluePlaceTxt = text;
 				if( text.name.Contains( "Accuracy" ) )
 					blueAccTxt = text;
 			}			
-			texts = greenScoreBox.GetComponentsInChildren<GUIText>();			
-			foreach( GUIText text in texts ) {
+			texts = greenScoreBox.GetComponentsInChildren<TextMesh>();			
+			foreach( TextMesh text in texts ) {
 				if( text.name.Contains( "Score" ) )
 					greenScoreTxt = text;
-				if( text.name.Contains( "Place" ) )
-					greenPlaceTxt = text;
 				if( text.name.Contains( "Accuracy" ) )
 					greenAccTxt = text;
 			}
@@ -179,19 +176,12 @@ public class GameManager : MonoBehaviour {
 				blueScoreBox.SetActive( false );
 				greenScoreBox.SetActive( false );
 
-//				redGameScore.enabled = false;
-//				yellowGameScore.enabled = false;
-//				greenGameScore.enabled = false;
-//				purpleGameScore.enabled = false;
-				GameObject.Find("GameCamera").camera.enabled = false;
-				GameObject.Find("ScoreCamera").camera.enabled = true;
+//				GameObject.Find("GameCamera").camera.enabled = false;
+//				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("ScoreGUI").GetComponent<ScoreGUI>().Activate();
 				GameObject.Find("Timer").SetActive(false);
 
-
-//				scoreText.text = "";
 				for(int i = 0; i < playerManager.playerData.Count; i++) {
-//					scoreText.text += Tab(playerManager.playerData[i].color + ":", 20) + playerManager.playerData[i].score + "\n";
 					HighScoreManager.AddScore(playerManager.playerData[i].score);
 				}
 
@@ -205,7 +195,6 @@ public class GameManager : MonoBehaviour {
 
 				return;
 			}
-
 
 			// Update score gui
 			if( redScoreBox.activeSelf == false && playerManager.Added( PlayerColor.Red ))
@@ -237,22 +226,18 @@ public class GameManager : MonoBehaviour {
 				case PlayerColor.Red:
 					redScoreTxt.text = "Score: " + tempScoreStr;
 					redAccTxt.text = "Accuracy: " + tempAccStr + "%";
-					//redGameScore.text = "Red:" + tempScoreStr;
 					break;
 				case PlayerColor.Yellow:
 					yellowScoreTxt.text = "Score: " + tempScoreStr;
 					yellowAccTxt.text = "Accuracy: " + tempAccStr + "%";
-					//yellowGameScore.text = "Yellow:" + tempScoreStr;
 					break;
 				case PlayerColor.Green:
 					greenScoreTxt.text = "Score: " + tempScoreStr;
 					greenAccTxt.text = "Accuracy: " + tempAccStr + "%";
-					//greenGameScore.text = "Green:" + tempScoreStr;
 					break;
 				case PlayerColor.Blue:
 					blueScoreTxt.text = "Score: " + tempScoreStr;
 					blueAccTxt.text = "Accuracy: " + tempAccStr + "%";
-					//purpleGameScore.text = "Purple:" + tempScoreStr;
 					break;
 				}
 			}
@@ -280,7 +265,9 @@ public class GameManager : MonoBehaviour {
 
 	public void BallHit(ArrayList args) {
 		float x = (float)(args[0]);
+		x = Mathf.Abs(x - 1);
 		float y = (float)(args[1]);
+		y = Mathf.Abs(y - 1);
 		Vector2 pos = new Vector2(x,y);
 
 		int colorID =  (int)args[2];
@@ -312,7 +299,6 @@ public class GameManager : MonoBehaviour {
 				timer = joinTimer;
 				introGUI.timerText.animation.Stop();
 				introGUI.timerText.transform.rotation = Quaternion.identity;
-//				introGUI.timerText.transform.localScale *= 1.1f;
 			}
 		}
 		if(!gameStarted) {
@@ -320,12 +306,12 @@ public class GameManager : MonoBehaviour {
 			timer = joinTimer;
 		}
 
-//		Debug.Log(pos);
-			
-		pos.x *= Screen.width;
-		pos.y = 1 - pos.y;
-		pos.y *= Screen.height;
-		ballManager.Shoot(pos, color);
+		if(mode == GameMode.Main) {
+			pos.x *= Screen.width;
+			pos.y = 1 - pos.y;
+			pos.y *= Screen.height;
+			ballManager.Shoot(pos, color);
+		}
 	}
 
 	IEnumerator SpawnEnemy() {
@@ -386,7 +372,7 @@ public class GameManager : MonoBehaviour {
 
 	public void OSCMessageReceived(OSC.NET.OSCMessage message){
 		if(message.Address == "/shoot"){
-			message.Values[2] = "Red";
+//			message.Values[2] = "Red";
 			BallHit(message.Values);  
 		}
 //    	if(message.Address == "/endGame"){

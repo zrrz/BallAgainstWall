@@ -43,6 +43,8 @@ public class FloatingTextManager : MonoBehaviour {
 
 	public void CreateFloatingText( Vector3 pos, int points, Color color ) {
 		TextMesh t_obj = (TextMesh)GameObject.Instantiate( m_textMesh, pos, Quaternion.identity );
+		if(t_obj == null)
+			print ("FUCK U ESPI");
 		if(Camera.main)
 			t_obj.transform.LookAt( Camera.main.transform );
 		t_obj.transform.Rotate( new Vector3( 0f, 180f, 0f ) );
@@ -69,6 +71,11 @@ public class FloatingTextManager : MonoBehaviour {
 		t_obj.color = color;
 
 		StartCoroutine( "FloatingText", t_obj );
+	}
+
+	void OnLevelWasLoaded(int level) {
+		StopAllCoroutines();
+		_instance = this;
 	}
 
 	IEnumerator FloatingText( TextMesh tMesh ) {

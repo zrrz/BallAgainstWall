@@ -23,10 +23,10 @@ public class Ball : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Time.time < impactEndTime)
-		{
-			if(impactTarget.rigidbody != null)
-				impactTarget.AddForce(impact, ForceMode.VelocityChange);
+		if (Time.time < impactEndTime) {
+//			if(impactTarget != null)
+				if(impactTarget.rigidbody != null)
+					impactTarget.AddForce(impact, ForceMode.VelocityChange);
 		}
 		if(Time.time > lifeEndTime) {
 			transform.position = Vector3.one * 1000f;
@@ -63,17 +63,26 @@ public class Ball : MonoBehaviour {
 				audioSource.Play();
 				Destroy(Instantiate(hitParticle, col.contacts[0].point, Quaternion.identity), 4f); //TODO Eric: change to a better method
 
+				Transform parent = col.transform;
+				while(parent.name != "Enemy(Clone)")
+					parent = parent.parent;
+
+				int pointsToAdd = 1;
+				if(parent.GetChild(2).gameObject.activeInHierarchy) {
+					pointsToAdd++;
+				}
+
 				if(color == PlayerColor.Red ) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.red );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.red );
 				}
 				else if(color == PlayerColor.Green) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.green );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.green );
 				}
 				else if(color == PlayerColor.Yellow) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.yellow );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.yellow );
 				}
 				else if(color == PlayerColor.Blue) {
-					FloatingTextManager.instance.CreateFloatingText( col.transform.position, 1, Color.blue );
+					FloatingTextManager.instance.CreateFloatingText( col.transform.position, pointsToAdd, Color.blue );
 				}
 			}
 

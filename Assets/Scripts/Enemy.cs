@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour {
 
 	Animator animator;
 
-	public List<Texture> textures;
-	public List<Renderer> renderers;
+	public List<Texture> maleTextures;
+	public List<Texture> femaleTextures;
 
 	public float moveForwardChancePct = 50f;
 
@@ -42,26 +42,48 @@ public class Enemy : MonoBehaviour {
 
 		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 
-		animator = transform.GetChild(0).GetComponent<Animator> ();
-
 		Reset();
 	}
 	
 	void SetKinematic(bool newValue) {
-		Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+		Component[] components = animator.GetComponentsInChildren(typeof(Rigidbody));
 
 		foreach (Component c in components) {
 			(c as Rigidbody).isKinematic = newValue;
 		}
+
+		floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
+	}
+
+	void OnLevelWasLoaded(int level) {
+		if(level == 0) {
+			StopAllCoroutines();
+			gameObject.SetActive(false);
+		}
+		if(level == 1)
+			floor = GameObject.Find ("Floor").GetComponent<SpawnFloor> ();
 	}
 
 	public void Reset() {
-		SetKinematic(true);
-
-		int rand = Random.Range(0, textures.Count - 1);
-		foreach(Renderer rend in renderers) {
-			rend.material.mainTexture = textures[rand];
+		for(int i = 0; i < transform.childCount; i++) {
+			transform.GetChild(i).gameObject.SetActive(false);
 		}
+
+		int randChar = Random.Range(0, 3);
+		transform.GetChild(randChar).gameObject.SetActive(true);
+		animator = transform.GetChild(randChar).GetComponent<Animator> ();
+		if(randChar == 0) {
+			int rand = Random.Range(0, maleTextures.Count - 1);
+			animator.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture = maleTextures[rand];
+		} else if(randChar == 1) {
+			int rand = Random.Range(0, femaleTextures.Count - 1);
+			animator.GetComponentInChildren<SkinnedMeshRenderer>().material.mainTexture = femaleTextures[rand];
+		} 
+//		else {
+//			print("No");
+//		}
+
+		SetKinematic(true);
 
 		curRow = 0;
 
@@ -70,6 +92,12 @@ public class Enemy : MonoBehaviour {
 		lifeEndTime = -1f;
 
 		animator.enabled = true;
+
+//		Component[] components = GetComponentsInChildren(typeof(Rigidbody));
+		
+//		foreach (Component c in components) {
+//			(c as Rigidbody).velocity = Vector3.zero;
+//		}
 	}
 
 	void Update() {
@@ -78,11 +106,6 @@ public class Enemy : MonoBehaviour {
 				gameObject.SetActive(false);
 			}
 		}
-
-		Vector3 t_pos = transform.GetChild(0).localPosition;
-		t_pos.x = t_pos.z = 0f;
-		transform.GetChild(0).localPosition = t_pos;
-		transform.rotation = Quaternion.identity;
 	}
 
 //	void OnCollisionEnter(Collision col) {
@@ -99,16 +122,21 @@ public class Enemy : MonoBehaviour {
 		if(!hit) {
 			hitBy = p_hitBy;
 
+			int pointsToAdd = 1;
+
+			if(animator == transform.GetChild(2).GetComponent<Animator>())
+				pointsToAdd++;
+
 			if(p_hitBy.name.Contains("Red")) {
-				PlayerManager.AddPoints(PlayerColor.Red, 1);
+				PlayerManager.AddPoints(PlayerColor.Red, pointsToAdd);
 			} 
 			else if(p_hitBy.name.Contains("Yellow")) {
-				PlayerManager.AddPoints(PlayerColor.Yellow, 1);
+				PlayerManager.AddPoints(PlayerColor.Yellow, pointsToAdd);
 			} 
 			else if(p_hitBy.name.Contains("Green")) {
-				PlayerManager.AddPoints(PlayerColor.Green, 1);
+				PlayerManager.AddPoints(PlayerColor.Green, pointsToAdd);
 			} else if(p_hitBy.name.Contains("Blue")) {
-				PlayerManager.AddPoints(PlayerColor.Blue, 1);
+				PlayerManager.AddPoints(PlayerColor.Blue, pointsToAdd);
 			} else {
 				print ("wtf");
 			}
@@ -116,14 +144,13 @@ public class Enemy : MonoBehaviour {
 			hit = true;
 			StopCoroutine ("Move");
 			StopCoroutine ("Hop");
-			collider.enabled = false;
+//			collider.enabled = false;
 
 			SetKinematic(false);
 			animator.enabled = false;
 
 			StopAllCoroutines();
 			lifeEndTime = Time.time + 1f;
-//			Destroy(gameObject, 1f);
 		}
 	}
 
@@ -156,30 +183,21 @@ public class Enemy : MonoBehaviour {
 
 		gameObject.SetActive(false);
 		StopAllCoroutines();
-//		Destroy (gameObject);
-	}
-
-	void LateUpdate() {
-		Vector3 t_pos = transform.GetChild(0).localPosition;
-		t_pos.x = 0f;
-		transform.GetChild(0).localPosition = t_pos;
 	}
 
 	IEnumerator Hop(HopData data) {
-//		animator.SetBool ("Land", false);
+		animator.transform.localPosition = Vector3.zero;
 		animator.SetBool("Jump", true);
-		animator.SetInteger("RandomJump", Random.Range(1, 10));
-		//floor.tiles [curColumn, curRow].GetComponent<Animator> ().SetTrigger ("Bounce");
+		if(animator == transform.GetChild(2).GetComponent<Animator>())
+			animator.SetInteger("RandomJump", 1);
+		else
+			animator.SetInteger("RandomJump", Random.Range(1, 10));
+
 		ClosestTile(transform.position).GetComponent<Animator>().SetTrigger("Bounce");
 		Vector3 startPos = transform.position;
 		float timer = 0.0f;
 
-		yield return null;
-
-//		if(animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Start") 
-//		   || animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Jump Hub")
-//		   || animator.GetCurrentAnimatorStateInfo(0).nameHash == Animator.StringToHash("Base.Walk")) {
-			switch(animator.GetInteger("RandomJump")) {
+		switch(animator.GetInteger("RandomJump")) {
 			case 1:
 				animator.Play(Animator.StringToHash("jump " + 1), 0, 0f);
 				break;
@@ -210,8 +228,7 @@ public class Enemy : MonoBehaviour {
 			default:
 				print ("wtf");
 				break;
-			}
-//		}
+		}
 
 		float temp_hopHeight = hopHeight * Random.Range(0.8f, 1.2f);
 
@@ -224,12 +241,7 @@ public class Enemy : MonoBehaviour {
 			
 			timer += Time.deltaTime / data.time;
 			yield return null;
-//			animator.SetBool ("Jump", false);
-//			if(timer > .90f)
-//				animator.SetBool ("Land", true);
 		}
-//		animator.SetBool ("Land", true);
-//		animator.SetBool ("Jump", false);
 	}
 
 	Transform ClosestTile(Vector3 pos) {

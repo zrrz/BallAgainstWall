@@ -14,7 +14,10 @@ public class BallManager : MonoBehaviour {
 
 	Dictionary<string, GameObject> ballPrefabDict;
 
+	public GameObject nearPlane;
+
 	void Start () {
+//		nearPlane = GameObject.Find("NearPlane");
 		char[] delimChar = new char[1] {'_'};
 
 		ballPrefabDict = new Dictionary<string, GameObject> ();
@@ -108,10 +111,16 @@ public class BallManager : MonoBehaviour {
 	
 
 	void Shoot(ShootData shootData) {
+//		print (shootData.start);
+
+		Vector3 startPos = shootData.start;
+		if(DebugMode.CENTERSPAWN)
+			startPos.z -= Camera.main.transform.position.z/4f;// - nearPlane.transform.position.z;
+
 		GameObject ball = StaticPool.GetObj(ballPrefabDict[shootData.color.ToString()]);
 		ball.GetComponent<Ball>().Reset();
 
-		ball.transform.position = Camera.main.ScreenToWorldPoint(shootData.start);
+		ball.transform.position = Camera.main.ScreenToWorldPoint(startPos);
 		ball.rigidbody.velocity = Vector3.zero;
 
 		PlayerManager.IncreaseShots(shootData.color);
@@ -119,9 +128,15 @@ public class BallManager : MonoBehaviour {
 		Vector3 shootDir = shootData.dest - ball.transform.position;
 		shootDir.Normalize();
 
-		ball.rigidbody.AddForce(shootDir * shootStrength);
+		if(DebugMode.FORWARDMODE) {
+			ball.rigidbody.AddForce(Vector3.forward * (shootStrength + DebugMode.FORCECHANGE));
+		} else {
+			ball.rigidbody.AddForce(shootDir * (shootStrength + DebugMode.FORCECHANGE));
+		}
 			
-		ball.rigidbody.useGravity = true;
+//		Debug.Break();
+
+		ball.rigidbody.useGravity = DebugMode.GRAVITY;
 //		Destroy (ball, 10f);
 	}
 }

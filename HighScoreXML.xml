@@ -1,23 +1,57 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <HighScore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <DailyScores />
-  <weeklyScores />
-  <monthlyScores>
-    <ScoreXML>
-      <score>56</score>
-      <time>2014-10-07T03:01:21.3231689-07:00</time>
-    </ScoreXML>
-    <ScoreXML>
-      <score>56</score>
-      <time>2014-10-07T03:23:34.9372054-07:00</time>
-    </ScoreXML>
+  <DailyScores>
     <ScoreXML>
       <score>45</score>
-      <time>2014-09-30T15:48:31.8920985-07:00</time>
+      <time>2014-11-08T14:26:30.3669268-08:00</time>
     </ScoreXML>
     <ScoreXML>
-      <score>2</score>
-      <time>2014-10-07T17:44:35.1880124-07:00</time>
+      <score>3</score>
+      <time>2014-11-08T13:14:31.8510182-08:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>0</score>
+      <time>2014-11-08T13:14:31.8610182-08:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>0</score>
+      <time>2014-11-08T14:28:15.1210787-08:00</time>
+    </ScoreXML>
+  </DailyScores>
+  <weeklyScores>
+    <ScoreXML>
+      <score>45</score>
+      <time>2014-11-08T14:26:30.3669268-08:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>29</score>
+      <time>2014-11-03T11:37:15.9187032-08:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>3</score>
+      <time>2014-11-08T13:14:31.8510182-08:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>0</score>
+      <time>2014-11-08T14:28:15.1210787-08:00</time>
+    </ScoreXML>
+  </weeklyScores>
+  <monthlyScores>
+    <ScoreXML>
+      <score>45</score>
+      <time>2014-11-08T14:26:30.3669268-08:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>36</score>
+      <time>2014-11-01T10:31:24.2890539-07:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>3</score>
+      <time>2014-11-08T13:14:31.8510182-08:00</time>
+    </ScoreXML>
+    <ScoreXML>
+      <score>0</score>
+      <time>2014-11-08T14:28:15.1210787-08:00</time>
     </ScoreXML>
   </monthlyScores>
 </HighScore>

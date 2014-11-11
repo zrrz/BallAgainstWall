@@ -198,6 +198,7 @@ ModelImporter:
     7400014: jump 7
     7400016: jump 8
     7400018: jump 9
+    7400020: idle
     9500000: //RootNode
     13700000: Alexis_Geo_High
   materials:
@@ -639,8 +640,8 @@ ModelImporter:
     - serializedVersion: 16
       name: jump 2
       takeName: mixamo.com
-      firstFrame: 74
-      lastFrame: 97
+      firstFrame: 20
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1899,8 +1900,8 @@ ModelImporter:
     - serializedVersion: 16
       name: jump 9
       takeName: mixamo.com
-      firstFrame: 544
-      lastFrame: 571
+      firstFrame: 20
+      lastFrame: 49
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -2109,8 +2110,218 @@ ModelImporter:
     - serializedVersion: 16
       name: jump 7
       takeName: mixamo.com
-      firstFrame: 440
-      lastFrame: 476
+      firstFrame: 20
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Alexis:Hips
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:HeadTop_End
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftEye
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightEye
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw/Alexis:TongueBack
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw/Alexis:TongueTip
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw/Alexis:LeftLipLower
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw/Alexis:JawEND
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw/Alexis:RightLipLower
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw/Alexis:RightLipCorner
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:Jaw/Alexis:LeftLipCorner
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftLipUpper
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftNostril
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftCheek
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftEyelidLower
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftEyelidUpper
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftInnerBrow
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:LeftIOuterBrow
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightInnerBrow
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightIOuterBrow
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightEyelidUpper
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightEyelidLower
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightCheek
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightNostril
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:Neck/Alexis:Neck1/Alexis:Head/Alexis:RightLipUpper
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandThumb1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandThumb1/Alexis:LeftHandThumb2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandThumb1/Alexis:LeftHandThumb2/Alexis:LeftHandThumb3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandThumb1/Alexis:LeftHandThumb2/Alexis:LeftHandThumb3/Alexis:LeftHandThumb4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandMiddle1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandMiddle1/Alexis:LeftHandMiddle2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandMiddle1/Alexis:LeftHandMiddle2/Alexis:LeftHandMiddle3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandMiddle1/Alexis:LeftHandMiddle2/Alexis:LeftHandMiddle3/Alexis:LeftHandMiddle4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandIndex1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandIndex1/Alexis:LeftHandIndex2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandIndex1/Alexis:LeftHandIndex2/Alexis:LeftHandIndex3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandIndex1/Alexis:LeftHandIndex2/Alexis:LeftHandIndex3/Alexis:LeftHandIndex4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandRing1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandRing1/Alexis:LeftHandRing2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandRing1/Alexis:LeftHandRing2/Alexis:LeftHandRing3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandRing1/Alexis:LeftHandRing2/Alexis:LeftHandRing3/Alexis:LeftHandRing4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandPinky1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandPinky1/Alexis:LeftHandPinky2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandPinky1/Alexis:LeftHandPinky2/Alexis:LeftHandPinky3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:LeftShoulder/Alexis:LeftArm/Alexis:LeftForeArm/Alexis:LeftHand/Alexis:LeftHandPinky1/Alexis:LeftHandPinky2/Alexis:LeftHandPinky3/Alexis:LeftHandPinky4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandThumb1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandThumb1/Alexis:RightHandThumb2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandThumb1/Alexis:RightHandThumb2/Alexis:RightHandThumb3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandThumb1/Alexis:RightHandThumb2/Alexis:RightHandThumb3/Alexis:RightHandThumb4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandIndex1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandIndex1/Alexis:RightHandIndex2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandIndex1/Alexis:RightHandIndex2/Alexis:RightHandIndex3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandIndex1/Alexis:RightHandIndex2/Alexis:RightHandIndex3/Alexis:RightHandIndex4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandMiddle1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandMiddle1/Alexis:RightHandMiddle2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandMiddle1/Alexis:RightHandMiddle2/Alexis:RightHandMiddle3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandMiddle1/Alexis:RightHandMiddle2/Alexis:RightHandMiddle3/Alexis:RightHandMiddle4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandRing1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandRing1/Alexis:RightHandRing2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandRing1/Alexis:RightHandRing2/Alexis:RightHandRing3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandRing1/Alexis:RightHandRing2/Alexis:RightHandRing3/Alexis:RightHandRing4
+        weight: 0
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandPinky1
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandPinky1/Alexis:RightHandPinky2
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandPinky1/Alexis:RightHandPinky2/Alexis:RightHandPinky3
+        weight: 1
+      - path: Alexis:Hips/Alexis:Spine/Alexis:Spine1/Alexis:Spine2/Alexis:RightShoulder/Alexis:RightArm/Alexis:RightForeArm/Alexis:RightHand/Alexis:RightHandPinky1/Alexis:RightHandPinky2/Alexis:RightHandPinky3/Alexis:RightHandPinky4
+        weight: 0
+      - path: Alexis:Hips/Alexis:LeftUpLeg
+        weight: 1
+      - path: Alexis:Hips/Alexis:LeftUpLeg/Alexis:LeftLeg
+        weight: 1
+      - path: Alexis:Hips/Alexis:LeftUpLeg/Alexis:LeftLeg/Alexis:LeftFoot
+        weight: 1
+      - path: Alexis:Hips/Alexis:LeftUpLeg/Alexis:LeftLeg/Alexis:LeftFoot/Alexis:LeftToeBase
+        weight: 1
+      - path: Alexis:Hips/Alexis:LeftUpLeg/Alexis:LeftLeg/Alexis:LeftFoot/Alexis:LeftToeBase/Alexis:LeftFootToeBase_End
+        weight: 0
+      - path: Alexis:Hips/Alexis:RightUpLeg
+        weight: 1
+      - path: Alexis:Hips/Alexis:RightUpLeg/Alexis:RightLeg
+        weight: 1
+      - path: Alexis:Hips/Alexis:RightUpLeg/Alexis:RightLeg/Alexis:RightFoot
+        weight: 1
+      - path: Alexis:Hips/Alexis:RightUpLeg/Alexis:RightLeg/Alexis:RightFoot/Alexis:RightToeBase
+        weight: 1
+      - path: Alexis:Hips/Alexis:RightUpLeg/Alexis:RightLeg/Alexis:RightFoot/Alexis:RightToeBase/Alexis:RightFootToeBase_End
+        weight: 0
+      - path: Alexis_Geo_High
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: idle
+      takeName: mixamo.com
+      firstFrame: 31
+      lastFrame: 31.0999985
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

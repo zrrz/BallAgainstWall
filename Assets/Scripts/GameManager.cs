@@ -105,8 +105,8 @@ public class GameManager : MonoBehaviour {
 //			purpleGameScore = GameObject.Find("PurpleScore").GetComponent<GUIText>();
 
 			redScoreBox = GameObject.Find( "InGameScoreRed" );
-			yellowScoreBox = GameObject.Find( "InGameScoreYellow" );
-			blueScoreBox = GameObject.Find( "InGameScoreBlue" );
+//			yellowScoreBox = GameObject.Find( "InGameScoreYellow" );
+//			blueScoreBox = GameObject.Find( "InGameScoreBlue" );
 			greenScoreBox = GameObject.Find( "InGameScoreGreen" );
 
 			StartCoroutine ("SpawnEnemy");
@@ -121,20 +121,20 @@ public class GameManager : MonoBehaviour {
 				if( text.name.Contains( "Accuracy" ) )
 					redAccTxt = text;
 			}			
-			texts = yellowScoreBox.GetComponentsInChildren<TextMesh>();			
-			foreach( TextMesh text in texts ) {
-				if( text.name.Contains( "Score" ) )
-					yellowScoreTxt = text;
-				if( text.name.Contains( "Accuracy" ) )
-					yellowAccTxt = text;
-			}			
-			texts = blueScoreBox.GetComponentsInChildren<TextMesh>();			
-			foreach( TextMesh text in texts ) {
-				if( text.name.Contains( "Score" ) )
-					blueScoreTxt = text;
-				if( text.name.Contains( "Accuracy" ) )
-					blueAccTxt = text;
-			}			
+//			texts = yellowScoreBox.GetComponentsInChildren<TextMesh>();			
+//			foreach( TextMesh text in texts ) {
+//				if( text.name.Contains( "Score" ) )
+//					yellowScoreTxt = text;
+//				if( text.name.Contains( "Accuracy" ) )
+//					yellowAccTxt = text;
+//			}			
+//			texts = blueScoreBox.GetComponentsInChildren<TextMesh>();			
+//			foreach( TextMesh text in texts ) {
+//				if( text.name.Contains( "Score" ) )
+//					blueScoreTxt = text;
+//				if( text.name.Contains( "Accuracy" ) )
+//					blueAccTxt = text;
+//			}			
 			texts = greenScoreBox.GetComponentsInChildren<TextMesh>();			
 			foreach( TextMesh text in texts ) {
 				if( text.name.Contains( "Score" ) )
@@ -144,8 +144,8 @@ public class GameManager : MonoBehaviour {
 			}
 
 			redScoreBox.SetActive( false );
-			yellowScoreBox.SetActive( false );
-			blueScoreBox.SetActive( false );
+//			yellowScoreBox.SetActive( false );
+//			blueScoreBox.SetActive( false );
 			greenScoreBox.SetActive( false );
 
 		} else if(level == 2) { //Config level
@@ -189,8 +189,8 @@ public class GameManager : MonoBehaviour {
 				mode = GameMode.Scoreboard;
 
 				redScoreBox.SetActive( false );
-				yellowScoreBox.SetActive( false );
-				blueScoreBox.SetActive( false );
+//				yellowScoreBox.SetActive( false );
+//				blueScoreBox.SetActive( false );
 				greenScoreBox.SetActive( false );
 
 				GameObject.Find("ScoreGUI").GetComponent<ScoreGUI>().Activate();
@@ -214,10 +214,10 @@ public class GameManager : MonoBehaviour {
 			// Update score gui
 			if( redScoreBox.activeSelf == false && playerManager.Added( PlayerColor.Red ))
 				redScoreBox.SetActive( true );
-			if( yellowScoreBox.activeSelf == false && playerManager.Added( PlayerColor.Yellow ))
-				yellowScoreBox.SetActive( true );
-			if( blueScoreBox.activeSelf == false && playerManager.Added( PlayerColor.Blue ))
-				blueScoreBox.SetActive( true );
+//			if( yellowScoreBox.activeSelf == false && playerManager.Added( PlayerColor.Yellow ))
+//				yellowScoreBox.SetActive( true );
+//			if( blueScoreBox.activeSelf == false && playerManager.Added( PlayerColor.Blue ))
+//				blueScoreBox.SetActive( true );
 			if( greenScoreBox.activeSelf == false && playerManager.Added( PlayerColor.Green ))
 				greenScoreBox.SetActive( true );
 
@@ -242,18 +242,18 @@ public class GameManager : MonoBehaviour {
 					redScoreTxt.text = "Score: " + tempScoreStr;
 					redAccTxt.text = "Accuracy: " + tempAccStr + "%";
 					break;
-				case PlayerColor.Yellow:
-					yellowScoreTxt.text = "Score: " + tempScoreStr;
-					yellowAccTxt.text = "Accuracy: " + tempAccStr + "%";
-					break;
+//				case PlayerColor.Yellow:
+//					yellowScoreTxt.text = "Score: " + tempScoreStr;
+//					yellowAccTxt.text = "Accuracy: " + tempAccStr + "%";
+//					break;
 				case PlayerColor.Green:
 					greenScoreTxt.text = "Score: " + tempScoreStr;
 					greenAccTxt.text = "Accuracy: " + tempAccStr + "%";
 					break;
-				case PlayerColor.Blue:
-					blueScoreTxt.text = "Score: " + tempScoreStr;
-					blueAccTxt.text = "Accuracy: " + tempAccStr + "%";
-					break;
+//				case PlayerColor.Blue:
+//					blueScoreTxt.text = "Score: " + tempScoreStr;
+//					blueAccTxt.text = "Accuracy: " + tempAccStr + "%";
+//					break;
 				}
 			}
 

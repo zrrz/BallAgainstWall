@@ -58,6 +58,12 @@ public class IntroGUI : MonoBehaviour {
 			timer += Time.deltaTime/fadeInSpeed;
 			yield return null;
 		}
+
+		for(int i = 0; i < renderers.Length; i++) {
+			t_color = renderers[i].material.color;
+			t_color.a = endAlphas[i];
+			renderers[i].material.color = t_color;
+		}
 	}
 
 	IEnumerator FadeOut(GameObject parent) {

@@ -51,16 +51,17 @@ public class ScoreGUI : MonoBehaviour {
 			if(playerData[i].color == PlayerColor.Red) {
 				redBox.SetActive(true);
 				redContainer.SetActive(true);
-			} else if(playerData[i].color == PlayerColor.Blue) {
-				blueBox.SetActive(true);
-				blueContainer.SetActive(true);
-			} else if(playerData[i].color == PlayerColor.Green) {
+			}// else if(playerData[i].color == PlayerColor.Blue) {
+//				blueBox.SetActive(true);
+//				blueContainer.SetActive(true);
+//			} 
+			else if(playerData[i].color == PlayerColor.Green) {
 				greenBox.SetActive(true);
 				greenContainer.SetActive(true);
-			} else if(playerData[i].color == PlayerColor.Yellow) {
-				yellowBox.SetActive(true);
-				yellowContainer.SetActive(true);
-			}
+			}// else if(playerData[i].color == PlayerColor.Yellow) {
+//				yellowBox.SetActive(true);
+//				yellowContainer.SetActive(true);
+//			}
 		}
 
 		StartCoroutine("FadeIn", playerData);
@@ -94,13 +95,14 @@ public class ScoreGUI : MonoBehaviour {
 		for(int i = 0; i < playerData.Count; i++) {
 			if(playerData[i].color == PlayerColor.Red) {
 				StartCoroutine(GrowScoreBox(new GrowData(redBox, redContainer.GetComponentInChildren<TextMesh>(), playerData[i].score, playerData[0].score, i + 1)));
-			} else if(playerData[i].color == PlayerColor.Blue) {
-				StartCoroutine(GrowScoreBox(new GrowData(blueBox, blueContainer.GetComponentInChildren<TextMesh>(), playerData[i].score, playerData[0].score, i + 1)));
-			} else if(playerData[i].color == PlayerColor.Green) {
+			}// else if(playerData[i].color == PlayerColor.Blue) {
+//				StartCoroutine(GrowScoreBox(new GrowData(blueBox, blueContainer.GetComponentInChildren<TextMesh>(), playerData[i].score, playerData[0].score, i + 1)));
+//			}
+			else if(playerData[i].color == PlayerColor.Green) {
 				StartCoroutine(GrowScoreBox(new GrowData(greenBox, greenContainer.GetComponentInChildren<TextMesh>(), playerData[i].score, playerData[0].score, i + 1)));
-			} else if(playerData[i].color == PlayerColor.Yellow) {
-				StartCoroutine(GrowScoreBox(new GrowData(yellowBox, yellowContainer.GetComponentInChildren<TextMesh>(), playerData[i].score, playerData[0].score, i + 1)));
-			}
+			}// else if(playerData[i].color == PlayerColor.Yellow) {
+//				StartCoroutine(GrowScoreBox(new GrowData(yellowBox, yellowContainer.GetComponentInChildren<TextMesh>(), playerData[i].score, playerData[0].score, i + 1)));
+//			}
 		}
 	}
 

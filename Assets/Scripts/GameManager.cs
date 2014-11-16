@@ -32,10 +32,6 @@ public class GameManager : MonoBehaviour {
 	public bool enemiesKnockback = false;
 
 	private GameObject redScoreBox, yellowScoreBox, blueScoreBox, greenScoreBox;
-//	private GUIText redScoreTxt, redPlaceTxt, redAccTxt,
-//						yellowScoreTxt, yellowPlaceTxt, yellowAccTxt,
-//						blueScoreTxt, bluePlaceTxt, blueAccTxt,
-//						greenScoreTxt, greenPlaceTxt, greenAccTxt;
 
 	private TextMesh redScoreTxt, redAccTxt,
 						yellowScoreTxt, yellowAccTxt,
@@ -47,10 +43,6 @@ public class GameManager : MonoBehaviour {
 	QueueManager queueManager;
 
 	bool nextCornerReady = false;
-
-//	public TextMesh scoreText;
-
-//	GUIText redGameScore, yellowGameScore, greenGameScore, purpleGameScore; //In-game score gui
 
 	IntroGUI introGUI;
 
@@ -98,11 +90,6 @@ public class GameManager : MonoBehaviour {
 			introGUI = GameObject.Find("IntroGUI").GetComponent<IntroGUI>();
 		} else if(level == 1) {
 			queueManager = GameObject.Find( "QueueManager" ).GetComponent<QueueManager>();
-
-//			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
-//			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
-//			greenGameScore = GameObject.Find("GreenScore").GetComponent<GUIText>();
-//			purpleGameScore = GameObject.Find("PurpleScore").GetComponent<GUIText>();
 
 			redScoreBox = GameObject.Find( "InGameScoreRed" );
 //			yellowScoreBox = GameObject.Find( "InGameScoreYellow" );

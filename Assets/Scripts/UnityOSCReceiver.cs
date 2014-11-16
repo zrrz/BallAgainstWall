@@ -10,7 +10,7 @@ public class UnityOSCReceiver : MonoBehaviour
 {
   
   private bool connected = false;
-  public int port = 9999;
+  int port = 9997;
   private OSCReceiver receiver;
   private Thread thread;
   

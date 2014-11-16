@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour {
 
 	private static GameManager _instance;
 
-	enum GameMode {Intro, Main, Scoreboard}
+	enum GameMode {Intro, Main, Scoreboard, Config}
 
 	public GameObject enemy;
 	public Transform enemySpawnPoint;
@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour {
 	PlayerManager playerManager;
 	QueueManager queueManager;
 
+	bool nextCornerReady = false;
+
 //	public TextMesh scoreText;
 
 //	GUIText redGameScore, yellowGameScore, greenGameScore, purpleGameScore; //In-game score gui
@@ -53,6 +55,10 @@ public class GameManager : MonoBehaviour {
 	IntroGUI introGUI;
 
 	StaticPool staticPool;
+
+	//Config stuff
+	int cornerIterator;
+	public GameObject[] corners;
 
 	#region Singleton Initialization
 	public static GameManager instance {
@@ -92,7 +98,6 @@ public class GameManager : MonoBehaviour {
 			introGUI = GameObject.Find("IntroGUI").GetComponent<IntroGUI>();
 		} else if(level == 1) {
 			queueManager = GameObject.Find( "QueueManager" ).GetComponent<QueueManager>();
-			//enemySpawnPoint = GameObject.Find( "EnemySpawnPoint" ).transform;
 
 //			redGameScore = GameObject.Find("RedScore").GetComponent<GUIText>();
 //			yellowGameScore = GameObject.Find("YellowScore").GetComponent<GUIText>();
@@ -107,7 +112,6 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine ("SpawnEnemy");
 			StartCoroutine( "StartEnemyMove" );
 			GameObject.Find("GameCamera").camera.enabled = true;
-//			GameObject.Find("ScoreCamera").camera.enabled = false;
 			GameObject.Find("Timer").SetActive(true);
 
 			TextMesh[] texts = redScoreBox.GetComponentsInChildren<TextMesh>();			
@@ -144,7 +148,17 @@ public class GameManager : MonoBehaviour {
 			blueScoreBox.SetActive( false );
 			greenScoreBox.SetActive( false );
 
-//			scoreText = GameObject.Find("ScoreText").GetComponent<TextMesh>();
+		} else if(level == 2) { //Config level
+			corners = new GameObject[4];
+			corners[0] = GameObject.Find("TL");
+			corners[1] = GameObject.Find("TR");
+			corners[2] = GameObject.Find("BL");
+			corners[3] = GameObject.Find("BR");
+			for(int i = 0; i < 4; i++) {
+				corners[i].SetActive(false);
+			}
+			OSCSender.SendEmptyMessage("/config/corner");
+			mode = GameMode.Config;
 		}
 	}
 
@@ -162,6 +176,9 @@ public class GameManager : MonoBehaviour {
 					}
 				}
 			}
+			if(Input.GetKeyDown(KeyCode.C)) {
+				Application.LoadLevel("Config");
+			}
 			break;
 		case GameMode.Main:
 			// Once timer goes down to zero
@@ -176,8 +193,6 @@ public class GameManager : MonoBehaviour {
 				blueScoreBox.SetActive( false );
 				greenScoreBox.SetActive( false );
 
-//				GameObject.Find("GameCamera").camera.enabled = false;
-//				GameObject.Find("ScoreCamera").camera.enabled = true;
 				GameObject.Find("ScoreGUI").GetComponent<ScoreGUI>().Activate();
 				GameObject.Find("Timer").SetActive(false);
 
@@ -254,6 +269,14 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+//	public void NextCorner() {
+//		corners [cornerIterator].SetActive (false);
+//		cornerIterator++;
+//		corners [cornerIterator].SetActive (true);
+//		OSCSender.SendEmptyMessage ("/config/corner");
+//		nextCornerReady = false;
+//	}
+
 	// Why the shit doesnt this work?
 	string Tab(string str, int numSpaces) {
 		int size = str.Length;
@@ -328,30 +351,6 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-//	void OnGUI() {
-//		guiStyle.font = guiFont;
-//		guiStyle.normal.textColor = Color.yellow;
-//
-//		switch(mode) {
-//		case GameMode.Intro:
-//			if(timer > 0f) {
-//				string joinedPlayers = "";
-//				for(int i = 0; i < playerManager.playerData.Count; i++) {
-//					joinedPlayers += "\n" + playerManager.playerData[i].color + " has joined!";
-//				}
-//				GUI.Label(new Rect(Screen.width/2f - 100f, Screen.height/2f - 100f, 200f, 200f), "Game starts in: " + Mathf.CeilToInt(timer) + joinedPlayers, guiStyle);
-//			}
-//			break;
-//		case GameMode.Main:
-//			break;
-//		case GameMode.Scoreboard:
-////			Rect windowRect = new Rect((float)Screen.width*guiLeft, (float)Screen.height-((float)Screen.height*guiTop), 
-////			                           (float)Screen.width*(1f-(guiLeft*2f)), (float)Screen.height*(1f-guiTop));
-////			windowRect = GUILayout.Window(0, windowRect, ScoreboardWindow, "Scoreboard"/*, guiStyle*/);
-//			break;
-//		}
-//	}
-
 	void ChangeScene( string scene ) {
 		switch( scene )
 		{
@@ -360,7 +359,7 @@ public class GameManager : MonoBehaviour {
 			gameStarted = false;
 			playerManager.playerData.Clear();
 			mode = GameMode.Intro;			
-			Application.LoadLevel("newIntro");
+			Application.LoadLevel("Intro");
 			break;
 		case "Main":
 			timer = gameTimer;
@@ -373,7 +372,12 @@ public class GameManager : MonoBehaviour {
 	public void OSCMessageReceived(OSC.NET.OSCMessage message){
 		if(message.Address == "/shoot"){
 //			message.Values[2] = "Red";
-			BallHit(message.Values);  
+			if(mode != GameMode.Config)
+				BallHit(message.Values);  
+		} else if(message.Address == "/config/cornerParsed") {
+			Application.LoadLevel("Intro");
+			mode = GameMode.Intro;
+		//	OSCSender.SendEmptyMessage ("/config/corner");
 		}
 //    	if(message.Address == "/endGame"){
 //      		AdjustGameSetting("Quit Game", true);
